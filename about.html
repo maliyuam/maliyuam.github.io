@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about Muhammad Aliyu - Technology Professional with expertise in AI Governance, Entrepreneurship, and Research">
+    <meta name="keywords" content="Muhammad Aliyu, AI Governance, Entrepreneurship, Research, Innovation, Africa, Carnegie Mellon, Product Strategy">
+    <meta name="author" content="Muhammad Aliyu">
+    <meta name="theme-color" content="#10194E">
+    <title>About Muhammad Aliyu | Technology & Innovation Professional</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/css/style.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="About Muhammad Aliyu | Technology & Innovation Professional">
+    <meta property="og:description" content="Learn more about Muhammad Aliyu - Technology Professional with expertise in AI Governance, Entrepreneurship, and Research">
+    <meta property="og:image" content="assets/images/ma-image-profile.jpg">
+    <meta property="og:url" content="https://muhammadaliyu.com/about.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Muhammad Aliyu | Technology & Innovation Professional">
+    <meta name="twitter:description" content="Learn more about Muhammad Aliyu - Technology Professional with expertise in AI Governance, Entrepreneurship, and Research">
+    <meta name="twitter:image" content="assets/images/ma-image-profile.jpg">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    
+    <style>
+        /* Additional Styles for About Page */
+        .about-hero {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: calc(var(--spacing-5xl) + 80px) 0 var(--spacing-3xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero h1 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-hero .subtitle {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-hero::before,
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.03);
+            z-index: 1;
+        }
+        
+        .about-hero::before {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            right: -200px;
+        }
+        
+        .about-hero::after {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            left: -150px;
+        }
+        
+        .about-section {
+            padding: var(--spacing-3xl) 0;
+            position: relative;
+        }
+        
+        .section-bg-light {
+            background-color: var(--white);
+        }
+        
+        .section-bg-gray {
+            background-color: var(--light-gray);
+        }
+        
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-xl);
+            align-items: start;
+        }
+        
+        .profile-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .bio-content {
+            line-height: var(--line-height-relaxed);
+        }
+        
+        .bio-content p {
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-lg);
+        }
+        
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .education-item, 
+        .certification-item, 
+        .experience-item, 
+        .volunteer-item {
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-xl);
+            border-bottom: 1px solid var(--gray);
+            transition: transform var(--transition-medium);
+        }
+        
+        .education-item:hover,
+        .certification-item:hover,
+        .experience-item:hover,
+        .volunteer-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .education-item:last-child, 
+        .certification-item:last-child, 
+        .experience-item:last-child, 
+        .volunteer-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .education-date, 
+        .certification-date, 
+        .experience-date, 
+        .volunteer-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            background-color: rgba(0, 71, 204, 0.05);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius-full);
+        }
+        
+        .education-degree, 
+        .certification-name, 
+        .experience-role, 
+        .volunteer-role {
+            font-weight: 600;
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-dark);
+        }
+        
+        .education-institution, 
+        .certification-issuer, 
+        .experience-company, 
+        .volunteer-organization {
+            font-weight: 500;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+            font-size: var(--font-size-lg);
+        }
+        
+        .experience-description, 
+        .volunteer-description {
+            margin-top: var(--spacing-md);
+        }
+        
+        .experience-description ul, 
+        .volunteer-description ul {
+            margin-left: var(--spacing-md);
+            margin-top: var(--spacing-sm);
+            list-style-type: none;
+        }
+        
+        .experience-description ul li, 
+        .volunteer-description ul li {
+            position: relative;
+            padding-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .experience-description ul li::before, 
+        .volunteer-description ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 3px;
+        }
+        
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            margin-top: var(--spacing-xl);
+            font-weight: 500;
+            color: var(--primary-color);
+            transition: all var(--transition-fast);
+        }
+        
+        .back-to-home i {
+            margin-right: var(--spacing-sm);
+            transition: transform var(--transition-fast);
+        }
+        
+        .back-to-home:hover {
+            color: var(--accent-color);
+        }
+        
+        .back-to-home:hover i {
+            transform: translateX(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-image {
+                max-width: 300px;
+                margin: 0 auto var(--spacing-lg);
+            }
+            
+            .education-degree, 
+            .certification-name, 
+            .experience-role, 
+            .volunteer-role {
+                font-size: var(--font-size-lg);
+            }
+            
+            .education-institution, 
+            .certification-issuer, 
+            .experience-company, 
+            .volunteer-organization {
+                font-size: var(--font-size-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="index.html" aria-label="MA Logo - Home">
+                    <span class="logo-text">MA</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#bio">Biography</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#volunteer">Public Speaking</a></li>
+                <li><a href="index.html#contact" class="nav-cta">Contact Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- About Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <span class="pre-heading">My Journey</span>
+                <h1>About Muhammad Aliyu</h1>
+                <p class="subtitle">Technology & Innovation Professional | AI Governance Advocate | Entrepreneurship Catalyst</p>
+            </div>
+        </section>
+
+        <!-- Bio Section -->
+        <section id="bio" class="about-section section-bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Background</span>
+                    <h2>Professional Biography</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="bio-grid">
+                    <div class="profile-image" data-aos="fade-right">
+                        <!-- Placeholder for profile image -->
+                        <img src="assets/images/ma-image-profile.jpg" alt="Muhammad Aliyu - Technology Professional" width="400" height="400">
+                    </div>
+                    <div class="bio-content" data-aos="fade-left">
+                        <p>I'm the bridge between big ideas and tangible outcomes, with a foundation in technology, entrepreneurship, and design that prioritizes People, Planet, and Profit. I thrive on tackling complex projects, bringing structure to chaos, and ensuring that every initiative delivers value on multiple levels.</p>
+                        
+                        <p>My approach is straightforward: find the best path forward, adapt when necessary, and deliver outcomes that create meaningful impact. I focus on building strong communication channels and creating a shared vision, so each person is aligned and engaged. For me, success is a team that feels empowered and valued in every project.</p>
+                        
+                        <p>At Carnegie Mellon University, I'm pursuing a Master's in Information Technology while conducting research on AI governance frameworks and their applications in Africa. I'm particularly interested in how AI can catalyze growth in developing markets and contribute to Africa's role in the global economy.</p>
+                        
+                        <p>As the founding president of the Africa Innovators Society, I led the creation of a vibrant ecosystem to foster student entrepreneurship and innovation at CMU-Africa. This included organizing workshops, hackathons, and bootcamps that impacted over 300 students across seven universities, while securing over $17,000 in event partnerships.</p>
+                        
+                        <p>My career mission is to develop sustainable programs and strategies with a future-facing approach. My decisions consider sustainability—whether that's minimizing waste, optimizing resources, or designing processes that reduce environmental impact. A project's success isn't just about immediate results; it's about long-term responsibility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="about-section section-bg-gray">
+            <div class="container timeline-container">
+                <div class="section-header">
+                    <span class="section-tag">Academic Background</span>
+                    <h2>Education</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="education-list">
+                    <div class="education-item" data-aos="fade-up">
+                        <div class="education-date">January 2025 - May 2025</div>
+                        <div class="education-degree">AI Governance Course</div>
+                        <div class="education-institution">AI Safety Fundamentals - BlueDot Impact, UK</div>
+                        <p>Studying global AI governance frameworks and safety principles, with an emphasis on their applications in Africa.</p>
+                    </div>
+                    
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="education-date">August 2023 - May 2025</div>
+                        <div class="education-degree">Master of Science in Information Technology</div>
+                        <div class="education-institution">Carnegie Mellon University</div>
+                        <p>Research focus on the integration of AI into entrepreneurship, governance, and policy, particularly its potential to catalyze growth in developing markets.</p>
+                    </div>
+                    
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="education-date">April 2023 - April 2024</div>
+                        <div class="education-degree">Master of Science in Information Technology</div>
+                        <div class="education-institution">Valar Institute at Quantic School of Business and Technology</div>
+                    </div>
+                    
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="education-date">October 2022 - August 2023</div>
+                        <div class="education-degree">Postgraduate Fellowship in Technology and Management</div>
+                        <div class="education-institution">Nigerian University of Technology and Management</div>
+                        <p>Specialization in Entrepreneurship and Design.</p>
+                    </div>
+                    
+                    <div class="education-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="education-date">November 2015 - September 2021</div>
+                        <div class="education-degree">Bachelor of Technology in Computer Science</div>
+                        <div class="education-institution">Federal University of Technology, Minna, Nigeria</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="about-section section-bg-light">
+            <div class="container timeline-container">
+                <div class="section-header">
+                    <span class="section-tag">Research & Thought Leadership</span>
+                    <h2>Publications</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="certifications-list">
+                    <div class="certification-item" data-aos="fade-up">
+                        <div class="certification-date">March 2025</div>
+                        <div class="certification-name">Generative AI Methodology for Uncovering Entrepreneurial Journeys in Africa</div>
+                        <div class="certification-issuer">SSRN</div>
+                        <p>Esibe, Roy Ngu and Aliyu, Muhammad and Thornburg, Jesse and Barros, João and Stam, Erik. Available at SSRN: <a href="https://doi.org/10.2139/ssrn.5184838" target="_blank">https://doi.org/10.2139/ssrn.5184838</a></p>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="certification-date">2025</div>
+                        <div class="certification-name">Empowering student entrepreneurs: A model for growth in emerging economies</div>
+                        <div class="certification-issuer">Case Studies in International Education</div>
+                        <p>Aliyu, M., Malum, S., & Abdulkareem, M. [Manuscript undergoing for peer review].</p>
+                    </div>
+
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="150">
+                        <div class="certification-date">2024</div>
+                        <div class="certification-name">Graduate engineering students navigate cultural differences to design a mobile prenatal care app for rural Africa</div>
+                        <div class="certification-issuer">Case Studies in International Education, 5(1)</div>
+                        <p>Underdue Murph, Y., Sullelman, M., & Aliyu, M. Retrieved from <a href="https://csiepub.org/index.php/csie/issue/view/9/20" target="_blank">https://csiepub.org/index.php/csie/issue/view/9/20</a></p>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="certification-date">2021</div>
+                        <div class="certification-name">Orientation and its Significance on Skill Development: A Case study of AcadoPreneurship Industry Immersion Programme for Students (IIP4S)</div>
+                        <div class="certification-issuer">5th International Conference on Future Networks & Distributed Systems (ICFNDS)</div>
+                        <p>Aibinu, A. M., Yusuf, H. U., Olatunji, D. E., Aliyu, M., Folorunso, T. A., Bala, J. (pp 293 – 298). <a href="https://dl.acm.org/doi/10.1145/3508072.3508116" target="_blank">https://dl.acm.org/doi/10.1145/3508072.3508116</a></p>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="certification-date">2021</div>
+                        <div class="certification-name">Learning Management System – Review on the Adoption of Collaborative tools for Learning</div>
+                        <div class="certification-issuer">West African Journal of Open and Flexible Learning, 9(2), 129–140</div>
+                        <p>Aliyu, M., Issah, S., Abdulrrahman, A., Bakare, Z. O., & Aibinu, M. A. Retrieved from <a href="https://wajofel.org/index.php/wajofel/article/view/27" target="_blank">https://wajofel.org/index.php/wajofel/article/view/27</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications Section -->
+        <section id="certifications" class="about-section section-bg-gray">
+            <div class="container timeline-container">
+                <div class="section-header">
+                    <span class="section-tag">Skills Development</span>
+                    <h2>Professional Development</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="certifications-list">
+                    <div class="certification-item" data-aos="fade-up">
+                        <div class="certification-name">Professional Development and Courses</div>
+                        <ul>
+                            <li>Intro to Transformative AI (AI Safety Course) – BlueDot Impact, 2024</li>
+                            <li>Introduction to Management Consulting – Emory University, 2024</li>
+                            <li>AI for Product Management – Pendo.ai, 2023</li>
+                            <li>Digital Disruption – Universidad de Palermo, 2023</li>
+                            <li>Product Strategy Micro-Certification (PSC)™ - Product School, 2023</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="certification-name">Technical Skills</div>
+                        <ul>
+                            <li>Project Management (Notion, Asana, Trello, Jira)</li>
+                            <li>Wireframing (Miro)</li>
+                            <li>Analytics (Power BI, Tableau)</li>
+                            <li>No-Code Development (Vzy.io, Notion, Airtable, Bubble)</li>
+                            <li>Design (Canva, Figma, Adobe Suite-Beginner)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="certification-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="certification-name">Professional Memberships</div>
+                        <ul>
+                            <li>Nigeria Computer Society (NCS)</li>
+                            <li>Advanced Engineering Innovation Research Group (AEIRG)</li>
+                            <li>Nigeria Association of Computing Students (NACOS)</li>
+                            <li>Association of Computing Machinery (ACM)</li>
+                            <li>International Communications Association (ICA)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="about-section section-bg-gray">
+            <div class="container timeline-container">
+                <div class="section-header">
+                    <span class="section-tag">Career History</span>
+                    <h2>Professional Experience</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="experience-list">
+                    <div class="experience-item" data-aos="fade-up">
+                        <div class="experience-date">January 2025 - Present</div>
+                        <div class="experience-role">Graduate Research Assistant</div>
+                        <div class="experience-company">Carnegie Mellon University</div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Finalizing a research paper draft on entrepreneurship journeys in Africa and the associated research methodology</li>
+                                <li>Conducting research on global AI governance frameworks and safety principles, with an emphasis on their applications in Africa</li>
+                                <li>Investigating AI use cases for economic and social development in key sectors, including entrepreneurship, governance, and policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="experience-date">August 2024 - December 2024</div>
+                        <div class="experience-role">Graduate Teaching Assistant</div>
+                        <div class="experience-company">Carnegie Mellon University</div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Assisted in grading assignments and preparing materials/resources that aid students' understanding of the course content</li>
+                                <li>Co-hosted a guest session with a 3X founder (Ex-Googler) to support students ideation and business model development</li>
+                                <li>Responded to students' queries and guided them on how to complete complex exercises by organizing tutorials and providing additional learning support</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="experience-date">September 2023 - November 2024</div>
+                        <div class="experience-role">Founding President</div>
+                        <div class="experience-company">Africa Innovators Society</div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Led a team of four students to cultivate a dynamic ecosystem that supports student entrepreneurship and innovation through workshops, hackathons, guest sessions in CMU-Africa</li>
+                                <li>Pioneered the establishment of the entrepreneurship club, engaging student events and securing over $17,000 in event partnerships 2-month after inception</li>
+                                <li>Hosted workshops, hackathons, and rapid prototyping bootcamp resulting in over 15 solutions/products and impacting and equipping over 300+ community members with skills and tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="experience-date">January 2021 - December 2024</div>
+                        <div class="experience-role">Founder/Project Lead</div>
+                        <div class="experience-company">Ignite Research Academy</div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Founded Ignite Research Academy in Africa, aiming to train 25 million students by 2032 through high-quality research capacity development</li>
+                                <li>Organized 10 webinars on building strong graduate school profiles, attracting around 200 participants from Africa</li>
+                                <li>Built a thriving community of 284 students and researchers across Africa, providing over 200 opportunities and distributing 3,000+ resources to support community members' professional and academic growth</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="experience-date">April 2022 - November 2022</div>
+                        <div class="experience-role">Acting Head of Training and Capacity Development</div>
+                        <div class="experience-company">Summit University</div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Developed timeline and action plans for 20+ training in the university to drive enrolment and increase 200+ student quality of learning</li>
+                                <li>Facilitated a Financial Literacy seminar with 150 fellow corps members in Offa, Kwara State</li>
+                                <li>Organized 20+ workshops and webinars on Grantsmanship, Drone building and Piloting-1, Clean Energy for Kwara State, and DSN AI Invasion with over 500 unique participants</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="experience-date">July 2019 - April 2022</div>
+                        <div class="experience-role">Research Assistant/Project Manager</div>
+                        <div class="experience-company">Advanced Engineering Innovation Research Group</div>
+                        <div class="experience-description">
+                            <ul>
+                                <li>Led a team of researchers for the Intelligent Mining Surveillance System (IMSS) project; managed training, reporting, and presented findings at AI4CE Symposium 2020</li>
+                                <li>Contributed to the AI for Clean Energy project (£155,465 grant); designed over 200 communication materials including posters, brochures, and infographics</li>
+                                <li>Developed 75% of infographics and authored 80% of content for the SabiMoni Financial Literacy platform, collaborating with Giz and CBN</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Public Speaking Section -->
+        <section id="volunteer" class="about-section section-bg-light">
+            <div class="container timeline-container">
+                <div class="section-header">
+                    <span class="section-tag">Knowledge Sharing</span>
+                    <h2>Public Speaking & Training</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="volunteer-list">
+                    <div class="volunteer-item" data-aos="fade-up">
+                        <div class="volunteer-date">May 2024</div>
+                        <div class="volunteer-role">Session Facilitator</div>
+                        <div class="volunteer-organization">Arduino Tinkering Workshop, Rwanda</div>
+                        <div class="volunteer-description">
+                            <p>Led a hands-on session on "Design Thinking" for participants learning to create with Arduino.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="volunteer-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="volunteer-date">May 2024</div>
+                        <div class="volunteer-role">Speaker</div>
+                        <div class="volunteer-organization">Mälardalen University Västerås, Sweden</div>
+                        <div class="volunteer-description">
+                            <p>Presented on "Entrepreneurship for Democracy: Why Students Should Build Businesses and Not Bureaucracies" to international students.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="volunteer-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="volunteer-date">April 2024</div>
+                        <div class="volunteer-role">Speaker</div>
+                        <div class="volunteer-organization">3 million Technical Talent (3MTT) Programme Webinar</div>
+                        <div class="volunteer-description">
+                            <p>Delivered a talk on "Expanding Your Network Beyond Tech" for emerging tech professionals in Africa.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="volunteer-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="volunteer-date">January 2024</div>
+                        <div class="volunteer-role">Panelist</div>
+                        <div class="volunteer-organization">Carnegie Mellon University Africa's Innovation Summit</div>
+                        <div class="volunteer-description">
+                            <p>Participated in a panel discussion on "Pathways to Career Opportunities in Entrepreneurship" sharing insights with students and professionals.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="index.html" class="btn-text back-to-home" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content" data-aos="fade-up">
+                    <h2>Let's Connect and Collaborate</h2>
+                    <p>Whether you're interested in AI governance, entrepreneurship initiatives, or research opportunities, I'm always open to meaningful conversations.</p>
+                    <a href="index.html#contact" class="btn-primary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" aria-label="MA Logo - Home">
+                        <span class="logo-text">MA</span>
+                    </a>
+                    <p>Technology & Innovation Professional</p>
+                </div>
+                <div class="footer-links-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#bio">Biography</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#volunteer">Public Speaking</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-column">
+                    <h3>Connect</h3>
+                    <ul class="social-links">
+                        <li><a href="https://www.linkedin.com/in/maliyuam" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> Muhammad Aliyu. All Rights Reserved.</p>
+                <p class="credits">Designed with passion and code.</p>
+            </div>
+            <div class="back-to-top">
+                <a href="#" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>This website uses cookies to enhance your browsing experience.</p>
+            <div class="cookie-buttons">
+                <button id="cookieAccept" class="btn-primary">Accept</button>
+                <button id="cookieDecline" class="btn-secondary">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Inline script to set current year -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
