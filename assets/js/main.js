@@ -15,7 +15,117 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeBackToTop();
     initializeTypingEffect();
     initializeSkillsInteraction();
+    initializeBridgeVisualization();
+    initializeFooter();
 });
+
+/**
+ * Sets the current year in the footer.
+ */
+function initializeFooter() {
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
+/**
+ * Bridge Visualization Interactive Features
+ */
+function initializeBridgeVisualization() {
+    const bridgeTracks = document.querySelectorAll('.bridge-track');
+    const convergencePoint = document.querySelector('.convergence-point');
+
+    if (bridgeTracks.length === 0) return;
+
+    // Add hover effects that connect tracks to convergence point
+    bridgeTracks.forEach((track, index) => {
+        track.addEventListener('mouseenter', function() {
+            // Highlight the track
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.zIndex = '10';
+
+            // Create connection line effect
+            createConnectionLine(this, convergencePoint);
+
+            // Highlight related milestones
+            const milestones = this.querySelectorAll('.milestone');
+            milestones.forEach(milestone => {
+                milestone.classList.add('highlighted');
+            });
+        });
+
+        track.addEventListener('mouseleave', function() {
+            // Reset track
+            this.style.transform = '';
+            this.style.zIndex = '';
+
+            // Remove connection line
+            removeConnectionLine();
+
+            // Remove milestone highlights
+            const milestones = this.querySelectorAll('.milestone');
+            milestones.forEach(milestone => {
+                milestone.classList.remove('highlighted');
+            });
+        });
+
+        // Animate impact numbers on scroll
+        const impactNumber = track.querySelector('.impact-number');
+        if (impactNumber) {
+            observeAndAnimateNumber(impactNumber);
+        }
+    });
+
+    // Add parallax effect to convergence point
+    if (convergencePoint) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.05;
+            convergencePoint.style.transform = `translateY(${rate}px)`;
+        });
+    }
+}
+
+/**
+ * Create visual connection line between track and convergence
+ */
+function createConnectionLine(track, convergence) {
+    // This is a visual effect placeholder - in production,
+    // you might use SVG or Canvas for actual line drawing
+    track.classList.add('connected');
+    if (convergence) {
+        convergence.classList.add('receiving-connection');
+    }
+}
+
+/**
+ * Remove connection line effect
+ */
+function removeConnectionLine() {
+    document.querySelectorAll('.connected').forEach(el => {
+        el.classList.remove('connected');
+    });
+    document.querySelectorAll('.receiving-connection').forEach(el => {
+        el.classList.remove('receiving-connection');
+    });
+}
+
+/**
+ * Observe and animate numbers when they come into view
+ */
+function observeAndAnimateNumber(element) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !element.hasAttribute('data-animated')) {
+                animateValue(element);
+                element.setAttribute('data-animated', 'true');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(element);
+}
 
 /**
  * Navigation functionality with enhanced mobile experience
@@ -690,6 +800,65 @@ function addDynamicStyles() {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        /* Bridge visualization effects */
+        .bridge-track {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .bridge-track.connected {
+            box-shadow: 0 0 30px rgba(62, 146, 204, 0.3);
+        }
+        
+        .bridge-track.connected::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--track-color) 0%, transparent 100%);
+            animation: pulse-line 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
+            50% { opacity: 1; transform: scaleX(1); }
+        }
+        
+        .convergence-point.receiving-connection .convergence-core {
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: var(--shadow-xl); }
+            50% { box-shadow: 0 0 40px rgba(62, 146, 204, 0.5); }
+        }
+        
+        .milestone.highlighted {
+            transform: translateX(5px);
+            background-color: rgba(62, 146, 204, 0.05);
+            margin-left: -10px;
+            padding-left: calc(var(--spacing-md) + 10px);
+            border-radius: var(--border-radius-sm);
+        }
+        
+        /* CSS Variables for track colors */
+        .research-track {
+            --track-color: 62, 146, 204;
+        }
+        
+        .entrepreneurship-track {
+            --track-color: 0, 168, 232;
+        }
+        
+        .leadership-track {
+            --track-color: 0, 126, 167;
+        }
+        
+        .teaching-track {
+            --track-color: 0, 52, 89;
         }
     `;
     document.head.appendChild(style);

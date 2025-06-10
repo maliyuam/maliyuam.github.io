@@ -9,351 +9,41 @@
     <meta name="theme-color" content="#0a2463">
     <title>About Muhammad Aliyu | Deep Tech Innovation Architect</title>
 
-    <!-- Preload critical resources -->
     <link rel="preload" href="assets/css/style.css" as="style">
+    <link rel="preload" href="assets/css/about.css" as="style">
     <link rel="preload" href="assets/js/main.js" as="script">
+    <link rel="preload" href="assets/js/about.js" as="script">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" as="style">
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/about.css">
 
-    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Favicon and App Icons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
 
-    <!-- Open Graph / Social Media -->
     <meta property="og:title" content="About Muhammad Aliyu | Deep Tech Innovation Architect">
     <meta property="og:description" content="Deep Tech Innovation Architect bridging academia, entrepreneurship, and policy in African tech ecosystems">
     <meta property="og:image" content="assets/images/ma-image-profile.jpg">
     <meta property="og:url" content="https://muhammadaliyu.com/about.html">
     <meta property="og:type" content="website">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Muhammad Aliyu | Deep Tech Innovation Architect">
     <meta name="twitter:description" content="Deep Tech Innovation Architect bridging academia, entrepreneurship, and policy in African tech ecosystems">
     <meta name="twitter:image" content="assets/images/ma-image-profile.jpg">
 
-    <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-
-    <style>
-        /* Additional Styles for About Page */
-        .about-hero {
-            background: var(--gradient-hero);
-            color: var(--white);
-            padding: calc(var(--spacing-5xl) + 80px) 0 var(--spacing-3xl);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--tech-pattern);
-            opacity: 0.05;
-        }
-
-        .about-hero h1 {
-            color: var(--white);
-            margin-bottom: var(--spacing-md);
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-hero .subtitle {
-            position: relative;
-            z-index: 2;
-            font-size: var(--font-size-lg);
-            opacity: 0.95;
-        }
-
-        .about-section {
-            padding: var(--spacing-3xl) 0;
-            position: relative;
-        }
-
-        .section-bg-light {
-            background-color: var(--white);
-        }
-
-        .section-bg-gray {
-            background-color: var(--light-gray);
-        }
-
-        .bio-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: var(--spacing-3xl);
-            align-items: start;
-        }
-
-        .profile-image {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            position: relative;
-            background-color: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid rgba(62, 146, 204, 0.2);
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .bio-content {
-            line-height: var(--line-height-relaxed);
-        }
-
-        .bio-content p {
-            margin-bottom: var(--spacing-md);
-            font-size: var(--font-size-lg);
-        }
-
-        .bio-highlight {
-            background: linear-gradient(135deg, rgba(62, 146, 204, 0.05) 0%, rgba(0, 168, 232, 0.05) 100%);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-lg);
-            margin: var(--spacing-xl) 0;
-            border-left: 4px solid var(--secondary-color);
-        }
-
-        .bio-highlight h3 {
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .timeline-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .education-item,
-        .certification-item,
-        .experience-item,
-        .volunteer-item {
-            background-color: var(--white);
-            padding: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-medium);
-            position: relative;
-            border: 1px solid rgba(10, 36, 99, 0.05);
-            overflow: hidden;
-        }
-
-        .education-item::before,
-        .certification-item::before,
-        .experience-item::before,
-        .volunteer-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--gradient-secondary);
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform var(--transition-medium);
-        }
-
-        .education-item:hover::before,
-        .certification-item:hover::before,
-        .experience-item:hover::before,
-        .volunteer-item:hover::before {
-            transform: scaleY(1);
-        }
-
-        .education-item:hover,
-        .certification-item:hover,
-        .experience-item:hover,
-        .volunteer-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .education-date,
-        .certification-date,
-        .experience-date,
-        .volunteer-date {
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: var(--spacing-xs);
-            font-size: var(--font-size-sm);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            display: inline-block;
-            background-color: rgba(62, 146, 204, 0.1);
-            padding: var(--spacing-xs) var(--spacing-md);
-            border-radius: var(--border-radius-full);
-        }
-
-        .education-degree,
-        .certification-name,
-        .experience-role,
-        .volunteer-role {
-            font-weight: 700;
-            font-size: var(--font-size-xl);
-            margin-bottom: var(--spacing-xs);
-            color: var(--primary-color);
-        }
-
-        .education-institution,
-        .certification-issuer,
-        .experience-company,
-        .volunteer-organization {
-            font-weight: 600;
-            margin-bottom: var(--spacing-md);
-            color: var(--secondary-color);
-            font-size: var(--font-size-lg);
-        }
-
-        .experience-description,
-        .volunteer-description {
-            margin-top: var(--spacing-md);
-        }
-
-        .experience-description ul,
-        .volunteer-description ul {
-            margin-left: 0;
-            margin-top: var(--spacing-sm);
-            list-style-type: none;
-        }
-
-        .experience-description ul li,
-        .volunteer-description ul li {
-            position: relative;
-            padding-left: var(--spacing-xl);
-            margin-bottom: var(--spacing-sm);
-            line-height: var(--line-height-relaxed);
-        }
-
-        .experience-description ul li::before,
-        .volunteer-description ul li::before {
-            content: '▶';
-            color: var(--secondary-color);
-            position: absolute;
-            left: 0;
-            top: 3px;
-            font-size: var(--font-size-sm);
-        }
-
-        .skills-showcase {
-            background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
-            padding: var(--spacing-3xl);
-            border-radius: var(--border-radius-lg);
-            margin-top: var(--spacing-xl);
-        }
-
-        .skills-showcase h3 {
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
-        }
-
-        .skills-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .skill-category-compact {
-            background-color: var(--white);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-md);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .skill-category-compact h4 {
-            color: var(--secondary-color);
-            margin-bottom: var(--spacing-md);
-            font-size: var(--font-size-md);
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-xs);
-        }
-
-        .skill-tag {
-            background-color: rgba(62, 146, 204, 0.1);
-            color: var(--secondary-color);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--border-radius-full);
-            font-size: var(--font-size-xs);
-            font-weight: 500;
-            border: 1px solid rgba(62, 146, 204, 0.2);
-        }
-
-        .back-to-home {
-            display: inline-flex;
-            align-items: center;
-            margin-top: var(--spacing-xl);
-            font-weight: 600;
-            color: var(--secondary-color);
-            transition: all var(--transition-fast);
-            padding: var(--spacing-sm) var(--spacing-lg);
-            background-color: rgba(62, 146, 204, 0.05);
-            border-radius: var(--border-radius-full);
-        }
-
-        .back-to-home i {
-            margin-right: var(--spacing-sm);
-            transition: transform var(--transition-fast);
-        }
-
-        .back-to-home:hover {
-            color: var(--accent-color);
-            background-color: rgba(62, 146, 204, 0.1);
-            transform: translateX(-5px);
-        }
-
-        .back-to-home:hover i {
-            transform: translateX(-5px);
-        }
-
-        @media (max-width: 768px) {
-            .bio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-image {
-                max-width: 300px;
-                margin: 0 auto var(--spacing-lg);
-            }
-
-            .skills-categories {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
-<!-- Skip to main content link for accessibility -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <header>
@@ -381,7 +71,6 @@
 </header>
 
 <main id="main-content">
-    <!-- About Hero Section -->
     <section class="about-hero">
         <div class="container">
             <span class="pre-heading">Deep Tech Innovation Architect</span>
@@ -390,37 +79,215 @@
         </div>
     </section>
 
-    <!-- Bio Section -->
     <section id="bio" class="about-section section-bg-light">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Professional Journey</span>
-                <h2>Architecting Innovation at Scale</h2>
+                <h2>Building Innovation Bridges</h2>
                 <div class="section-divider"></div>
             </div>
-            <div class="bio-grid">
-                <div class="profile-image" data-aos="fade-right">
-                    <img src="assets/images/ma-image-profile.jpg" alt="Muhammad Aliyu - Deep Tech Innovation Architect" width="400" height="400">
+
+            <div class="journey-visualization" data-aos="fade-up">
+                <div class="journey-intro">
+                    <p class="lead-text">My journey spans four interconnected paths that converge to create unique value at the intersection of technology, research, and impact.</p>
                 </div>
-                <div class="bio-content" data-aos="fade-left">
-                    <p>I'm a deep technology enthusiast who bridges the gap between cutting-edge innovation and sustainable ecosystem development. With a unique blend of technical expertise, entrepreneurial experience, and research acumen, I architect solutions that transform ideas into tangible impact across Africa's tech landscape.</p>
 
-                    <p>My approach combines rigorous academic research with practical implementation. At Carnegie Mellon University, I'm exploring how AI and deep technologies can catalyze entrepreneurship in emerging markets, while simultaneously building the infrastructure needed to support the next generation of African innovators.</p>
-
-                    <div class="bio-highlight">
-                        <h3>Mission-Driven Innovation</h3>
-                        <p>I believe in technology's power to create sustainable change when it's designed with people, planet, and profit in mind. My work focuses on developing frameworks that enable African entrepreneurs to build globally competitive solutions while addressing local challenges.</p>
+                <div class="bridges-container">
+                    <div class="bridge-track research-track" data-aos="fade-right" data-aos-delay="100">
+                        <div class="track-header">
+                            <div class="track-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3>Research & Academia</h3>
+                        </div>
+                        <div class="track-milestones">
+                            <div class="milestone active">
+                                <span class="milestone-year">2025</span>
+                                <span class="milestone-title">Research Associate</span>
+                                <span class="milestone-org">CMU Mobile Edge AI Lab</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2024</span>
+                                <span class="milestone-title">Graduate Research</span>
+                                <span class="milestone-org">African Entrepreneurship Studies</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2019</span>
+                                <span class="milestone-title">Research Assistant</span>
+                                <span class="milestone-org">AEIRG - AI for Clean Energy</span>
+                            </div>
+                        </div>
+                        <div class="track-impact">
+                            <span class="impact-number">5+</span>
+                            <span class="impact-label">Published Papers</span>
+                        </div>
                     </div>
 
-                    <p>As the founding president of the Africa Innovators Society, I've created platforms that have impacted over 300 students across seven universities, securing over $45,000 in partnerships and fostering an ecosystem where innovation thrives. This experience has shown me that sustainable innovation requires more than just technology—it needs community, mentorship, and strategic alignment.</p>
+                    <div class="bridge-track entrepreneurship-track" data-aos="fade-up" data-aos-delay="200">
+                        <div class="track-header">
+                            <div class="track-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h3>Entrepreneurship</h3>
+                        </div>
+                        <div class="track-milestones">
+                            <div class="milestone active">
+                                <span class="milestone-year">2023</span>
+                                <span class="milestone-title">Founding President</span>
+                                <span class="milestone-org">Africa Innovators Society</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2021</span>
+                                <span class="milestone-title">Founder</span>
+                                <span class="milestone-org">Ignite Research Academy</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2019</span>
+                                <span class="milestone-title">Project Manager</span>
+                                <span class="milestone-org">Tech Innovation Projects</span>
+                            </div>
+                        </div>
+                        <div class="track-impact">
+                            <span class="impact-number">$45K+</span>
+                            <span class="impact-label">Secured Funding</span>
+                        </div>
+                    </div>
 
+                    <div class="bridge-track leadership-track" data-aos="fade-up" data-aos-delay="300">
+                        <div class="track-header">
+                            <div class="track-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Community Leadership</h3>
+                        </div>
+                        <div class="track-milestones">
+                            <div class="milestone active">
+                                <span class="milestone-year">2024</span>
+                                <span class="milestone-title">Innovation Scout</span>
+                                <span class="milestone-org">The FutureList</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2022</span>
+                                <span class="milestone-title">Director</span>
+                                <span class="milestone-org">NACOS National</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2020</span>
+                                <span class="milestone-title">Community Manager</span>
+                                <span class="milestone-org">300K+ Tech Community</span>
+                            </div>
+                        </div>
+                        <div class="track-impact">
+                            <span class="impact-number">300K+</span>
+                            <span class="impact-label">People Impacted</span>
+                        </div>
+                    </div>
+
+                    <div class="bridge-track teaching-track" data-aos="fade-left" data-aos-delay="400">
+                        <div class="track-header">
+                            <div class="track-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <h3>Teaching & Governance</h3>
+                        </div>
+                        <div class="track-milestones">
+                            <div class="milestone active">
+                                <span class="milestone-year">2025</span>
+                                <span class="milestone-title">AI Governance Facilitator</span>
+                                <span class="milestone-org">ENAIS</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2024</span>
+                                <span class="milestone-title">Graduate TA</span>
+                                <span class="milestone-org">CMU-Africa</span>
+                            </div>
+                            <div class="milestone">
+                                <span class="milestone-year">2022</span>
+                                <span class="milestone-title">Training Lead</span>
+                                <span class="milestone-org">500+ Trained</span>
+                            </div>
+                        </div>
+                        <div class="track-impact">
+                            <span class="impact-number">95%</span>
+                            <span class="impact-label">Satisfaction Rate</span>
+                        </div>
+                    </div>
+
+                    <div class="convergence-point" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="convergence-core">
+                            <h4>Deep Tech Innovation Architect</h4>
+                            <p>Where Research, Entrepreneurship, Leadership & Teaching Converge</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="architecting-innovation" data-aos="fade-up" data-aos-delay="550">
+                <div class="section-header">
+                    <h2>Architecting Innovation at Scale</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="narrative-section">
+                    <p>I'm a deep technology enthusiast who bridges the gap between cutting-edge innovation and sustainable ecosystem development. With a unique blend of technical expertise, entrepreneurial experience, and research acumen, I architect solutions that transform ideas into tangible impact across Africa's tech landscape.</p>
+                    <p>My approach combines rigorous academic research with practical implementation. At Carnegie Mellon University, I'm exploring how AI and deep technologies can catalyze entrepreneurship in emerging markets, while simultaneously building the infrastructure needed to support the next generation of African innovators.</p>
+                </div>
+                <div class="narrative-section">
+                    <h3>Mission-Driven Innovation</h3>
+                    <p>I believe in technology's power to create sustainable change when it's designed with people, planet, and profit in mind. My work focuses on developing frameworks that enable African entrepreneurs to build globally competitive solutions while addressing local challenges.</p>
+                    <p>As the founding president of the Africa Innovators Society, I've created platforms that have impacted over 300 students across seven universities, securing over $45,000 in partnerships and fostering an ecosystem where innovation thrives. This experience has shown me that sustainable innovation requires more than just technology—it needs community, mentorship, and strategic alignment.</p>
                     <p>My research on AI governance and entrepreneurial ecosystems aims to redefine how we approach innovation in Africa. By understanding why traditional Silicon Valley models often fail in African contexts, I'm developing new frameworks that leverage AI and deep technology to create service-oriented entrepreneurship models tailored to African realities.</p>
+                </div>
+            </div>
+
+            <div class="bio-modern" data-aos="fade-up" data-aos-delay="600">
+                <div class="bio-stats-grid">
+                    <div class="bio-stat">
+                        <i class="fas fa-globe-africa"></i>
+                        <h5>Pan-African Impact</h5>
+                        <p>Building solutions across 7+ countries</p>
+                    </div>
+                    <div class="bio-stat">
+                        <i class="fas fa-network-wired"></i>
+                        <h5>Ecosystem Builder</h5>
+                        <p>300+ innovators connected</p>
+                    </div>
+                    <div class="bio-stat">
+                        <i class="fas fa-brain"></i>
+                        <h5>AI Governance</h5>
+                        <p>Shaping responsible AI policies</p>
+                    </div>
+                    <div class="bio-stat">
+                        <i class="fas fa-lightbulb"></i>
+                        <h5>Innovation Catalyst</h5>
+                        <p>15+ solutions launched</p>
+                    </div>
+                </div>
+
+                <div class="bio-narrative">
+                    <div class="narrative-section">
+                        <h3><i class="fas fa-compass"></i> My North Star</h3>
+                        <p>I'm on a mission to redefine how innovation happens in Africa. By bridging the gap between cutting-edge research and on-ground implementation, I'm creating frameworks that enable African entrepreneurs to build globally competitive solutions while addressing local challenges.</p>
+                    </div>
+
+                    <div class="narrative-section">
+                        <h3><i class="fas fa-puzzle-piece"></i> The Convergence</h3>
+                        <p>My unique value lies at the intersection of these four paths. As a Research Associate at CMU's Mobile Edge AI Lab, I'm investigating why Silicon Valley models fail in African contexts. As the founding president of Africa Innovators Society, I've proven that sustainable innovation requires community, mentorship, and strategic alignment—not just technology.</p>
+                    </div>
+
+                    <div class="narrative-section">
+                        <h3><i class="fas fa-rocket"></i> Impact at Scale</h3>
+                        <p>From securing $45K+ in partnerships to training 500+ individuals, from publishing research papers to building communities of 300K+ members—every initiative is a bridge connecting talent to opportunity, research to reality, and innovation to impact.</p>
+                    </div>
+                </div>
+
+                <div class="bio-cta-section">
+                    <h4>Ready to build the next bridge together?</h4>
+                    <a href="#contact" class="btn-primary">Let's Connect</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
     <section id="education" class="about-section section-bg-gray">
         <div class="container timeline-container">
             <div class="section-header">
@@ -467,7 +334,6 @@
         </div>
     </section>
 
-    <!-- Publications Section -->
     <section id="publications" class="about-section section-bg-light">
         <div class="container timeline-container">
             <div class="section-header">
@@ -514,7 +380,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="about-section section-bg-gray">
         <div class="container timeline-container">
             <div class="section-header">
@@ -619,7 +484,6 @@
         </div>
     </section>
 
-    <!-- Skills Showcase -->
     <section class="about-section section-bg-light">
         <div class="container">
             <div class="skills-showcase">
@@ -665,7 +529,6 @@
         </div>
     </section>
 
-    <!-- Speaking Section -->
     <section id="speaking" class="about-section section-bg-gray">
         <div class="container timeline-container">
             <div class="section-header">
@@ -717,7 +580,6 @@
         </div>
     </section>
 
-    <!-- Call to Action Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content" data-aos="fade-up">
@@ -768,10 +630,9 @@
     </div>
 </footer>
 
-<!-- Cookie Consent -->
 <div class="cookie-consent" id="cookieConsent">
     <div class="cookie-content">
-        <p>This website uses cookies to enhance your browsing experience.</p>
+        <p>This website uses cookies to enhance your Browse experience.</p>
         <div class="cookie-buttons">
             <button id="cookieAccept" class="btn-primary">Accept</button>
             <button id="cookieDecline" class="btn-secondary">Decline</button>
@@ -779,15 +640,10 @@
     </div>
 </div>
 
-<!-- AOS Animation Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
-<!-- Main JavaScript -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/about.js"></script>
 
-<!-- Inline script to set current year -->
-<script>
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-</script>
 </body>
 </html>
