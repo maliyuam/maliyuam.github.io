@@ -1,5 +1,5 @@
 /**
- * Ayobami Olajide Portfolio
+ * Muhammad Aliyu Portfolio - Deep Tech Innovation Theme
  * Main JavaScript file
  */
 
@@ -9,13 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
     initializeScrollEffects();
     initializeAnimations();
+    initializePortfolioInteractions();
     initializeContactForm();
     initializeCookieConsent();
     initializeBackToTop();
+    initializeTypingEffect();
+    initializeSkillsInteraction();
 });
 
 /**
- * Navigation functionality
+ * Navigation functionality with enhanced mobile experience
  */
 function initializeNavigation() {
     const header = document.querySelector('header');
@@ -29,17 +32,27 @@ function initializeNavigation() {
             const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
             navToggle.setAttribute('aria-expanded', !isExpanded);
             navMenu.classList.toggle('active');
-            
+
             // Animate hamburger to X
             const spans = navToggle.querySelectorAll('span');
             if (navMenu.classList.contains('active')) {
                 spans[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
             } else {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Add keyboard support for toggle button
+        navToggle.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                navToggle.click();
             }
         });
     }
@@ -50,7 +63,8 @@ function initializeNavigation() {
             if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
-                
+                document.body.style.overflow = '';
+
                 // Reset hamburger icon
                 const spans = navToggle.querySelectorAll('span');
                 spans[0].style.transform = 'none';
@@ -62,12 +76,13 @@ function initializeNavigation() {
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (navMenu.classList.contains('active') && 
-            !e.target.closest('.nav-menu') && 
+        if (navMenu.classList.contains('active') &&
+            !e.target.closest('.nav-menu') &&
             !e.target.closest('.nav-toggle')) {
             navMenu.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
-            
+            document.body.style.overflow = '';
+
             // Reset hamburger icon
             const spans = navToggle.querySelectorAll('span');
             spans[0].style.transform = 'none';
@@ -81,7 +96,8 @@ function initializeNavigation() {
         if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
-            
+            document.body.style.overflow = '';
+
             // Reset hamburger icon
             const spans = navToggle.querySelectorAll('span');
             spans[0].style.transform = 'none';
@@ -96,13 +112,27 @@ function initializeNavigation() {
  */
 function initializeScrollEffects() {
     const header = document.querySelector('header');
-    
-    // Scroll Effect for Header
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    let lastScrollY = 0;
+    let ticking = false;
+
+    function updateHeader() {
+        const scrollY = window.scrollY;
+
+        if (scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+        }
+
+        lastScrollY = scrollY;
+        ticking = false;
+    }
+
+    // Throttle scroll events for performance
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
         }
     });
 
@@ -111,30 +141,55 @@ function initializeScrollEffects() {
         anchor.addEventListener('click', function(e) {
             // Skip if it's the back-to-top link
             if (this.getAttribute('href') === '#') return;
-            
+
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 const headerHeight = header.offsetHeight;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                
+
                 window.scrollTo({
-                    top: targetPosition - headerHeight,
+                    top: targetPosition - headerHeight - 20,
                     behavior: 'smooth'
                 });
-                
+
                 // Update focus for accessibility
                 targetElement.setAttribute('tabindex', '-1');
                 targetElement.focus({preventScroll: true});
-                
+
                 // Add URL hash without scrolling
                 history.pushState(null, null, targetId);
             }
         });
     });
+
+    // Active section highlighting in navigation
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+    function highlightActiveSection() {
+        const scrollY = window.scrollY;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${sectionId}`) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightActiveSection);
 }
 
 /**
@@ -148,75 +203,154 @@ function initializeAnimations() {
             easing: 'ease-out',
             once: true,
             offset: 100,
-            disable: 'mobile'
+            disable: window.innerWidth < 768 ? true : false
         });
-    } else {
-        // Fallback animation with Intersection Observer for browsers that support it
-        if ('IntersectionObserver' in window) {
-            // Selectors for elements to animate
-            const elementsToAnimate = [
-                '.timeline-item',
-                '.skill-category',
-                '.publication-card',
-                '.stat-item',
-                '.company-item'
-            ];
-            
-            const elements = document.querySelectorAll(elementsToAnimate.join(', '));
-            
-            // Add initial styles
-            elements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-            
-            // Set up the observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15 // Element is considered in view when 15% is visible
-            });
-            
-            // Observe each element
-            elements.forEach(el => {
-                observer.observe(el);
-            });
-        } else {
-            // For browsers that don't support Intersection Observer
-            // Make all elements visible without animation
-            const elementsToAnimate = document.querySelectorAll('.timeline-item, .skill-category, .publication-card, .stat-item, .company-item');
-            elementsToAnimate.forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'none';
-            });
+    }
+
+    // Custom intersection observer for additional animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const animateOnScroll = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+
+                // Special animation for stats
+                if (entry.target.classList.contains('stat-number')) {
+                    animateValue(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements
+    document.querySelectorAll('.timeline-item, .skill-category, .portfolio-item').forEach(el => {
+        animateOnScroll.observe(el);
+    });
+}
+
+/**
+ * Animate numerical values
+ */
+function animateValue(element) {
+    const endValue = parseInt(element.textContent.replace(/\D/g, ''));
+    const duration = 2000;
+    const frameDuration = 1000 / 60;
+    const totalFrames = Math.round(duration / frameDuration);
+    let frame = 0;
+
+    const counter = setInterval(() => {
+        frame++;
+        const progress = frame / totalFrames;
+        const currentValue = Math.round(endValue * easeOutQuart(progress));
+
+        element.textContent = element.textContent.includes('+') ? currentValue + '+' : currentValue;
+
+        if (frame === totalFrames) {
+            clearInterval(counter);
         }
-    }
-    
-    // Typed.js integration for hero section (if available)
-    const heroTitle = document.querySelector('.hero-text h1');
-    if (typeof Typed !== 'undefined' && heroTitle) {
-        new Typed(heroTitle, {
-            strings: [
-                'Financial happiness for every African entrepreneur',
-                'Empowering African startups to scale globally',
-                'Building Africa\'s future through venture capital'
-            ],
-            typeSpeed: 50,
-            backSpeed: 30,
-            backDelay: 3000,
-            startDelay: 1000,
-            loop: true
+    }, frameDuration);
+}
+
+function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+}
+
+/**
+ * Portfolio section interactions
+ */
+function initializePortfolioInteractions() {
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    portfolioItems.forEach(item => {
+        // Add hover effect for touch devices
+        item.addEventListener('touchstart', function() {
+            this.classList.add('touch-hover');
         });
+
+        item.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('touch-hover');
+            }, 500);
+        });
+
+        // Click to expand functionality (optional)
+        const links = item.querySelectorAll('.portfolio-link');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    });
+}
+
+/**
+ * Skills section interactive hover effects
+ */
+function initializeSkillsInteraction() {
+    const skillCategories = document.querySelectorAll('.skill-category');
+
+    skillCategories.forEach(category => {
+        const icon = category.querySelector('.skill-icon');
+
+        category.addEventListener('mouseenter', () => {
+            icon.style.transform = 'scale(1.1) rotate(-5deg)';
+        });
+
+        category.addEventListener('mouseleave', () => {
+            icon.style.transform = 'scale(1) rotate(0deg)';
+        });
+    });
+}
+
+/**
+ * Hero section typing effect
+ */
+function initializeTypingEffect() {
+    const heroTitle = document.querySelector('.hero-text h1 span');
+    if (!heroTitle) return;
+
+    const phrases = [
+        'Innovation Future',
+        'Tech Ecosystem',
+        'Digital Transformation'
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+            heroTitle.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            heroTitle.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typingSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before new phrase
+        } else {
+            typingSpeed = isDeleting ? 50 : 100;
+        }
+
+        setTimeout(typeEffect, typingSpeed);
     }
+
+    // Start typing effect after a delay
+    setTimeout(typeEffect, 1000);
 }
 
 /**
@@ -225,34 +359,52 @@ function initializeAnimations() {
 function initializeContactForm() {
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('form-status');
-    
+
     if (contactForm) {
+        // Real-time validation
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => validateField(input));
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    validateField(input);
+                }
+            });
+        });
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             // Reset form status
             formStatus.textContent = '';
             formStatus.className = 'form-status';
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const formEntries = Object.fromEntries(formData.entries());
-            
-            // Basic validation
-            if (!validateForm(formEntries)) {
+
+            // Validate all fields
+            let isValid = true;
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                showFormError('Please correct the errors in the form.');
                 return;
             }
-            
+
+            // Get form data
+            const formData = new FormData(contactForm);
+
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Sending...';
-            
+            submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+
             try {
                 // Check if we're using Formspree or another service
                 const formAction = contactForm.getAttribute('action');
-                
+
                 if (formAction && formAction.includes('formspree.io')) {
                     // Formspree submission
                     const response = await fetch(formAction, {
@@ -262,10 +414,11 @@ function initializeContactForm() {
                             'Accept': 'application/json'
                         }
                     });
-                    
+
                     if (response.ok) {
                         showFormSuccess();
                         contactForm.reset();
+                        inputs.forEach(input => input.classList.remove('valid'));
                     } else {
                         const error = await response.json();
                         showFormError(error.error || 'Something went wrong. Please try again.');
@@ -275,6 +428,7 @@ function initializeContactForm() {
                     await new Promise(resolve => setTimeout(resolve, 1500));
                     showFormSuccess();
                     contactForm.reset();
+                    inputs.forEach(input => input.classList.remove('valid'));
                 }
             } catch (error) {
                 showFormError('Network error. Please check your connection and try again.');
@@ -285,86 +439,52 @@ function initializeContactForm() {
                 submitBtn.innerHTML = originalBtnText;
             }
         });
-        
-        // Add validation on input change
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('blur', () => {
-                validateInput(input);
-            });
-        });
     }
-    
-    // Validate the entire form
-    function validateForm(data) {
+
+    // Field validation
+    function validateField(field) {
+        const value = field.value.trim();
+        const fieldName = field.getAttribute('name');
         let isValid = true;
-        
-        // Validate name
-        if (!data.name || data.name.trim() === '') {
-            showFormError('Please enter your name');
-            highlightInvalidField('name');
+
+        // Remove previous error states
+        field.classList.remove('error', 'valid');
+
+        if (value === '') {
+            field.classList.add('error');
             isValid = false;
+        } else {
+            switch (fieldName) {
+                case 'email':
+                    if (!isValidEmail(value)) {
+                        field.classList.add('error');
+                        isValid = false;
+                    } else {
+                        field.classList.add('valid');
+                    }
+                    break;
+                case 'name':
+                    if (value.length < 2) {
+                        field.classList.add('error');
+                        isValid = false;
+                    } else {
+                        field.classList.add('valid');
+                    }
+                    break;
+                default:
+                    field.classList.add('valid');
+            }
         }
-        
-        // Validate email
-        if (!data.email || !isValidEmail(data.email)) {
-            showFormError('Please enter a valid email address');
-            highlightInvalidField('email');
-            isValid = false;
-        }
-        
-        // Validate subject
-        if (!data.subject || data.subject.trim() === '') {
-            showFormError('Please enter a subject');
-            highlightInvalidField('subject');
-            isValid = false;
-        }
-        
-        // Validate message
-        if (!data.message || data.message.trim() === '') {
-            showFormError('Please enter your message');
-            highlightInvalidField('message');
-            isValid = false;
-        }
-        
+
         return isValid;
     }
-    
-    // Validate a single input field
-    function validateInput(input) {
-        if (input.id === 'email' && input.value.trim() !== '') {
-            if (!isValidEmail(input.value)) {
-                input.classList.add('invalid');
-                return false;
-            } else {
-                input.classList.remove('invalid');
-                return true;
-            }
-        } else {
-            if (input.value.trim() === '') {
-                input.classList.add('invalid');
-                return false;
-            } else {
-                input.classList.remove('invalid');
-                return true;
-            }
-        }
-    }
-    
-    // Highlight invalid form field
-    function highlightInvalidField(fieldId) {
-        const field = document.getElementById(fieldId);
-        if (field) {
-            field.classList.add('invalid');
-            field.focus();
-        }
-    }
-    
+
     // Show form success message
     function showFormSuccess() {
-        formStatus.textContent = 'Thank you! Your message has been sent successfully.';
+        formStatus.textContent = 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.';
         formStatus.className = 'form-status success';
-        
+        formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
         // Remove success message after 5 seconds
         setTimeout(() => {
             formStatus.style.opacity = '0';
@@ -375,13 +495,14 @@ function initializeContactForm() {
             }, 500);
         }, 5000);
     }
-    
+
     // Show form error message
     function showFormError(message) {
         formStatus.textContent = message;
         formStatus.className = 'form-status error';
+        formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    
+
     // Validate email with regex
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -396,10 +517,10 @@ function initializeCookieConsent() {
     const cookieConsent = document.getElementById('cookieConsent');
     const acceptButton = document.getElementById('cookieAccept');
     const declineButton = document.getElementById('cookieDecline');
-    
+
     // Check if user has already made a choice
     const consentGiven = localStorage.getItem('cookieConsent');
-    
+
     if (cookieConsent && !consentGiven) {
         // Show the cookie banner with a slight delay
         setTimeout(() => {
@@ -408,15 +529,15 @@ function initializeCookieConsent() {
             setTimeout(() => {
                 cookieConsent.classList.add('active');
             }, 10);
-        }, 1500);
-        
+        }, 2000);
+
         // Handle accept
         if (acceptButton) {
             acceptButton.addEventListener('click', () => {
                 acceptCookies();
             });
         }
-        
+
         // Handle decline
         if (declineButton) {
             declineButton.addEventListener('click', () => {
@@ -424,27 +545,34 @@ function initializeCookieConsent() {
             });
         }
     }
-    
+
     function acceptCookies() {
         localStorage.setItem('cookieConsent', 'accepted');
         hideCookieBanner();
-        
-        // Here you would initialize any tracking scripts
-        // For demo purposes, we're just logging to console
-        console.log('Cookies accepted, tracking enabled');
+
+        // Initialize analytics if needed
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted'
+            });
+        }
     }
-    
+
     function declineCookies() {
         localStorage.setItem('cookieConsent', 'declined');
         hideCookieBanner();
-        
-        // Disable any tracking scripts here
-        console.log('Cookies declined, tracking disabled');
+
+        // Disable analytics if needed
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'denied'
+            });
+        }
     }
-    
+
     function hideCookieBanner() {
         cookieConsent.classList.remove('active');
-        
+
         // After animation completes, hide the banner
         setTimeout(() => {
             cookieConsent.style.display = 'none';
@@ -456,18 +584,24 @@ function initializeCookieConsent() {
  * Back to top button functionality
  */
 function initializeBackToTop() {
-    const backToTopButton = document.querySelector('.back-to-top a');
-    
+    const backToTopButton = document.querySelector('.back-to-top');
+
     if (backToTopButton) {
         // Show/hide button based on scroll position
+        let isVisible = false;
+
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.parentElement.classList.add('visible');
-            } else {
-                backToTopButton.parentElement.classList.remove('visible');
+            const shouldShow = window.scrollY > 300;
+
+            if (shouldShow && !isVisible) {
+                backToTopButton.classList.add('visible');
+                isVisible = true;
+            } else if (!shouldShow && isVisible) {
+                backToTopButton.classList.remove('visible');
+                isVisible = false;
             }
         });
-        
+
         // Smooth scroll to top
         backToTopButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -480,15 +614,40 @@ function initializeBackToTop() {
 }
 
 /**
- * Add CSS styles
+ * Add dynamic styles
  */
-function addStyles() {
+function addDynamicStyles() {
     const style = document.createElement('style');
     style.textContent = `
         /* Form validation styles */
-        input.invalid, textarea.invalid {
+        input.error, textarea.error {
             border-color: var(--error) !important;
-            box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.1) !important;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        input.valid, textarea.valid {
+            border-color: var(--success) !important;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        /* Loading spinner */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
         /* Cookie consent animation */
@@ -503,22 +662,77 @@ function addStyles() {
             opacity: 1;
         }
         
-        /* Back to top button visibility */
-        .back-to-top {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
+        /* Navigation active state */
+        .nav-menu a.active {
+            color: var(--accent-light);
         }
         
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+        
+        /* Touch hover state for portfolio items */
+        .portfolio-item.touch-hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        /* Animated elements */
+        .animated {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        /* Smooth transitions for all interactive elements */
+        .portfolio-item,
+        .skill-category,
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
     `;
     document.head.appendChild(style);
 }
 
-// Call addStyles immediately
-addStyles();
+// Initialize dynamic styles
+addDynamicStyles();
+
+// Utility function to debounce events
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Performance optimization: Lazy load images
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img[data-src]');
+
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        images.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        images.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
+});
