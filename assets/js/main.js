@@ -352,12 +352,23 @@ function animateValue(element) {
     const totalFrames = Math.round(duration / frameDuration);
     let frame = 0;
 
+    // Check for special characters to preserve (+ or %)
+    const hasPlus = element.textContent.includes('+');
+    const hasPercent = element.textContent.includes('%');
+
     const counter = setInterval(() => {
         frame++;
         const progress = frame / totalFrames;
         const currentValue = Math.round(endValue * easeOutQuart(progress));
 
-        element.textContent = element.textContent.includes('+') ? currentValue + '+' : currentValue;
+        // Preserve the special characters in the output
+        if (hasPlus) {
+            element.textContent = currentValue + '+';
+        } else if (hasPercent) {
+            element.textContent = currentValue + '%';
+        } else {
+            element.textContent = currentValue;
+        }
 
         if (frame === totalFrames) {
             clearInterval(counter);
@@ -734,17 +745,17 @@ function addDynamicStyles() {
             border-color: var(--error) !important;
             animation: shake 0.5s ease-in-out;
         }
-        
+
         input.valid, textarea.valid {
             border-color: var(--success) !important;
         }
-        
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-10px); }
             75% { transform: translateX(10px); }
         }
-        
+
         /* Loading spinner */
         .loading {
             display: inline-block;
@@ -755,44 +766,44 @@ function addDynamicStyles() {
             border-top-color: var(--white);
             animation: spin 0.8s linear infinite;
         }
-        
+
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
+
         /* Cookie consent animation */
         .cookie-consent {
             transform: translateY(100%) translateX(-50%);
             opacity: 0;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-        
+
         .cookie-consent.active {
             transform: translateY(0) translateX(-50%);
             opacity: 1;
         }
-        
+
         /* Navigation active state */
         .nav-menu a.active {
             color: var(--accent-light);
         }
-        
+
         .nav-menu a.active::after {
             width: 100%;
         }
-        
+
         /* Touch hover state for portfolio items */
         .portfolio-item.touch-hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-xl);
         }
-        
+
         /* Animated elements */
         .animated {
             opacity: 1 !important;
             transform: translateY(0) !important;
         }
-        
+
         /* Smooth transitions for all interactive elements */
         .portfolio-item,
         .skill-category,
@@ -801,16 +812,16 @@ function addDynamicStyles() {
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
-        
+
         /* Bridge visualization effects */
         .bridge-track {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .bridge-track.connected {
             box-shadow: 0 0 30px rgba(62, 146, 204, 0.3);
         }
-        
+
         .bridge-track.connected::after {
             content: '';
             position: absolute;
@@ -821,21 +832,21 @@ function addDynamicStyles() {
             background: linear-gradient(90deg, var(--track-color) 0%, transparent 100%);
             animation: pulse-line 1.5s ease-in-out infinite;
         }
-        
+
         @keyframes pulse-line {
             0%, 100% { opacity: 0.3; transform: scaleX(0.8); }
             50% { opacity: 1; transform: scaleX(1); }
         }
-        
+
         .convergence-point.receiving-connection .convergence-core {
             animation: pulse-glow 1.5s ease-in-out infinite;
         }
-        
+
         @keyframes pulse-glow {
             0%, 100% { box-shadow: var(--shadow-xl); }
             50% { box-shadow: 0 0 40px rgba(62, 146, 204, 0.5); }
         }
-        
+
         .milestone.highlighted {
             transform: translateX(5px);
             background-color: rgba(62, 146, 204, 0.05);
@@ -843,20 +854,20 @@ function addDynamicStyles() {
             padding-left: calc(var(--spacing-md) + 10px);
             border-radius: var(--border-radius-sm);
         }
-        
+
         /* CSS Variables for track colors */
         .research-track {
             --track-color: 62, 146, 204;
         }
-        
+
         .entrepreneurship-track {
             --track-color: 0, 168, 232;
         }
-        
+
         .leadership-track {
             --track-color: 0, 126, 167;
         }
-        
+
         .teaching-track {
             --track-color: 0, 52, 89;
         }
