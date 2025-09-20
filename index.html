@@ -3,425 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muhammad Aliyu - PhD Researcher investigating how startups succeed through inter-ecosystem connectivity, entrepreneurial migration, and innovation networks">
-    <meta name="keywords" content="Muhammad Aliyu, Entrepreneurial Ecosystems, Innovation Networks, Startup Migration, PhD Research, KU Leuven, Carnegie Mellon, Ecosystem Connectivity">
+    <meta name="description" content="Muhammad Aliyu - PhD Researcher at KU Leuven investigating entrepreneurial ecosystems, inter-ecosystem connectivity, and innovation networks">
+    <meta name="keywords" content="Muhammad Aliyu, Entrepreneurial Ecosystems, Innovation Networks, PhD Research, KU Leuven, Carnegie Mellon">
     <meta name="author" content="Muhammad Aliyu">
-    <meta name="theme-color" content="#0a2463">
-    <title>Muhammad Aliyu | Decoding Entrepreneurial Migration & Ecosystem Connectivity</title>
-
-    <!-- Preload and stylesheets -->
-    <link rel="preload" href="assets/css/style.css" as="style">
-    <link rel="preload" href="assets/js/main.js" as="script">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/about.css">
+    <title>Muhammad Aliyu | PhD Researcher in Entrepreneurial Ecosystems</title>
     
-    <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Muhammad Aliyu | Decoding Entrepreneurial Migration & Ecosystem Connectivity">
-    <meta property="og:description" content="PhD Researcher uncovering how startups succeed through the invisible bridges between ecosystems">
-    <meta property="og:image" content="assets/images/ma-image-profile.jpg">
-    <meta property="og:url" content="https://muhammadaliyu.com">
-    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">MA</div>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
 
-<header>
-    <nav class="container">
-        <div class="logo">
-            <a href="#home" aria-label="Muhammad Aliyu - Home">
-                <span class="logo-text">Muhammad Aliyu</span>
-            </a>
+    <!-- Navigation -->
+    <nav id="navigation" class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">MA</span>
+                <span class="nav-tagline">Ecosystem Researcher</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link nav-cta">Connect</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact" class="nav-cta">Contact</a></li>
-        </ul>
     </nav>
-</header>
 
-<main id="main-content">
-    <!-- Hero Section -->
+    <!-- Hero Section with Canvas -->
     <section id="home" class="hero">
-        <div class="tech-pattern"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="pre-heading">Decoding Entrepreneurial Migration & Ecosystem Connectivity</span>
-                    <h1>I'm uncovering how startups actually succeed — <span>through the invisible bridges between ecosystems</span></h1>
-                    <p class="subtitle">PhD Researcher at KU Leuven investigating where founders move, why startups relocate, and how ecosystems compete for innovation.</p>
-                    <div class="hero-cta">
-                        <a href="#research" class="btn-primary">Explore My Research</a>
-                        <a href="https://drive.google.com/file/d/1t5K5k7oWLuWxCAXJQ99wGgcjK8FdjnMB/view?usp=sharing" class="btn-secondary" target="_blank" rel="noopener">Download CV</a>
-                    </div>
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">PhD Researcher · KU Leuven · Mapping Startup Growth, Founder Mobility and Innovation Policy </div>
+            <h1 class="hero-title">
+                I'm uncovering how startups <span class="text-accent">actually</span> succeed
+            </h1>
+            <p class="hero-subtitle">
+                Through the invisible bridges between ecosystems
+            </p>
+            <p class="hero-description">
+                Investigating inter-ecosystem connectivity and entrepreneurial mobility patterns across European regions. 
+                My research reveals why some ecosystems become innovation magnets while others hemorrhage talent.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="300">0</span>
+                    <span class="stat-label">Innovators Empowered</span>
                 </div>
-                <div class="hero-image">
-                    <div class="image-wrapper">
-                        <img src="assets/images/ma-image-profile-1.jpg" alt="Muhammad Aliyu - PhD Researcher" width="400" height="400">
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="7">0</span>
+                    <span class="stat-label">Universities Engaged</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="6">0</span>
+                    <span class="stat-label">Publications</span>
                 </div>
             </div>
+            <div class="hero-actions">
+                <a href="#research" class="btn btn-primary">Explore Research</a>
+                <a href="assets/docs/cv.pdf" target="_blank" class="btn btn-secondary">Download CV</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
         </div>
     </section>
 
-    <!-- Research Section -->
-    <section id="research" class="about">
+    <!-- Research Focus -->
+    <section id="research" class="research">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">PhD Research Focus</span>
                 <h2>Mapping the Hidden Networks of Innovation</h2>
-                <div class="section-divider"></div>
+                <p class="section-description">
+                    Most innovation research treats ecosystems like isolated islands. My work reveals they're interconnected 
+                    networks — and those connections determine everything.
+                </p>
             </div>
-            <div class="about-content">
-                <p>Most innovation research treats ecosystems like isolated islands. My work reveals they're interconnected networks and those connections determine everything.</p>
-                <p>I am investigating how founders, capital, and knowledge flow between European tech hubs. This isn't abstract theory: these patterns will explain why some regions become innovation magnets while others hemorrhage talent.</p>
-                <p>My research combines systematic measurement of inter-ecosystem connectivity with analysis of entrepreneurial mobility patterns, revealing how startups arbitrage opportunities across regions and why traditional Silicon Valley models often fail when transplanted elsewhere.</p>
+
+            <div class="research-areas">
+                <div class="research-card" data-aos="fade-up">
+                    <div class="research-icon">
+                        <canvas class="icon-canvas" data-icon="network"></canvas>
+                    </div>
+                    <h3>Inter-ecosystem Connectivity</h3>
+                    <p>Systematic measurement of how founders, capital, and knowledge flow between European tech hubs</p>
+                    <ul class="research-methods">
+                        <li>Network Analysis & Visualization</li>
+                        <li>Patent & Citation Analysis</li>
+                        <li>Regional Innovation Metrics</li>
+                    </ul>
+                </div>
+
+                <div class="research-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="research-icon">
+                        <canvas class="icon-canvas" data-icon="migration"></canvas>
+                    </div>
+                    <h3>Entrepreneurial Mobility</h3>
+                    <p>Analysis of migration patterns revealing how startups arbitrage opportunities across regions</p>
+                    <ul class="research-methods">
+                        <li>Founder Origin Analysis</li>
+                        <li>Brain Drain/Gain Patterns</li>
+                        <li>Cross-border Networks</li>
+                    </ul>
+                </div>
+
+                <div class="research-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="research-icon">
+                        <canvas class="icon-canvas" data-icon="innovation"></canvas>
+                    </div>
+                    <h3>Innovation Networks</h3>
+                    <p>Investigating why Silicon Valley models fail elsewhere and what actually drives regional success</p>
+                    <ul class="research-methods">
+                        <li>Ecosystem Design Principles</li>
+                        <li>Knowledge Flow Mapping</li>
+                        <li>Competitive Dynamics</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Portfolio Section with all 8 items -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Key Initiatives</span>
-                <h2>Innovation Portfolio</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="portfolio-grid">
-                
-                <!-- 1. African AI & ICT Strategies Chatbot -->
-                <div class="portfolio-item" data-aos="fade-up">
-                    <div class="portfolio-item-header">
-                        <h3>African AI & ICT Strategies Chatbot</h3>
-                        <p>AI-Powered Policy Intelligence Platform</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Developed a conversational RAG system enabling real-time policy engagement with national AI strategies from Kenya, Nigeria, and Rwanda. Supporting policymakers and researchers in extracting actionable insights.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">3</span>
-                                <span class="metric-label">Countries</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">RAG</span>
-                                <span class="metric-label">Technology</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Technologies Used:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">OpenAI API</span>
-                                <span class="tech-tag">LangChain</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">RAG</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Africa Innovators Society -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="portfolio-item-header">
-                        <h3>Africa Innovators Society</h3>
-                        <p>Innovation Hub at CMU-Africa</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Founded and scaled AIS into a dynamic ecosystem supporting student entrepreneurship through workshops, hackathons, and mentorship programs across 7 universities.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">300+</span>
-                                <span class="metric-label">Students Impacted</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">$45K</span>
-                                <span class="metric-label">Secured Funding</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Focus Areas:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Entrepreneurship</span>
-                                <span class="tech-tag">Innovation</span>
-                                <span class="tech-tag">Ecosystem Building</span>
-                                <span class="tech-tag">Mentorship</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-links">
-                            <a href="bit.ly/aisreport" class="portfolio-link">Impact Report</a>
-                            <a href="https://www.africa.engineering.cmu.edu/news/2024/07/8-entrepreneurship-club.html" class="portfolio-link">Media Coverage</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Ignite Research Academy -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="portfolio-item-header">
-                        <h3>Ignite Research Academy</h3>
-                        <p>Pan-African Research Capacity Platform</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Built an active community to groom the next generation of researchers in Africa through webinars, resource sharing, and community building.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">280+</span>
-                                <span class="metric-label">Community Members</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">3,000+</span>
-                                <span class="metric-label">Resources Shared</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Program Components:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Research Training</span>
-                                <span class="tech-tag">Webinars</span>
-                                <span class="tech-tag">Community Building</span>
-                                <span class="tech-tag">STEM Focus</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-links">
-                            <a href="https://chat.whatsapp.com/HxgITWWwcK8JejVIdvfvgK" class="portfolio-link">Join Community</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. SabiMoni Financial Literacy Platform -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="portfolio-item-header">
-                        <h3>SabiMoni Financial Literacy Platform</h3>
-                        <p>Instructional Designer & Content Contributor</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Supported a national financial literacy platform with GIZ and the Central Bank of Nigeria (CBN) by designing infographics and building interactive storyboards to make financial concepts accessible.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">75%</span>
-                                <span class="metric-label">Infographics Designed</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">80%</span>
-                                <span class="metric-label">Content Authored</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Focus Areas:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Instructional Design</span>
-                                <span class="tech-tag">Content Creation</span>
-                                <span class="tech-tag">Financial Literacy</span>
-                                <span class="tech-tag">Stakeholder Collaboration</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Technologies Used:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Figma</span>
-                                <span class="tech-tag">Articulate Rise360</span>
-                                <span class="tech-tag">Articulate Storyline</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. AI for Clean Energy Initiative -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="portfolio-item-header">
-                        <h3>AI for Clean Energy Initiative</h3>
-                        <p>Research Assistant & Project Manager</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Contributed to a £155,465 Royal Academy of Engineering-funded project by managing teams, handling stakeholder reporting, and designing over 200 communication and course assets.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">£155K</span>
-                                <span class="metric-label">Grant Funding</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">200+</span>
-                                <span class="metric-label">Assets Created</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Focus Areas:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Project Management</span>
-                                <span class="tech-tag">Grant Management</span>
-                                <span class="tech-tag">Stakeholder Reporting</span>
-                                <span class="tech-tag">Communications Design</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Recognition:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Silver Medal, DOME Research Exhibition</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. STEM e-Literacy Platform -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="500">
-                    <div class="portfolio-item-header">
-                        <h3>STEM e-Literacy Platform</h3>
-                        <p>Design & Content Contributor</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Served as a key contributor to a Kaduna State Government initiative to improve STEM learning by creating the majority of infographics to simplify complex topics for secondary school students.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">70%</span>
-                                <span class="metric-label">Of Project Infographics</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">1000s</span>
-                                <span class="metric-label">Of Students Reached</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Focus Areas:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Educational Content</span>
-                                <span class="tech-tag">Visual Design</span>
-                                <span class="tech-tag">STEM Education</span>
-                                <span class="tech-tag">Digital Accessibility</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Recognition:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Co-recipient, Kaduna State Government Research Grant</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. NACOS Community Development & Innovation -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="600">
-                    <div class="portfolio-item-header">
-                        <h3>NACOS Community Development & Innovation</h3>
-                        <p>National Director, Welfare & Membership</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Co-managed the largest NACOS Innovation Summit, securing significant funding for innovators and managing over 25 partnerships. Drove a 45% increase in community visibility and a 30% increase in active participation by developing a new community platform.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">1,100+</span>
-                                <span class="metric-label">Summit Participants</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">~₦6.3M</span>
-                                <span class="metric-label">Secured for Innovators</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Focus Areas:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Community Management</span>
-                                <span class="tech-tag">Innovation Summits</span>
-                                <span class="tech-tag">Strategic Partnerships</span>
-                                <span class="tech-tag">Large-Scale Training</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Collaborations:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Oracle Academy</span>
-                                <span class="tech-tag">Microsoft ADC</span>
-                                <span class="tech-tag">CISCO</span>
-                                <span class="tech-tag">Wema Bank</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. Summit University Training & Development -->
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="700">
-                    <div class="portfolio-item-header">
-                        <h3>Summit University Training & Development</h3>
-                        <p>Acting Head, Training & Capacity Development</p>
-                        <span class="portfolio-status">Completed</span>
-                    </div>
-                    <div class="portfolio-item-content">
-                        <p>Piloted and delivered over 20 training programs for 500+ individuals, resulting in a 40% increase in employment and entrepreneurial opportunities. Co-led a fundraising campaign that secured over ₦175M (~$421K) for university initiatives.</p>
-                        <div class="portfolio-metrics">
-                            <div class="metric">
-                                <span class="metric-value">500+</span>
-                                <span class="metric-label">Individuals Trained</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">~$421K</span>
-                                <span class="metric-label">Secured in Funding</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Key Focus Areas:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Capacity Building</span>
-                                <span class="tech-tag">Program Development</span>
-                                <span class="tech-tag">Fundraising</span>
-                                <span class="tech-tag">Professional Workshops</span>
-                            </div>
-                        </div>
-                        <div class="portfolio-tech-stack">
-                            <p class="tech-stack-label">Events Organized:</p>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Grantsmanship</span>
-                                <span class="tech-tag">Drone Building & Piloting</span>
-                                <span class="tech-tag">Clean Energy</span>
-                                <span class="tech-tag">Financial Literacy</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="research-supervisors">
+                <p>Supervised by <strong><a href="https://www.kuleuven.be/wieiswie/en/person/00037708" target="_blank" rel="noopener">Prof. René Belderbos</a></strong> and <strong><a href="https://nl.linkedin.com/in/erik-stam" target="_blank" rel="noopener">Prof. Erik Stam</a></strong></p>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience Timeline with Canvas -->
     <section id="experience" class="experience">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Research Journey</span>
+                <span class="section-tag">Professional Journey</span>
                 <h2>From Practice to Theory</h2>
-                <div class="section-divider"></div>
             </div>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2025 - Present</div>
+
+            <canvas id="timeline-canvas"></canvas>
+            
+            <div class="timeline-content">
+                <div class="timeline-item active" data-year="2025">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2025 - Present</span>
                         <h3>PhD Researcher</h3>
-                        <h4>KU Leuven & Carnegie Mellon University</h4>
+                        <h4>KU Leuven & Utrecht University</h4>
                         <p>Investigating inter-ecosystem connectivity and entrepreneurial mobility across European regions. Building systematic measures of how ecosystems compete for talent and resources.</p>
                         <div class="timeline-tags">
                             <span>Ecosystem Research</span>
@@ -431,13 +169,12 @@
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2025</div>
+                <div class="timeline-item" data-year="2025">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2025</span>
                         <h3>AI Governance Facilitator</h3>
                         <h4>European Network for AI Safety (ENAIS)</h4>
-                        <p>Delivering 12-week lectures on AI ethics, governance challenges, and policy tools. Achieved 95% participant satisfaction while exploring global AI safety frameworks.</p>
+                        <p>Delivering 12-week intensive programs on AI ethics, governance challenges, and policy tools. Achieved 95% participant satisfaction while exploring global AI safety frameworks.</p>
                         <div class="timeline-tags">
                             <span>AI Governance</span>
                             <span>Policy</span>
@@ -446,10 +183,9 @@
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2023 - 2024</div>
+                <div class="timeline-item" data-year="2023">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2023 - 2024</span>
                         <h3>Founding President</h3>
                         <h4>Africa Innovators Society</h4>
                         <p>Established CMU-Africa's premier innovation hub, securing $45,000 in sponsorships and impacting 300+ students through hackathons, workshops, and mentorship programs.</p>
@@ -461,10 +197,9 @@
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2019 - 2022</div>
+                <div class="timeline-item" data-year="2019">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2019 - 2022</span>
                         <h3>Research Fellow & Project Manager</h3>
                         <h4>Advanced Engineering Innovation Research Group</h4>
                         <p>Led multidisciplinary teams on AI for Clean Energy (£155,465 grant) and Intelligent Mining Surveillance System projects. Developed STEM e-Literacy platforms for Kaduna State.</p>
@@ -479,563 +214,623 @@
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="about-section section-bg-gray">
-        <div class="container timeline-container">
-            <div class="section-header">
-                <span class="section-tag">Academic Foundation</span>
-                <h2>Educational Journey</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="education-list">
-                <div class="education-item" data-aos="fade-up">
-                    <div class="education-date">September 2025 - Present</div>
-                    <div class="education-degree">PhD in Entrepreneurship and Innovation</div>
-                    <div class="education-institution">KU Leuven</div>
-                    <p>Investigating inter-ecosystem connectivity and entrepreneurial mobility across European regions. Supervised by Prof. René Belderbos and Prof. Erik Stam.</p>
-                </div>
-
-                <div class="education-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="education-date">August 2023 - May 2025</div>
-                    <div class="education-degree">Master of Science in Information Technology</div>
-                    <div class="education-institution">Carnegie Mellon University</div>
-                    <p>Specialization in IT-Entrepreneurship, Innovation Ecosystem, Deep Technology and Research Commercialization.</p>
-                </div>
-
-                <div class="education-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="education-date">April 2023 - April 2024</div>
-                    <div class="education-degree">Master of Business Administration</div>
-                    <div class="education-institution">Valar Institute at Quantic School of Business and Technology</div>
-                    <p>Leadership and Management focus with coursework in Finance & Accounting, Data Analytics, and Operations Management.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item" data-aos="fade-up">
-                    <div class="stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="stat-number">300+</div>
-                    <div class="stat-label">Innovators Empowered</div>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-icon">
-                        <i class="fas fa-globe-africa"></i>
-                    </div>
-                    <div class="stat-number">7+</div>
-                    <div class="stat-label">Universities Engaged</div>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Research Publications</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Research Expertise</span>
-                <h2>Multidisciplinary Capabilities</h2>
-                <div class="section-divider"></div>
+                <span class="section-tag">Key Initiatives</span>
+                <h2>Innovation Portfolio</h2>
+                <p class="section-description">8 major projects driving innovation across Africa and beyond</p>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category" data-aos="fade-up">
-                    <div class="skill-icon">
-                        <i class="fas fa-chart-network"></i>
+
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item" data-category="technology">
+                    <div class="portfolio-header">
+                        <h3>African AI & ICT Strategies Chatbot</h3>
+                        <span class="portfolio-status">Completed</span>
                     </div>
-                    <h3>Ecosystem Analysis</h3>
-                    <ul class="skill-list">
-                        <li>Inter-ecosystem Connectivity Measurement</li>
-                        <li>Network Analysis & Visualization</li>
-                        <li>Regional Innovation Metrics</li>
-                        <li>Competitive Dynamics</li>
-                        <li>Knowledge Flow Mapping</li>
-                    </ul>
+                    <p>Developed conversational RAG system for real-time policy engagement with national AI strategies from Kenya, Nigeria, and Rwanda.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">3</span>
+                            <span class="metric-label">Countries</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">RAG</span>
+                            <span class="metric-label">Technology</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>OpenAI API</span>
+                        <span>LangChain</span>
+                        <span>Python</span>
+                    </div>
                 </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item" data-category="entrepreneurship">
+                    <div class="portfolio-header">
+                        <h3>Africa Innovators Society</h3>
+                        <span class="portfolio-status">Active</span>
                     </div>
-                    <h3>Data & Methods</h3>
-                    <ul class="skill-list">
-                        <li>Patent & Citation Analysis</li>
-                        <li>ORBIS & Crunchbase</li>
-                        <li>Panel Data Models</li>
-                        <li>Python & R</li>
-                        <!-- <li>GIS & Spatial Analysis</li> -->
-                    </ul>
+                    <p>Founded and scaled innovation hub supporting student entrepreneurship across 7 universities.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">300+</span>
+                            <span class="metric-label">Students</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$45K</span>
+                            <span class="metric-label">Funding</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Ecosystem Building</span>
+                        <span>Innovation</span>
+                        <span>Mentorship</span>
+                    </div>
                 </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <div class="skill-icon">
-                        <i class="fas fa-globe"></i>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item" data-category="education">
+                    <div class="portfolio-header">
+                        <h3>Ignite Research Academy</h3>
+                        <span class="portfolio-status">Completed</span>
                     </div>
-                    <h3>Migration & Mobility</h3>
-                    <ul class="skill-list">
-                        <li>Founder Origin Analysis</li>
-                        <li>Transnational Entrepreneurship</li>
-                        <li>Brain Drain/Gain Patterns</li>
-                        <li>Cross-border Networks</li>
-                        <li>Diaspora Innovation</li>
-                    </ul>
+                    <p>Built pan-African research capacity platform grooming next generation of researchers.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">280+</span>
+                            <span class="metric-label">Members</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">3K+</span>
+                            <span class="metric-label">Resources</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Research Training</span>
+                        <span>Community</span>
+                        <span>STEM</span>
+                    </div>
                 </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <div class="skill-icon">
-                        <i class="fas fa-lightbulb"></i>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item" data-category="fintech">
+                    <div class="portfolio-header">
+                        <h3>SabiMoni Financial Literacy Platform</h3>
+                        <span class="portfolio-status">Completed</span>
                     </div>
-                    <h3>Innovation Policy</h3>
-                    <ul class="skill-list">
-                        <li>Regional Development</li>
-                        <li>Startup Policy Analysis</li>
-                        <li>AI Governance</li>
-                        <li>Ecosystem Design</li>
-                        <li>Impact Assessment</li>
-                    </ul>
+                    <p>Designed infographics and interactive content for national financial literacy initiative with GIZ and CBN.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">75%</span>
+                            <span class="metric-label">Content</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">80%</span>
+                            <span class="metric-label">Design</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Instructional Design</span>
+                        <span>Figma</span>
+                        <span>Articulate</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item" data-category="research">
+                    <div class="portfolio-header">
+                        <h3>AI for Clean Energy Initiative</h3>
+                        <span class="portfolio-status">Completed</span>
+                    </div>
+                    <p>Managed £155,465 Royal Academy of Engineering-funded project, designing 200+ communication assets.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">£155K</span>
+                            <span class="metric-label">Grant</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">200+</span>
+                            <span class="metric-label">Assets</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Project Management</span>
+                        <span>AI Research</span>
+                        <span>Clean Energy</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item" data-category="education">
+                    <div class="portfolio-header">
+                        <h3>STEM e-Literacy Platform</h3>
+                        <span class="portfolio-status">Completed</span>
+                    </div>
+                    <p>Key contributor to Kaduna State initiative, creating 70% of infographics for secondary school STEM education.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">70%</span>
+                            <span class="metric-label">Graphics</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">1000s</span>
+                            <span class="metric-label">Students</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Educational Content</span>
+                        <span>Visual Design</span>
+                        <span>STEM</span>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="portfolio-item" data-category="community">
+                    <div class="portfolio-header">
+                        <h3>NACOS Community Development</h3>
+                        <span class="portfolio-status">Completed</span>
+                    </div>
+                    <p>Co-managed largest NACOS Innovation Summit with 1,100+ participants, securing ₦6.3M for innovators.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">1,100+</span>
+                            <span class="metric-label">Participants</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">₦6.3M</span>
+                            <span class="metric-label">Funding</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Event Management</span>
+                        <span>Partnerships</span>
+                        <span>Innovation</span>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="portfolio-item" data-category="education">
+                    <div class="portfolio-header">
+                        <h3>Summit University Training</h3>
+                        <span class="portfolio-status">Completed</span>
+                    </div>
+                    <p>Delivered 20+ training programs for 500+ individuals, securing $421K for university initiatives.</p>
+                    <div class="portfolio-metrics">
+                        <div class="metric">
+                            <span class="metric-value">500+</span>
+                            <span class="metric-label">Trained</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">$421K</span>
+                            <span class="metric-label">Raised</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-tech">
+                        <span>Capacity Building</span>
+                        <span>Fundraising</span>
+                        <span>Training</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Publications Section -->
+    <!-- Publications -->
     <section id="publications" class="publications">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Research Output</span>
                 <h2>Publications & Thought Leadership</h2>
-                <div class="section-divider"></div>
             </div>
-            <div class="publications-grid">
-                <div class="publication-card" data-aos="fade-up">
-                    <div class="publication-date">March 2025</div>
-                    <h3>Generative AI Methodology for Uncovering Entrepreneurial Journeys in Africa</h3>
-                    <p>Pioneering research on using RAG systems to analyze entrepreneurial patterns in African tech ecosystems.</p>
-                    <a href="https://doi.org/10.2139/ssrn.5184838" class="publication-link btn-text" target="_blank" rel="noopener">Read on SSRN <i class="fas fa-external-link-alt"></i></a>
+
+            <!-- Featured Publication -->
+            <div class="featured-publication">
+                <div class="pub-badge">Featured Research</div>
+                <h3>GenAI Inside: A Practical Methodology for Embedding AI Across Enterprise Workflows</h3>
+                <p class="pub-authors">Muhammad Aliyu, Jean Claude Hirwa, Thomas Seleshi, Leonard Twagirayezu, Edward Ajayi, João Barros</p>
+                <p class="pub-venue">Carnegie Mellon University, 2025</p>
+                <p class="pub-abstract">
+                    Introduced a six-step methodology for enterprise AI transformation achieving 70-99% efficiency improvements 
+                    across workflows. Validated through institutional transformation projects with measurable ROI including 
+                    $10,587 in direct savings.
+                </p>
+                <div class="pub-impact">
+                    <div class="impact-item">
+                        <span class="impact-value">70-99%</span>
+                        <span class="impact-label">Efficiency Gains</span>
+                    </div>
+                    <div class="impact-item">
+                        <span class="impact-value">$10,587</span>
+                        <span class="impact-label">ROI Demonstrated</span>
+                    </div>
+                    <div class="impact-item">
+                        <span class="impact-value">4</span>
+                        <span class="impact-label">Workflows Transformed</span>
+                    </div>
                 </div>
-                <div class="publication-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="publication-date">2025</div>
-                    <h3>Empowering Student Entrepreneurs: An International Collaborative Network</h3>
-                    <p>Framework for building sustainable student entrepreneurship ecosystems in emerging economies.</p>
-                    <a href="https://katherinepunteney.middcreate.net/ojs/ojs/index.php/csie/article/download/172/321" class="publication-link btn-text"> Download Case Study <i class="fas fa-external-link-alt"></i></a>
+            </div>
+
+            <!-- Publications List -->
+            <div class="publications-list">
+                <div class="pub-item">
+                    <span class="pub-year">2025</span>
+                    <div class="pub-content">
+                        <h4>Generative AI Methodology for Uncovering Entrepreneurial Journeys in Africa</h4>
+                        <p class="pub-authors">R.N. Esibe, M. Aliyu, J. Thornburg, J. Barros, E. Stam</p>
+                        <a href="https://doi.org/10.2139/ssrn.5184838" target="_blank" class="pub-link">Read on SSRN →</a>
+                    </div>
                 </div>
-                <div class="publication-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="publication-date">2024</div>
-                    <h3>Graduate Engineering Students Navigate Cultural Differences</h3>
-                    <p>Case study on cross-cultural collaboration in developing mobile prenatal care applications.</p>
-                    <a href="https://csiepub.org/index.php/csie/issue/view/9/20" class="publication-link btn-text" target="_blank" rel="noopener">Read Article <i class="fas fa-external-link-alt"></i></a>
+
+                <div class="pub-item">
+                    <span class="pub-year">2025</span>
+                    <div class="pub-content">
+                        <h4>Empowering Student Entrepreneurs: An International Collaborative Network</h4>
+                        <p class="pub-authors">M. Aliyu, S. Malum, M. Abdulkarim</p>
+                        <a href="#" class="pub-link">View Case Study →</a>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <span class="pub-year">2024</span>
+                    <div class="pub-content">
+                        <h4>Graduate Engineering Students Navigate Cultural Differences</h4>
+                        <p class="pub-authors">Y. Underdue Murph, M. Sullelman, M. Aliyu</p>
+                        <a href="#" class="pub-link">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <span class="pub-year">2021</span>
+                    <div class="pub-content">
+                        <h4>Learning Management System – Review on Collaborative Tools</h4>
+                        <p class="pub-authors">M. Aliyu, S. Issah, A. Abdulrrahman, Z.O. Bakare, M.A. Aibinu</p>
+                        <p class="pub-venue">West African Journal of Open and Flexible Learning, 9(2), 129-140</p>
+                    </div>
+                </div>
+
+                <div class="pub-item">
+                    <span class="pub-year">2021</span>
+                    <div class="pub-content">
+                        <h4>Orientation and its Significance on Skill Development</h4>
+                        <p class="pub-authors">A.M. Aibinu, H.U. Yusuf, D.E. Olatunji, M. Aliyu, T.A. Folorunso, J. Bala</p>
+                        <p class="pub-venue">5th International Conference on Future Networks & Distributed Systems</p>
+                        <a href="https://doi.org/10.1145/3508072.3508116" target="_blank" class="pub-link">View on ACM →</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section with all 6 testimonials -->
+    <!-- Skills Section with Canvas Visualization -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2>Multidisciplinary Capabilities</h2>
+            </div>
+
+            <canvas id="skills-canvas"></canvas>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Research & Analysis</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Network Analysis</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Patent Analysis</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Data Visualization</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Python & R</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="92"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">RAG/LLM Systems</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="87"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">ORBIS & Crunchbase</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="83"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Leadership & Strategy</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">Ecosystem Building</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Project Management</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Policy Analysis</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-percent="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="tools-section">
+                <h3>Tools & Technologies</h3>
+                <div class="tools-grid">
+                    <span class="tool-badge">Python</span>
+                    <span class="tool-badge">R</span>
+                    <span class="tool-badge">OpenAI API</span>
+                    <span class="tool-badge">LangChain</span>
+                    <span class="tool-badge">ORBIS</span>
+                    <span class="tool-badge">Crunchbase</span>
+                    <span class="tool-badge">Pandas</span>
+                    <span class="tool-badge">NetworkX</span>
+                    <span class="tool-badge">Figma</span>
+                    <span class="tool-badge">Git</span>
+                    <span class="tool-badge">Power BI</span>
+                    <span class="tool-badge">Notion</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Academic Background</span>
+                <h2>Educational Journey</h2>
+            </div>
+
+            <div class="education-timeline">
+                <div class="edu-item">
+                    <div class="edu-date">2025 - Present</div>
+                    <div class="edu-content">
+                        <h3>PhD in Entrepreneurship and Innovation</h3>
+                        <h4>KU Leuven</h4>
+                        <p>Investigating inter-ecosystem connectivity and entrepreneurial mobility across European regions. 
+                        Supervised by Prof. René Belderbos and Prof. Erik Stam.</p>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-date">2023 - 2025</div>
+                    <div class="edu-content">
+                        <h3>Master of Science in Information Technology</h3>
+                        <h4>Carnegie Mellon University</h4>
+                        <p>Specialization in IT-Entrepreneurship, Innovation Ecosystem, Deep Technology and Research Commercialization.</p>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-date">2023 - 2024</div>
+                    <div class="edu-content">
+                        <h3>Master of Business Administration</h3>
+                        <h4>Valar Institute at Quantic School</h4>
+                        <p>Leadership and Management focus with coursework in Finance, Data Analytics, and Operations Management.</p>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-date">2015 - 2021</div>
+                    <div class="edu-content">
+                        <h3>Bachelor of Technology in Computer Science</h3>
+                        <h4>Federal University of Technology Minna</h4>
+                        <p>Final Year Thesis: "Innovative Courseware Content Conversion for E-Learning Platforms"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
     <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">What Colleagues Say</span>
-                <h2>Testimonials & Endorsements</h2>
-                <div class="section-divider"></div>
+                <span class="section-tag">Endorsements</span>
+                <h2>What Colleagues Say</h2>
             </div>
-            <div class="testimonials-grid">
-                <!-- 1. David Masoperh -->
-                <div class="testimonial-card" data-aos="fade-up">
-                    <div class="testimonial-content">
-                        <blockquote>
-                            "I've had the opportunity to work with Muhammad in different capacities, and I'm glad to endorse his skill set. What consistently stands out is his relentless drive to find the resources needed to successfully execute on projects, both big and small. He is truly an A-player and would be a valuable addition to any team."
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-author">
-                        <h4>David Masoperh</h4>
-                        <p>Building The "AI-Splitwise for Africa" @ Pebla | MSc. Information Technology, CMU</p>
-                    </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <blockquote>
+                        "Muhammad is the most enterprising individual I've ever encountered. What started as our first 
+                        conversation about entrepreneurship quickly evolved into creating an entrepreneurship club at CMU. 
+                        His combination of strategic thinking, relentless drive, and collaborative spirit makes him an 
+                        invaluable asset to any organization."
+                    </blockquote>
+                    <footer>
+                        <strong>Samuel Malum</strong>
+                        <span>Product | Venture | Deep-Tech VC</span>
+                    </footer>
                 </div>
 
-                <!-- 2. Patricia Musiime -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-content">
-                        <blockquote>
-                            "Muhammad demonstrated exceptional organizational and leadership skills. He played a pivotal role in the meticulous planning and seamless execution of the Career Fair... His contributions did not only enhance the quality and reach of our Career Fair and Professional Development Week but have also set a high standard for future events."
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-author">
-                        <h4>Patricia Musiime</h4>
-                        <p>Career Development | Human Resources | Talent Acquisition | ex-Andela | ex-ALU</p>
-                    </div>
+                <div class="testimonial-card">
+                    <blockquote>
+                        "He's that rare mix of strategic thinker and sleeves-rolled-up leader. Muhammad spots opportunities 
+                        where others see constraints and executes with discipline and focus. He led the launch of our campus's 
+                        first entrepreneurship club and negotiated over $30,000 in partnerships."
+                    </blockquote>
+                    <footer>
+                        <strong>Michael Nwankwo</strong>
+                        <span>Software | Distributed Systems | Research</span>
+                    </footer>
                 </div>
 
-                <!-- 3. Chika Ike, PHRi -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-content">
-                        <blockquote>
-                            "Muhammad's warm persona is only outmatched by his brilliance and dedication to the service of others. Little wonder his involvement in various social interventions that are dedicated to achieving success stories. Muhammad's past and future employers are lucky indeed, because young professionals like him are few and far between in this day and age."
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-author">
-                        <h4>Chika Ike, PHRi</h4>
-                        <p>Program Management | Human Capital Development | EdTech | Training and Development</p>
-                    </div>
+                <div class="testimonial-card">
+                    <blockquote>
+                        "What consistently stands out is his relentless drive to find the resources needed to successfully 
+                        execute on projects, both big and small. He is truly an A-player and would be a valuable addition 
+                        to any team."
+                    </blockquote>
+                    <footer>
+                        <strong>David Masoperh</strong>
+                        <span>Building The "AI-Splitwise for Africa"</span>
+                    </footer>
                 </div>
 
-                <!-- 4. Bernard O'bien -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="testimonial-content">
-                        <blockquote>
-                            "Muhammad is a strong advocate for using technology to create a more inclusive economy and bring about positive change in the world. He is passionate about using technology to bridge societal gaps, improve access to resources, and empower individuals in his community."
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-author">
-                        <h4>Bernard O'bien</h4>
-                        <p>Engineer | Entrepreneur | Venture Builder</p>
-                    </div>
+                <div class="testimonial-card">
+                    <blockquote>
+                        "Muhammad demonstrated exceptional organizational and leadership skills. His contributions not only 
+                        enhanced the quality of our Career Fair but have also set a high standard for future events."
+                    </blockquote>
+                    <footer>
+                        <strong>Patricia Musiime</strong>
+                        <span>Career Development | Human Resources</span>
+                    </footer>
                 </div>
 
-                <!-- 5. Olamilekan Abolade -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="testimonial-content">
-                        <blockquote>
-                            "I'm amazed by Muhammad's ability to manage people, resources and do excellent research, he is a highly focused person, as well as analytical and, can add to any team he is a part of. His energy to make things happen was contagious and it helped us achieve great goals while we leading at NACOS."
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-author">
-                        <h4>Olamilekan Abolade</h4>
-                        <p>Product Manager | Project Manager</p>
-                    </div>
+                <div class="testimonial-card">
+                    <blockquote>
+                        "Muhammad's warm persona is only outmatched by his brilliance and dedication to the service of others. 
+                        Young professionals like him are few and far between in this day and age."
+                    </blockquote>
+                    <footer>
+                        <strong>Chika Ike, PHRi</strong>
+                        <span>Program Management | Human Capital Development</span>
+                    </footer>
                 </div>
 
-                <!-- 6. Shukurat Bello -->
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="testimonial-content">
-                        <blockquote>
-                            "Muhammad is one of the most resourceful people that I have ever met, he is also one of those people who always know something about everything. He is smart, focused, ambitious, hardworking, passionate about community building and ever ready to volunteer his time and skills to the service of others."
-                        </blockquote>
-                    </div>
-                    <div class="testimonial-author">
-                        <h4>Shukurat Bello</h4>
-                        <p>Business Intelligence Analyst | Data Professional</p>
-                    </div>
+                <div class="testimonial-card">
+                    <blockquote>
+                        "Muhammad is a strong advocate for using technology to create a more inclusive economy. He is passionate 
+                        about bridging societal gaps and empowering individuals in his community."
+                    </blockquote>
+                    <footer>
+                        <strong>Bernard O'bien</strong>
+                        <span>Engineer | Entrepreneur | Venture Builder</span>
+                    </footer>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Ecosystem Partners Section -->
-    <section id="ecosystem" class="ecosystem">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Collaboration Network</span>
-                <h2>Innovation Ecosystem Partners</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="ecosystem-grid">
-                <div class="ecosystem-item" data-aos="zoom-in">
-                    <span>Carnegie Mellon University</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="50">
-                    <span>KU Leuven</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="100">
-                    <span>Africa Innovators Society</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="150">
-                    <span>European Network for AI Safety</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="200">
-                    <span>Ignite Research Academy</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="250">
-                    <span>GIZ Rwanda</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="300">
-                    <span>Jasiri</span>
-                </div>
-                <div class="ecosystem-item" data-aos="zoom-in" data-aos-delay="350">
-                    <span>BPN Rwanda</span>
-                </div>
+            <div class="testimonial-nav">
+                <button class="testimonial-prev">←</button>
+                <button class="testimonial-next">→</button>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
+        <canvas id="contact-canvas"></canvas>
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Let's Connect</span>
                 <h2>Collaborate on Innovation Research</h2>
-                <div class="section-divider"></div>
+                <p class="section-description">
+                    I'm interested in collaborating with researchers, policymakers, and ecosystem builders working on 
+                    entrepreneurial migration, innovation networks, and regional development.
+                </p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
+
+            <div class="contact-grid">
+                <div class="contact-info">
                     <h3>Research Collaboration</h3>
-                    <p>I'm interested in collaborating with researchers, policymakers, and ecosystem builders working on entrepreneurial migration, innovation networks, and regional development. Let's uncover how ecosystems really work.</p>
-                    <ul class="contact-details">
-                        <li>
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span>Email</span>
+                    <p>Let's uncover how ecosystems really work together.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
                                 <a href="mailto:maliyu@andrew.cmu.edu">maliyu@andrew.cmu.edu</a>
                             </div>
-                        </li>
-                        <li>
-                            <div class="contact-icon">
-                                <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">💼</span>
+                            <div>
+                                <strong>LinkedIn</strong>
+                                <a href="https://linkedin.com/in/maliyuam" target="_blank">linkedin.com/in/maliyuam</a>
                             </div>
-                            <div class="contact-text">
-                                <span>LinkedIn</span>
-                                <a href="https://www.linkedin.com/in/maliyuam" target="_blank" rel="noopener">linkedin.com/in/maliyuam</a>
+                        </div>
+                        <!-- <div class="contact-item">
+                            <span class="contact-icon">🐙</span>
+                            <div>
+                                <strong>GitHub</strong>
+                                <a href="https://github.com/maliyuam" target="_blank">github.com/maliyuam</a>
                             </div>
-                        </li>
-                        <li>
-                            <div class="contact-icon">
-                                <i class="fab fa-github"></i>
+                        </div> -->
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Location</strong>
+                                <span>Kigali, Rwanda</span>
                             </div>
-                            <div class="contact-text">
-                                <span>GitHub</span>
-                                <a href="https://github.com/maliyuam" target="_blank" rel="noopener">github.com/maliyuam</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span>Location</span>
-                                <p>Kigali, Rwanda / Leuven, Belgium</p>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-form" data-aos="fade-left">
-                    <form id="contactForm" action="https://formspree.io/f/your-formspree-id" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-envelope"></i>
-                                <input type="email" id="email" name="email" required aria-required="true" placeholder="john@example.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-tag"></i>
-                                <input type="text" id="subject" name="subject" required aria-required="true" placeholder="Collaboration Opportunity">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <div class="input-wrapper textarea-wrapper">
-                                <i class="fas fa-comment-alt"></i>
-                                <textarea id="message" name="message" rows="5" required aria-required="true" placeholder="Tell me about your project or idea..."></textarea>
-                            </div>
-                        </div>
-                        <div class="form-submit">
-                            <button type="submit" class="btn-primary">
-                                <span>Send Message</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                        <div id="form-status" class="form-status" aria-live="polite"></div>
-                    </form>
+
+                <div class="contact-calendar">
+                    <h3>Schedule a Meeting</h3>
+                    <p>Choose a time that works best for you</p>
+                    <button class="btn btn-primary" id="scheduleBtn">
+                        <span>📅</span> Open Calendar - Coming Soon
+                    </button>
+                    <div class="calendar-widget" id="calendarWidget">
+                        <!-- Calendar integration goes here -->
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Decode Innovation Networks?</h2>
-                <p>Join me in uncovering how startups really succeed—through the connections between ecosystems that shape where innovation thrives.</p>
-                <a href="#contact" class="btn-primary">Start a Conversation</a>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">MA</div>
+                    <p>Mapping Innovation Networks</p>
+                </div>
+                <div class="footer-links">
+                    <!-- <a href="https://github.com/maliyuam" target="_blank">GitHub</a> -->
+                    <a href="https://linkedin.com/in/maliyuam" target="_blank">LinkedIn</a>
+                    <!-- <a href="https://orcid.org/your-orcid" target="_blank">ORCID</a> -->
+                    <a href="assets/docs/cv.pdf" target="_blank">CV</a>
+                </div>
+                <div class="footer-social">
+                    <p>© 2025 Muhammad Aliyu. All rights reserved.</p>
+                </div>
             </div>
         </div>
-    </section>
-</main>
+    </footer>
 
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <a href="#home" aria-label="Muhammad Aliyu - Home">
-                    <span class="logo-text">MA</span>
-                </a>
-                <p>Mapping Innovation Networks</p>
-            </div>
-            <div class="footer-links-column">
-                <h3>Navigation</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-column">
-                <h3>Research Areas</h3>
-                <ul>
-                    <li><a href="#">Ecosystem Connectivity</a></li>
-                    <li><a href="#">Entrepreneurial Migration</a></li>
-                    <li><a href="#">Innovation Networks</a></li>
-                    <li><a href="#">Regional Development</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-column">
-                <h3>Connect</h3>
-                <ul class="social-links">
-                    <li><a href="https://www.linkedin.com/in/maliyuam" target="_blank" rel="noopener" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                    <li><a href="https://github.com/maliyuam" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i> GitHub</a></li>
-                    <li><a href="mailto:maliyu@andrew.cmu.edu" aria-label="Email"><i class="fas fa-envelope"></i> Email</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <span id="current-year">2025</span> Muhammad Aliyu. All Rights Reserved.</p>
-            <p class="credits">Uncovering how startups succeed through ecosystem connectivity.</p>
-        </div>
-        <div class="back-to-top">
-            <a href="#home" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
-        </div>
-    </div>
-</footer>
-
-<div class="cookie-consent" id="cookieConsent">
-    <div class="cookie-content">
-        <p>This website uses cookies to enhance your browsing experience.</p>
-        <div class="cookie-buttons">
-            <button id="cookieAccept" class="btn-primary">Accept</button>
-            <button id="cookieDecline" class="btn-secondary">Decline</button>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-<script src="assets/js/main.js"></script>
-<script>
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-</script>
-
-<style>
-/* Testimonials Section Styles */
-.testimonials {
-    background-color: var(--light-gray);
-    padding: var(--spacing-5xl) 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.testimonials::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(62, 146, 204, 0.03) 0%, transparent 50%);
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-xl);
-    position: relative;
-    z-index: 1;
-}
-
-.testimonial-card {
-    background: var(--white);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-medium);
-    position: relative;
-    border: 1px solid rgba(10, 36, 99, 0.05);
-}
-
-.testimonial-card::before {
-    content: '"';
-    position: absolute;
-    top: var(--spacing-lg);
-    left: var(--spacing-lg);
-    font-size: 3rem;
-    color: var(--secondary-color);
-    opacity: 0.2;
-    font-family: Georgia, serif;
-    line-height: 1;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.testimonial-content {
-    position: relative;
-    z-index: 1;
-    margin-bottom: var(--spacing-lg);
-}
-
-.testimonial-content blockquote {
-    font-size: var(--font-size-md);
-    line-height: var(--line-height-relaxed);
-    color: var(--text-color);
-    font-style: italic;
-    margin: 0;
-    padding-left: var(--spacing-xl);
-}
-
-.testimonial-author {
-    border-top: 1px solid var(--gray);
-    padding-top: var(--spacing-md);
-}
-
-.testimonial-author h4 {
-    color: var(--primary-color);
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-xs);
-}
-
-.testimonial-author p {
-    color: var(--text-light);
-    font-size: var(--font-size-sm);
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .testimonial-card {
-        padding: var(--spacing-lg);
-    }
-    
-    .testimonial-content blockquote {
-        padding-left: var(--spacing-lg);
-    }
-}
-</style>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
