@@ -1,0 +1,147 @@
+<!-- Advanced Search and Filters -->
+<div class="publications-search-container" data-animate="fadeIn">
+    <div class="search-bar">
+        <input type="text" id="pubSearchInput" placeholder="Search publications..." class="search-input">
+        <div class="search-suggestions"></div>
+    </div>
+    
+    <div class="advanced-filters">
+        <div class="filter-group">
+            <label>Year Range</label>
+            <div class="year-range">
+                <input type="number" id="yearFrom" min="2000" max="2025" placeholder="From">
+                <span>-</span>
+                <input type="number" id="yearTo" min="2000" max="2025" placeholder="To">
+            </div>
+        </div>
+        
+        <div class="filter-group">
+            <label>Citation Count</label>
+            <div class="citation-range">
+                <input type="range" id="citationRange" min="0" max="100" value="0">
+                <span class="range-value">0+</span>
+            </div>
+        </div>
+        
+        <div class="filter-group">
+            <label>Co-authors</label>
+            <select id="coauthorFilter" multiple>
+                <option value="all">All</option>
+                <!-- Dynamically populated -->
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label>Impact Factor</label>
+            <select id="impactFilter">
+                <option value="all">All</option>
+                <option value="high">High Impact (IF > 4)</option>
+                <option value="medium">Medium Impact (IF 2-4)</option>
+                <option value="low">Low Impact (IF < 2)</option>
+            </select>
+        </div>
+        
+        <button id="resetFilters" class="btn-outline">Reset Filters</button>
+    </div>
+</div>
+
+<!-- Citation Export Modal -->
+<div id="citationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Export Citation</h3>
+        <div class="citation-formats">
+            <button class="format-btn active" data-format="bibtex">BibTeX</button>
+            <button class="format-btn" data-format="apa">APA</button>
+            <button class="format-btn" data-format="mla">MLA</button>
+            <button class="format-btn" data-format="harvard">Harvard</button>
+        </div>
+        <div class="citation-preview">
+            <pre><code id="citationText"></code></pre>
+        </div>
+        <div class="modal-actions">
+            <button id="copyCitation" class="btn">Copy to Clipboard</button>
+            <button id="downloadCitation" class="btn-outline">Download</button>
+        </div>
+    </div>
+</div>
+
+<!-- Publication Details Modal -->
+<div id="publicationModal" class="modal">
+    <div class="modal-content wide">
+        <span class="close-modal">&times;</span>
+        <div class="publication-detail-grid">
+            <div class="publication-main">
+                <h2 class="pub-title"></h2>
+                <div class="pub-authors"></div>
+                <div class="pub-meta"></div>
+                <div class="pub-abstract"></div>
+                <div class="pub-keywords"></div>
+            </div>
+            <div class="publication-sidebar">
+                <div class="metrics-card">
+                    <h4>Impact Metrics</h4>
+                    <div class="metric-item">
+                        <span class="metric-icon">📊</span>
+                        <span class="metric-label">Citations</span>
+                        <span class="metric-value citations-count"></span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-icon">📥</span>
+                        <span class="metric-label">Downloads</span>
+                        <span class="metric-value download-count"></span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-icon">👁️</span>
+                        <span class="metric-label">Views</span>
+                        <span class="metric-value views-count"></span>
+                    </div>
+                    <div class="altmetrics-section">
+                        <h5>Altmetrics</h5>
+                        <div class="altmetrics-donut"></div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <a href="#" class="btn full-width pdf-download">
+                        <span class="icon">📄</span> Download PDF
+                    </a>
+                    <button class="btn-outline full-width cite-button">
+                        <span class="icon">📝</span> Cite
+                    </button>
+                    <button class="btn-outline full-width share-button">
+                        <span class="icon">🔗</span> Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Modal -->
+<div id="shareModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Share Publication</h3>
+        <div class="share-options">
+            <button class="share-btn twitter">
+                <span class="icon">🐦</span> Twitter
+            </button>
+            <button class="share-btn linkedin">
+                <span class="icon">💼</span> LinkedIn
+            </button>
+            <button class="share-btn facebook">
+                <span class="icon">📘</span> Facebook
+            </button>
+            <button class="share-btn email">
+                <span class="icon">📧</span> Email
+            </button>
+        </div>
+        <div class="direct-link">
+            <input type="text" readonly>
+            <button class="copy-link btn-outline">Copy Link</button>
+        </div>
+        <div class="qr-code">
+            <!-- QR code will be generated here -->
+        </div>
+    </div>
+</div>

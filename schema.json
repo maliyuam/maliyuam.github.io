@@ -1,0 +1,30 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad Aliyu",
+    "jobTitle": "PhD Researcher",
+    "affiliation": {
+        "@type": "Organization",
+        "name": "KU Leuven"
+    },
+    "alumniOf": [
+        {
+            "@type": "Organization",
+            "name": "Carnegie Mellon University"
+        }
+    ],
+    "description": "PhD Researcher investigating entrepreneurial ecosystems, inter-ecosystem connectivity, and innovation networks",
+    "url": "https://maliyuam.github.io",
+    "sameAs": [
+        "https://linkedin.com/in/yourprofile",
+        "https://github.com/maliyuam",
+        "https://scholar.google.com/citations?user=yourid"
+    ],
+    "knowsAbout": [
+        "Entrepreneurial Ecosystems",
+        "Innovation Networks",
+        "Startup Growth",
+        "Founder Mobility",
+        "Innovation Policy"
+    ]
+}
