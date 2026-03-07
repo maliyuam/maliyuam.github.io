@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cancer Moonshot Patent Analytics — ETL pipeline and PostgreSQL analytics on 269,353 USPTO cancer therapy patents for venture capital investment decisions.">
+    <meta name="author" content="Muhammad Aliyu">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://maliyuam.github.io/projects/bvcp-patent-analytics.html">
+    <meta property="og:title" content="Cancer Moonshot Patent Analytics — Muhammad Aliyu">
+    <meta property="og:description"
+        content="ETL pipeline and SQL analytics on 269K USPTO cancer patents for venture capital due diligence.">
+    <meta property="og:image" content="https://maliyuam.github.io/assets/images/profile.jpg">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Cancer Moonshot Patent Analytics — Muhammad Aliyu">
+    <meta name="twitter:description"
+        content="ETL pipeline and SQL analytics on 269K USPTO cancer patents for venture capital due diligence.">
+    <meta name="twitter:image" content="https://maliyuam.github.io/assets/images/profile.jpg">
+
+    <link rel="canonical" href="https://maliyuam.github.io/projects/bvcp-patent-analytics.html">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a365d'/%3E%3Ctext x='50' y='62' font-family='Georgia,serif' font-size='42' font-weight='bold' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+
+    <title>Cancer Moonshot Patent Analytics | Muhammad Aliyu</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components/project-detail.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="../index.html" class="header__name">Muhammad Aliyu</a>
+            <button class="header__toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="header__overlay" id="nav-overlay"></div>
+            <nav class="header__nav" id="nav-menu">
+                <li><a href="../research.html" class="header__link">Research</a></li>
+                <li><a href="../projects.html" class="header__link">Projects</a></li>
+                <li><a href="../experience.html" class="header__link">Experience</a></li>
+                <!-- <li><a href="../blog/" class="header__link">Blog</a></li> -->
+                <li><a href="../work-with-me.html" class="btn btn--primary btn--sm"
+                        style="padding: 0.5rem 1rem; color: white;">Collaborate</a></li>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-simple">
+        <div class="container">
+            <a href="../index.html#projects" class="project-detail__back">&larr; Back to Projects</a>
+            <span class="hero-simple__badge">Quantic MSBA &middot; Business Analytics Capstone</span>
+            <h1 class="hero-simple__title">Cancer Moonshot Patent Analytics</h1>
+            <p class="hero-simple__desc">
+                A data pipeline and analytical framework that transformed 269,353 raw USPTO patent records
+                into actionable venture capital intelligence on cancer therapy innovation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Metadata Bar -->
+    <div class="project-detail__meta-bar">
+        <div class="container container--wide">
+            <div class="project-detail__meta-items">
+                <div class="project-detail__meta-item">
+                    <span class="project-detail__meta-label">Client</span>
+                    <span class="project-detail__meta-value">BioVenture Capital Partners</span>
+                </div>
+                <div class="project-detail__meta-item">
+                    <span class="project-detail__meta-label">Dataset</span>
+                    <span class="project-detail__meta-value">269,353 USPTO Records</span>
+                </div>
+                <div class="project-detail__meta-item">
+                    <span class="project-detail__meta-label">Stack</span>
+                    <span class="project-detail__meta-value">Python + PostgreSQL 16</span>
+                </div>
+                <div class="project-detail__meta-item">
+                    <span class="project-detail__meta-label">Deliverables</span>
+                    <span class="project-detail__meta-value">6 Tables &middot; 10 SQL Procedures</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Problem -->
+    <section class="section">
+        <div class="container">
+            <header class="section__header">
+                <span class="section__eyebrow">Context</span>
+                <h2 class="section__title">The Business Problem</h2>
+            </header>
+            <div class="project-detail__prose">
+                <p>BioVenture Capital Partners (BVCP), a venture capital firm specializing in life sciences,
+                    needed a systematic way to evaluate cancer therapy innovation trends across four decades
+                    of USPTO patent filings. Their investment committee faced three core challenges:</p>
+                <ol>
+                    <li><strong>Volume Overload</strong> — The Cancer Moonshot dataset contains 269,353 patent
+                        records spanning 1976 to 2016, with 29 columns of unstructured data unsuitable for
+                        analytical querying.</li>
+                    <li><strong>Signal Extraction</strong> — Identifying which therapeutic domains are
+                        accelerating, which have strong NIH-to-FDA translation pipelines, and where
+                        cross-domain innovation is emerging.</li>
+                    <li><strong>Due Diligence Efficiency</strong> — BVCP needed repeatable, query-driven
+                        analytics rather than one-off manual reviews to support quarterly investment decisions.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Approach -->
+    <section class="section section--alt">
+        <div class="container container--wide">
+            <header class="section__header section__header--center">
+                <span class="section__eyebrow">Approach</span>
+                <h2 class="section__title">Solution Architecture</h2>
+                <p class="section__subtitle">A three-phase pipeline: Extract and Transform raw data, Load into a
+                    normalized schema, then Analyze through SQL procedures.</p>
+            </header>
+
+            <div class="project-detail__phases stagger-children">
+                <div class="project-detail__phase reveal-on-scroll">
+                    <span class="project-detail__phase-number">01</span>
+                    <h3 class="project-detail__phase-title">Extract & Transform</h3>
+                    <p class="project-detail__phase-desc">
+                        Python ETL script that parsed the raw Cancer Moonshot CSV, handled missing values,
+                        normalized dates, and decomposed multi-valued fields (domains, classifications, grants)
+                        into separate relational entities ready for database ingestion.
+                    </p>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Python 3</span>
+                        <span class="project-card__tag">Pandas</span>
+                        <span class="project-card__tag">Data Cleaning</span>
+                    </div>
+                </div>
+                <div class="project-detail__phase reveal-on-scroll">
+                    <span class="project-detail__phase-number">02</span>
+                    <h3 class="project-detail__phase-title">Load & Model</h3>
+                    <p class="project-detail__phase-desc">
+                        Designed a hub-and-spoke relational schema with 6 normalized tables in PostgreSQL 16.
+                        The patents table serves as the central hub, with spokes for classifications, domains,
+                        NIH grants, FDA approvals, and patent families.
+                    </p>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">PostgreSQL 16</span>
+                        <span class="project-card__tag">pgAdmin 4</span>
+                        <span class="project-card__tag">Data Modeling</span>
+                    </div>
+                </div>
+                <div class="project-detail__phase reveal-on-scroll">
+                    <span class="project-detail__phase-number">03</span>
+                    <h3 class="project-detail__phase-title">Analyze & Report</h3>
+                    <p class="project-detail__phase-desc">
+                        Developed 10 reusable SQL analytical procedures targeting domain momentum, NIH-FDA
+                        translation rates, cross-domain innovation, and patent family clustering to surface
+                        investment-grade insights for BVCP.
+                    </p>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">SQL Analytics</span>
+                        <span class="project-card__tag">Window Functions</span>
+                        <span class="project-card__tag">Business Intelligence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Schema -->
+    <section class="section">
+        <div class="container container--wide">
+            <header class="section__header section__header--center">
+                <span class="section__eyebrow">Data Model</span>
+                <h2 class="section__title">Hub-and-Spoke Schema</h2>
+                <p class="section__subtitle">Six normalized tables centered around the patents hub,
+                    reducing redundancy from the flat-file source while enabling flexible analytical joins.</p>
+            </header>
+
+            <div class="project-detail__schema stagger-children">
+                <!-- Hub -->
+                <div class="project-detail__schema-hub reveal-on-scroll">
+                    <h4 class="project-detail__schema-table-name">patents</h4>
+                    <p class="project-detail__schema-table-role">Central Hub</p>
+                    <ul class="project-detail__schema-cols">
+                        <li><strong>patent_id</strong> (PK)</li>
+                        <li>family_id (FK)</li>
+                        <li>application_number</li>
+                        <li>filing_date</li>
+                        <li>grant_date</li>
+                        <li>patent_title</li>
+                    </ul>
+                    <span class="project-detail__schema-count">266,756 rows</span>
+                </div>
+
+                <!-- Spokes -->
+                <div class="project-detail__schema-spokes">
+                    <div class="project-detail__schema-spoke reveal-on-scroll">
+                        <h4 class="project-detail__schema-table-name">patent_families</h4>
+                        <ul class="project-detail__schema-cols">
+                            <li><strong>family_id</strong> (PK)</li>
+                            <li>family_size</li>
+                        </ul>
+                        <span class="project-detail__schema-count">87,474 rows</span>
+                    </div>
+                    <div class="project-detail__schema-spoke reveal-on-scroll">
+                        <h4 class="project-detail__schema-table-name">patent_classifications</h4>
+                        <ul class="project-detail__schema-cols">
+                            <li><strong>id</strong> (PK)</li>
+                            <li>patent_id (FK)</li>
+                            <li>classification_code</li>
+                            <li>classification_type</li>
+                        </ul>
+                        <span class="project-detail__schema-count">34,975 rows</span>
+                    </div>
+                    <div class="project-detail__schema-spoke reveal-on-scroll">
+                        <h4 class="project-detail__schema-table-name">patent_domains</h4>
+                        <ul class="project-detail__schema-cols">
+                            <li><strong>id</strong> (PK)</li>
+                            <li>patent_id (FK)</li>
+                            <li>domain_name</li>
+                        </ul>
+                        <span class="project-detail__schema-count">426,258 rows</span>
+                    </div>
+                    <div class="project-detail__schema-spoke reveal-on-scroll">
+                        <h4 class="project-detail__schema-table-name">nih_grants</h4>
+                        <ul class="project-detail__schema-cols">
+                            <li><strong>id</strong> (PK)</li>
+                            <li>patent_id (FK)</li>
+                            <li>grant_number</li>
+                            <li>recipient_organization</li>
+                        </ul>
+                        <span class="project-detail__schema-count">31,553 rows</span>
+                    </div>
+                    <div class="project-detail__schema-spoke reveal-on-scroll">
+                        <h4 class="project-detail__schema-table-name">fda_approvals</h4>
+                        <ul class="project-detail__schema-cols">
+                            <li><strong>id</strong> (PK)</li>
+                            <li>patent_id (FK)</li>
+                            <li>fda_application_number</li>
+                            <li>drug_trade_name</li>
+                            <li>approval_date</li>
+                            <li>applicant, ingredient</li>
+                        </ul>
+                        <span class="project-detail__schema-count">1,090 rows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytical Procedures -->
+    <section class="section section--alt">
+        <div class="container container--wide">
+            <header class="section__header section__header--center">
+                <span class="section__eyebrow">Analysis</span>
+                <h2 class="section__title">10 Analytical Procedures</h2>
+                <p class="section__subtitle">Each procedure was designed to answer a specific investment
+                    question for BVCP's due diligence process.</p>
+            </header>
+
+            <div class="project-detail__analyses stagger-children">
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">01</span>
+                    <h4 class="project-detail__analysis-title">Domain Momentum</h4>
+                    <p class="project-detail__analysis-question">Which cancer therapy domains have the
+                        fastest-growing filing volume (2011-2016)?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> DNA/RNA/Protein Sequence and Data Science showed the
+                        strongest growth momentum, signaling a shift toward precision medicine and
+                        computational approaches.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">02</span>
+                    <h4 class="project-detail__analysis-title">Domain Acceleration</h4>
+                    <p class="project-detail__analysis-question">Which domains are accelerating — growth
+                        speeding up, not just growing?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> Domains that were niche pre-2008 showed exponential
+                        acceleration post-2012, while traditional Drugs & Chemistry plateaued in growth rate.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">03</span>
+                    <h4 class="project-detail__analysis-title">Dual-Linked Patents</h4>
+                    <p class="project-detail__analysis-question">Which patents carry both NIH grant funding
+                        AND FDA drug approval?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> Only a small subset of patents carry both markers — these
+                        represent the highest-confidence commercial translation opportunities for VC
+                        investment.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">04</span>
+                    <h4 class="project-detail__analysis-title">NIH Linkage by Domain</h4>
+                    <p class="project-detail__analysis-question">What percentage of patents in each domain
+                        have NIH grant linkage?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> Government-funded research concentrates in specific
+                        therapeutic domains, revealing where public investment is betting on breakthrough
+                        therapies.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">05</span>
+                    <h4 class="project-detail__analysis-title">Top NIH Organizations</h4>
+                    <p class="project-detail__analysis-question">Which organizations produce the most
+                        NIH-linked patents across the broadest domain spread?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> A handful of research universities and medical centers
+                        dominate NIH-linked output — potential partnership or licensing targets for BVCP.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">06</span>
+                    <h4 class="project-detail__analysis-title">High Family-Size Patents</h4>
+                    <p class="project-detail__analysis-question">Which post-2008 patents in top-momentum
+                        domains have the largest patent families?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> Large patent families signal commercially valuable IP
+                        protected across jurisdictions — these concentrate in the accelerating domains.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">07</span>
+                    <h4 class="project-detail__analysis-title">Multi-Domain Patents</h4>
+                    <p class="project-detail__analysis-question">How many patents span 3+ active domains,
+                        indicating cross-domain innovation?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> 113,484 patents span 2+ domains. Multi-domain patents
+                        signal platform technologies with broader therapeutic applicability — high-value
+                        VC targets.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">08</span>
+                    <h4 class="project-detail__analysis-title">Domain Co-Occurrence</h4>
+                    <p class="project-detail__analysis-question">Which domain pairs most frequently co-occur
+                        on the same patent?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> The strongest co-occurrences reveal convergence zones
+                        between therapeutic areas, identifying where combinatory innovation is highest.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">09</span>
+                    <h4 class="project-detail__analysis-title">Diagnostic vs. Treatment Ratio</h4>
+                    <p class="project-detail__analysis-question">What is the balance of diagnostic vs.
+                        treatment patents per domain over time?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> Domains skewing toward diagnostics represent earlier-stage
+                        markets where companion diagnostic strategies could drive investment returns.
+                    </div>
+                </div>
+
+                <div class="project-detail__analysis reveal-on-scroll">
+                    <span class="project-detail__analysis-number">10</span>
+                    <h4 class="project-detail__analysis-title">Filing Volume vs. FDA Linkage</h4>
+                    <p class="project-detail__analysis-question">Do high-filing domains also have high
+                        FDA approval linkage?</p>
+                    <div class="project-detail__analysis-finding">
+                        <strong>Finding:</strong> Most high-volume domains have FDA linkage rates below 0.5%,
+                        revealing a massive translation gap — the central insight for BVCP's investment thesis.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Findings -->
+    <section class="section">
+        <div class="container container--wide">
+            <header class="section__header section__header--center">
+                <span class="section__eyebrow">Results</span>
+                <h2 class="section__title">Key Findings at a Glance</h2>
+            </header>
+
+            <div class="project-detail__findings stagger-children">
+                <div class="project-detail__finding reveal-on-scroll">
+                    <span class="project-detail__finding-stat">269K</span>
+                    <p class="project-detail__finding-text">Patent records normalized from
+                        the Cancer Moonshot dataset into 6 relational tables</p>
+                </div>
+                <div class="project-detail__finding reveal-on-scroll">
+                    <span class="project-detail__finding-stat">113K</span>
+                    <p class="project-detail__finding-text">Patents spanning 2+ therapeutic domains,
+                        revealing widespread cross-domain innovation</p>
+                </div>
+                <div class="project-detail__finding reveal-on-scroll">
+                    <span class="project-detail__finding-stat">&lt;0.5%</span>
+                    <p class="project-detail__finding-text">FDA linkage rate for most high-volume domains —
+                        a massive patent-to-approval translation gap</p>
+                </div>
+                <div class="project-detail__finding reveal-on-scroll">
+                    <span class="project-detail__finding-stat">87K</span>
+                    <p class="project-detail__finding-text">Patent families identified, with the largest
+                        concentrating in high-momentum domains</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Implications -->
+    <section class="section section--alt">
+        <div class="container">
+            <header class="section__header">
+                <span class="section__eyebrow">Recommendations</span>
+                <h2 class="section__title">Business Implications for BVCP</h2>
+            </header>
+            <div class="project-detail__prose">
+                <p>The analysis delivers five strategic recommendations for BVCP's cancer therapy
+                    investment strategy:</p>
+                <ol>
+                    <li><strong>Prioritize Accelerating Domains</strong> — Focus due diligence on
+                        DNA/RNA/Protein Sequence and genomic-related domains showing the steepest
+                        momentum curves post-2011. These represent the frontier of cancer therapy
+                        innovation.</li>
+                    <li><strong>Target Dual-Linked Patents</strong> — The small cohort of patents with
+                        both NIH funding and FDA approval represents validated, commercially viable IP.
+                        Pursue licensing or partnership with the organizations holding these patents.</li>
+                    <li><strong>Monitor the Translation Gap</strong> — The extreme disparity between
+                        filing volume and FDA linkage rates means most patent-heavy domains have unproven
+                        commercial pathways. Use FDA linkage rate as a risk filter in portfolio screening.</li>
+                    <li><strong>Exploit Cross-Domain Convergence</strong> — Multi-domain patents and
+                        high-frequency domain pair co-occurrences identify platform technologies with
+                        diversified therapeutic applicability and lower concentration risk.</li>
+                    <li><strong>Build Ongoing Intelligence</strong> — The 6-table schema and 10 reusable
+                        SQL procedures provide a repeatable analytics framework. BVCP can refresh the
+                        analysis annually as new USPTO data becomes available.</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="section">
+        <div class="container container--wide">
+            <header class="section__header section__header--center">
+                <span class="section__eyebrow">Technology</span>
+                <h2 class="section__title">Tech Stack</h2>
+            </header>
+            <div class="project-detail__stack stagger-children">
+                <div class="project-detail__stack-item reveal-on-scroll">
+                    <h4 class="project-detail__stack-name">Python 3</h4>
+                    <p class="project-detail__stack-role">ETL pipeline, data cleaning, CSV parsing and
+                        transformation with Pandas and psycopg2</p>
+                </div>
+                <div class="project-detail__stack-item reveal-on-scroll">
+                    <h4 class="project-detail__stack-name">PostgreSQL 16</h4>
+                    <p class="project-detail__stack-role">Relational database, hub-and-spoke schema design,
+                        analytical SQL procedures</p>
+                </div>
+                <div class="project-detail__stack-item reveal-on-scroll">
+                    <h4 class="project-detail__stack-name">pgAdmin 4</h4>
+                    <p class="project-detail__stack-role">Database administration, query execution, and
+                        result visualization</p>
+                </div>
+                <div class="project-detail__stack-item reveal-on-scroll">
+                    <h4 class="project-detail__stack-name">USPTO Dataset</h4>
+                    <p class="project-detail__stack-role">Cancer Moonshot Patent Dataset — 269,353 records
+                        spanning 1976 to 2016</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--cta">
+        <div class="container container--wide" style="text-align: center;">
+            <h2 class="section__title">Interested in this kind of work?</h2>
+            <p class="section__subtitle" style="margin-left: auto; margin-right: auto;">
+                I apply the same analytical rigor to research partnerships and data-driven projects.
+                Let's discuss how structured thinking can inform your investment or research decisions.
+            </p>
+            <div class="hero__actions" style="margin-top: var(--space-8);">
+                <a href="mailto:muhammad.aliyu@kuleuven.be" class="btn btn--primary btn--lg">Get in Touch</a>
+                <a href="../index.html#projects" class="btn btn--secondary btn--lg">Back to Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <span class="footer__logo">Muhammad Aliyu</span>
+                <p class="footer__tagline">
+                    Mapping the invisible bridges of innovation ecosystems.
+                </p>
+                <div class="footer__social">
+                    <a href="https://linkedin.com/in/maliyuam" target="_blank">LinkedIn</a>
+                    <a href="https://orcid.org/0009-0007-2286-401X" target="_blank">ORCID</a>
+                    <a href="https://scholar.google.com/citations?user=fVsQS-QAAAAJ&hl=en" target="_blank">Google
+                        Scholar</a>
+                    <a href="mailto:muhammad.aliyu@kuleuven.be">Email</a>
+                </div>
+            </div>
+
+            <nav class="footer__nav">
+                <div class="footer__col">
+                    <h4>Research</h4>
+                    <a href="../research.html">Publications</a>
+                    <a href="../experience.html">Key Initiatives</a>
+                </div>
+                <div class="footer__col">
+                    <h4>About</h4>
+                    <a href="../assets/docs/cv.pdf" target="_blank">CV / Resume</a>
+                    <a href="../experience.html">Experience</a>
+                </div>
+                <div class="footer__col">
+                    <h4>Connect</h4>
+                    <a href="../work-with-me.html">Collaborate</a>
+                    <!-- <a href="../blog/">Blog</a> -->
+                    <a href="mailto:muhammad.aliyu@kuleuven.be">Contact</a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="footer__bottom">
+            <p class="footer__copy">&copy; 2026 Muhammad Aliyu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

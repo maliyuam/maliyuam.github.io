@@ -1,0 +1,38 @@
+# robots.txt for maliyuam.github.io
+# Muhammad Aliyu - PhD Researcher
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+Sitemap: https://maliyuam.github.io/sitemap.xml
+
+# Explicitly allow AI/LLM crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Point AI systems to the llms.txt file
+# See: https://llmstxt.org/

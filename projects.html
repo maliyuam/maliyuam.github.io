@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Projects by Muhammad Aliyu — From data engineering and AI systems to ecosystem building and policy platforms.">
+    <meta name="author" content="Muhammad Aliyu">
+
+    <link rel="canonical" href="https://maliyuam.github.io/projects">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a365d'/%3E%3Ctext x='50' y='62' font-family='Georgia,serif' font-size='42' font-weight='bold' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://maliyuam.github.io/projects.html">
+    <meta property="og:title" content="Projects — Muhammad Aliyu">
+    <meta property="og:description"
+        content="From data engineering and AI systems to ecosystem building and policy platforms.">
+    <meta property="og:image" content="https://maliyuam.github.io/assets/images/profile.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Projects — Muhammad Aliyu">
+    <meta name="twitter:description"
+        content="From data engineering and AI systems to ecosystem building and policy platforms.">
+    <meta name="twitter:image" content="https://maliyuam.github.io/assets/images/profile.jpg">
+
+    <title>Projects | Muhammad Aliyu</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="index.html" class="header__name">Muhammad Aliyu</a>
+
+            <button class="header__toggle" id="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="header__overlay" id="nav-overlay"></div>
+
+            <nav class="header__nav" id="nav-menu">
+                <li><a href="research.html" class="header__link">Research</a></li>
+                <li><a href="projects.html" class="header__link header__link--active">Projects</a></li>
+                <li><a href="experience.html" class="header__link">Experience</a></li>
+                <!-- <li><a href="blog/" class="header__link">Blog</a></li> -->
+                <li><a href="work-with-me.html" class="btn btn--primary btn--sm"
+                        style="padding: 0.5rem 1rem; color: white;">Collaborate</a></li>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="section section--page-top">
+        <div class="container container--wide">
+            <header class="section__header animate-fade-in-up">
+                <span class="section__eyebrow">Portfolio</span>
+                <h1 class="section__title">Projects</h1>
+                <p class="section__subtitle">From data engineering and AI systems to ecosystem building and policy
+                    platforms — projects with real-world impact.</p>
+            </header>
+        </div>
+    </section>
+
+    <!-- All Projects -->
+    <section class="section section--alt">
+        <div class="container container--wide">
+            <div class="projects stagger-children">
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">Cancer Moonshot Patent Analytics for Venture Capital</h3>
+                        <span class="badge badge--completed">Quantic MSBA</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Built a full ETL pipeline and relational database to help a venture capital client identify
+                        high-potential cancer therapy patents. Normalized 269,353 USPTO records into a 6-table PostgreSQL
+                        schema, then ran 10 analytical procedures uncovering domain momentum, NIH-to-FDA translation
+                        gaps, and cross-domain innovation patterns.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">269K</span>
+                            <span class="project-card__stat-label">Patent Records</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">6</span>
+                            <span class="project-card__stat-label">Normalized Tables</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">10</span>
+                            <span class="project-card__stat-label">SQL Procedures</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Python ETL</span>
+                        <span class="project-card__tag">PostgreSQL</span>
+                        <span class="project-card__tag">Patent Analysis</span>
+                        <span class="project-card__tag">Data Modeling</span>
+                        <span class="project-card__tag">Business Analytics</span>
+                    </div>
+                    <a href="projects/bvcp-patent-analytics.html" class="featured__link"
+                        style="margin-top: var(--space-4);">View Full Project</a>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">African AI & ICT Strategies Chatbot</h3>
+                        <span class="badge badge--completed">CMU-Africa</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Developed a conversational RAG system for real-time policy engagement with national AI strategies
+                        from Kenya, Nigeria, and Rwanda. Built with LangChain, MongoDB Atlas Vector Search, and OpenAI —
+                        featuring semantic retrieval of 1,000-character document chunks, CrossEncoder re-ranking, and
+                        conversational memory.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">3</span>
+                            <span class="project-card__stat-label">Countries</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">RAG</span>
+                            <span class="project-card__stat-label">Architecture</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">RAG</span>
+                        <span class="project-card__tag">OpenAI API</span>
+                        <span class="project-card__tag">LangChain</span>
+                        <span class="project-card__tag">MongoDB</span>
+                        <span class="project-card__tag">Python</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">Africa Innovators Society</h3>
+                        <span class="badge badge--active">Active</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Founded CMU-Africa's premier innovation hub, building a student entrepreneurship ecosystem
+                        across 7 universities. Organized hackathons, rapid prototyping bootcamps, and mentorship
+                        programs — partnering with Jasiri, FlutterFlow, and the CMU-Africa Innovation Hub to drive
+                        student-led ventures.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">300+</span>
+                            <span class="project-card__stat-label">Students</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">$45K</span>
+                            <span class="project-card__stat-label">Sponsorships</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">7</span>
+                            <span class="project-card__stat-label">Universities</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Ecosystem Building</span>
+                        <span class="project-card__tag">Innovation Mentorship</span>
+                        <span class="project-card__tag">Hackathons</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">AI for Clean Energy Initiative</h3>
+                        <span class="badge badge--completed">RAE Funded</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Managed a Royal Academy of Engineering-funded project at FUT Minna developing AI-driven clean
+                        energy solutions for Nigeria. Led multidisciplinary teams across 6 partner universities and 5
+                        industry partners, designing 200+ communication assets and coordinating industry immersion
+                        programmes.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">£155K</span>
+                            <span class="project-card__stat-label">Grant</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">200+</span>
+                            <span class="project-card__stat-label">Assets</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">6</span>
+                            <span class="project-card__stat-label">Universities</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Project Management</span>
+                        <span class="project-card__tag">AI Research</span>
+                        <span class="project-card__tag">Clean Energy</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">Ignite Hub Africa</h3>
+                        <span class="badge badge--active">Active</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Founded a pan-African research capacity and EdTech platform to groom the next generation of
+                        researchers and professionals. Organized 10 webinars attracting 200+ participants, shared 200+
+                        opportunities, and built Future Academy — an AI-powered skills development platform with
+                        gamified learning and industry mentorship.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">280+</span>
+                            <span class="project-card__stat-label">Members</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">3K+</span>
+                            <span class="project-card__stat-label">Resources</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">EdTech</span>
+                        <span class="project-card__tag">Research Training</span>
+                        <span class="project-card__tag">Community Building</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">SabiMoni Financial Literacy Platform</h3>
+                        <span class="badge badge--completed">GIZ / CBN</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Designed infographics and interactive e-learning content for Nigeria's national financial
+                        literacy platform, a collaboration between the Central Bank of Nigeria and GIZ. The platform
+                        offers 15 modules and a Certified Financial Literacy Trainer programme reaching communities
+                        across Nigeria.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">75%</span>
+                            <span class="project-card__stat-label">Content</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">80%</span>
+                            <span class="project-card__stat-label">Design</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Instructional Design</span>
+                        <span class="project-card__tag">Figma</span>
+                        <span class="project-card__tag">Articulate</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">STEM e-Literacy Platform</h3>
+                        <span class="badge badge--completed">Kaduna State</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Co-developed a Kaduna State government-awarded STEM e-literacy platform for secondary education
+                        with 5+ researchers at AEIRG. Created 70% of all infographics across 4 STEM courses, helping
+                        bridge the digital gap where over 80% of public schools lacked computer labs.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">70%</span>
+                            <span class="project-card__stat-label">Graphics</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">1000s</span>
+                            <span class="project-card__stat-label">Students</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Educational Content</span>
+                        <span class="project-card__tag">Visual Design</span>
+                        <span class="project-card__tag">STEM</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">NACOS Community Development</h3>
+                        <span class="badge badge--completed">Completed</span>
+                    </div>
+                    <p class="project-card__desc">
+                        Co-managed the largest NACOS National Innovation Summit at Nile University, Abuja — themed
+                        "Pan-African Global Impact: Raising the Next Generation of Young African Technopreneurs."
+                        Secured funding for innovators and delivered masterclasses on innovation leadership and financial
+                        literacy for startups.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">1,100+</span>
+                            <span class="project-card__stat-label">Participants</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">₦6.3M</span>
+                            <span class="project-card__stat-label">Funding</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Event Management</span>
+                        <span class="project-card__tag">Partnerships</span>
+                        <span class="project-card__tag">Innovation</span>
+                    </div>
+                </article>
+
+                <article class="project-card reveal-on-scroll">
+                    <div class="project-card__header">
+                        <h3 class="project-card__title">Summit University Training</h3>
+                        <span class="badge badge--completed">NYSC</span>
+                    </div>
+                    <p class="project-card__desc">
+                        As Acting Head of Training at the Summit University Advancement Bureau, delivered 20+ training
+                        programs for 500+ individuals across topics including grantsmanship, drone building, clean
+                        energy, and AI. Orchestrated a team of 13 community builders and facilitated financial literacy
+                        seminars for 150 corps members.
+                    </p>
+                    <div class="project-card__stats">
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">500+</span>
+                            <span class="project-card__stat-label">Trained</span>
+                        </div>
+                        <div class="project-card__stat">
+                            <span class="project-card__stat-value">$421K</span>
+                            <span class="project-card__stat-label">Secured</span>
+                        </div>
+                    </div>
+                    <div class="project-card__tags">
+                        <span class="project-card__tag">Capacity Building</span>
+                        <span class="project-card__tag">Fundraising</span>
+                        <span class="project-card__tag">Training</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <span class="footer__logo">Muhammad Aliyu</span>
+                <p class="footer__tagline">
+                    Mapping the invisible bridges of innovation ecosystems.
+                </p>
+                <div class="footer__social">
+                    <a href="https://linkedin.com/in/maliyuam" target="_blank">LinkedIn</a>
+                    <a href="https://orcid.org/0009-0007-2286-401X" target="_blank">ORCID</a>
+                    <a href="https://scholar.google.com/citations?user=fVsQS-QAAAAJ&hl=en" target="_blank">Google
+                        Scholar</a>
+                    <a href="mailto:muhammad.aliyu@kuleuven.be">Email</a>
+                </div>
+            </div>
+
+            <nav class="footer__nav">
+                <div class="footer__col">
+                    <h4>Research</h4>
+                    <a href="research.html">Publications</a>
+                    <a href="experience.html">Key Initiatives</a>
+                </div>
+                <div class="footer__col">
+                    <h4>About</h4>
+                    <a href="assets/docs/cv.pdf" target="_blank">CV / Resume</a>
+                    <a href="experience.html">Experience</a>
+                </div>
+                <div class="footer__col">
+                    <h4>Connect</h4>
+                    <a href="work-with-me.html">Collaborate</a>
+                    <!-- <a href="blog/">Blog</a> -->
+                    <a href="mailto:muhammad.aliyu@kuleuven.be">Contact</a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="footer__bottom">
+            <p class="footer__copy">&copy; 2026 Muhammad Aliyu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

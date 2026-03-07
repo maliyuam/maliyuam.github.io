@@ -1,0 +1,75 @@
+/* Education Section - Enhanced */
+.education {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+}
+
+.edu-card {
+    padding: var(--space-6);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.edu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--color-accent) 0%, #4299e1 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.edu-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 24px rgba(26, 54, 93, 0.1);
+    transform: translateY(-4px);
+}
+
+.edu-card:hover::before {
+    opacity: 1;
+}
+
+.edu-card__date {
+    display: inline-block;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--color-accent) 0%, #4299e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-3);
+}
+
+.edu-card__degree {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    margin-bottom: var(--space-1);
+    line-height: var(--leading-tight);
+}
+
+.edu-card__school {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    margin-bottom: var(--space-2);
+}
+
+.edu-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-light);
+}
+
+@media (max-width: 768px) {
+    .education {
+        grid-template-columns: 1fr;
+    }
+}

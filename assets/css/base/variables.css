@@ -1,29 +1,145 @@
+/* assets/css/base/variables.css — YC-Inspired Design System */
 :root {
-    /* Colors */
-    --primary-color: #004aad;
-    --text-color: #333;
-    --background-color: #fff;
-    --accent-color: #ff6b6b;
-    
-    /* Typography */
-    --font-primary: 'Inter', sans-serif;
-    --font-secondary: 'Fraunces', serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    
-    /* Spacing */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
-    
-    /* Border Radius */
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 16px;
-    
+    /* ========================================
+       COLORS (Preserved + Extended)
+       ======================================== */
+
+    /* Primary accent (unchanged) */
+    --color-accent: #1a365d;
+    --color-accent-hover: #2d4a77;
+    --color-accent-light: #e8eef5;
+    --color-accent-muted: #4a5568;
+
+    /* Backgrounds (YC-inspired warm tones) */
+    --color-bg: #fdfcfa;
+    --color-bg-alt: #fff9f5;
+    --color-bg-pure: #ffffff;
+    --color-bg-dark: #1a365d;
+
+    /* Text */
+    --color-text: #1a1a1a;
+    --color-text-muted: #525252;
+    --color-text-light: #737373;
+    --color-text-inverse: #ffffff;
+
+    /* Borders */
+    --color-border: #e5e5e5;
+    --color-border-light: #f0f0f0;
+
+    /* Status */
+    --color-success: #22c55e;
+    --color-success-light: #dcfce7;
+    --color-warning: #f59e0b;
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+
+    /* Font families */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Newsreader', 'Georgia', serif;
+
+    /* Display (Hero headlines) */
+    --text-display: clamp(3rem, 8vw, 5.5rem);
+
+    /* Headings */
+    --text-5xl: 3.5rem;
+    --text-4xl: 2.75rem;
+    --text-3xl: 2.25rem;
+    --text-2xl: 1.75rem;
+    --text-xl: 1.375rem;
+
+    /* Body */
+    --text-lg: 1.25rem;
+    --text-base: 1.0625rem;
+    --text-sm: 0.9375rem;
+    --text-xs: 0.8125rem;
+
+    /* Line heights */
+    --leading-display: 1.05;
+    --leading-tight: 1.2;
+    --leading-snug: 1.4;
+    --leading-normal: 1.65;
+    --leading-relaxed: 1.85;
+
+    /* Letter spacing */
+    --tracking-tight: -0.02em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.05em;
+
+    /* ========================================
+       SPACING (YC-style generous)
+       ======================================== */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    --max-width: 920px;
+    --max-width-wide: 1200px;
+    --max-width-full: 1400px;
+    --nav-height: 72px;
+
+    /* Section rhythm */
+    --section-padding-y: var(--space-24);
+    --section-padding-y-sm: var(--space-16);
+
+    /* ========================================
+       EFFECTS
+       ======================================== */
+
+    /* Shadows (subtle, YC-style) */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.1);
+
     /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+    --duration-slower: 600ms;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Legacy support */
+    --transition-fast: var(--duration-fast) var(--ease-out);
+    --transition-base: var(--duration-base) var(--ease-out);
+
+    /* ========================================
+       BORDERS
+       ======================================== */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (max-width: 768px) {
+    :root {
+        --text-display: 2.5rem;
+        --text-5xl: 2rem;
+        --text-4xl: 1.75rem;
+        --text-3xl: 1.5rem;
+        --section-padding-y: var(--space-16);
+        --nav-height: 64px;
+    }
 }

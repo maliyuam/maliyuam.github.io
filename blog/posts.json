@@ -1,0 +1,32 @@
+[
+    {
+        "slug": "why-ecosystems-matter",
+        "title": "Why Ecosystems Matter More Than Founders",
+        "date": "2026-02-15",
+        "excerpt": "We often idolize the lone genius, but the data suggests that the 'who' matters less than the 'where'. A look at how regional networks amplify success.",
+        "tags": [
+            "ecosystems",
+            "research-notes"
+        ]
+    },
+    {
+        "slug": "measuring-weak-ties",
+        "title": "Measuring Weak Ties at Scale with Patent Data",
+        "date": "2026-01-20",
+        "excerpt": "How I'm using a dataset of 2 million geocoded patents to map the flow of technical knowledge between European regions.",
+        "tags": [
+            "methodology",
+            "data-science"
+        ]
+    },
+    {
+        "slug": "start-of-phd",
+        "title": "Beginning the PhD Journey at KU Leuven",
+        "date": "2025-11-10",
+        "excerpt": "Reflections on moving to Belgium, joining the MSD research group, and defining my research questions for the next 4 years.",
+        "tags": [
+            "personal",
+            "phd-life"
+        ]
+    }
+]

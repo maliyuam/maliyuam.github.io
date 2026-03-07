@@ -19,7 +19,7 @@ This portfolio website is crafted to showcase my academic and professional miles
 
 - **About Me:** Background, educational credentials, and professional experience.
 - **Research Focus:** Detailed insights into my research domains.
-- **Projects:** Interactive presentation of impactful projects.
+- **Experience & Initiatives:** Interactive presentation of impactful projects and work history.
 - **Publications:** A grid view of my scholarly work.
 - **Professional Journey:** An interactive timeline illustrating career milestones.
 - **Achievements:** Highlighting recognitions and awards.
@@ -62,8 +62,8 @@ To set up this project locally:
 
 ## Usage
 
-- Use the navigation menu to explore different sections such as About, Research, Projects, Publications, and Contact.
-- Interact with project cards, publication grids, and timeline elements for a richer experience.
+- Use the navigation menu to explore different sections such as About, Research, Experience, Publications, and Contact.
+- Interact with experience cards, publication grids, and timeline elements for a richer experience.
 - Fill and submit the contact form to send messages directly.
 
 ## Contributing
