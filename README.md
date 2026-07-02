@@ -1,79 +1,44 @@
-# Muhammad Aliyu Portfolio
+# Muhammad Aliyu — Personal Site
 
-Welcome to the official portfolio website of **Muhammad Aliyu**, a dedicated researcher and innovator specializing in AI Governance, Entrepreneurship, and Technology. This platform highlights my research work, projects, publications, professional experience, achievements, and more.
+Personal website of **Muhammad Aliyu**, PhD Researcher at KU Leuven & Utrecht University
+studying entrepreneurial ecosystems, innovation networks, and founder mobility.
 
-## Table of Contents
+Live at [maliyuam.github.io](https://maliyuam.github.io).
 
-- [Overview](#overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+## Design
 
-## Overview
+Dark editorial design system — no frameworks, no build step, deploys straight to GitHub Pages.
 
-This portfolio website is crafted to showcase my academic and professional milestones through an engaging, modern interface. The site includes:
+- **Typography:** Inter (UI), Instrument Serif italic (display accents), JetBrains Mono (labels & data)
+- **Signature visual:** a live network-constellation canvas in the hero — nodes, proximity edges,
+  and pulses travelling along links, echoing the research theme of ecosystem connectivity
+- **Motion:** scroll-triggered reveals (IntersectionObserver), count-up stats, logo & testimonial
+  marquees, pointer-tracked card spotlights — all respecting `prefers-reduced-motion`
+- **Accessibility:** semantic landmarks, skip link, keyboard-visible focus rings, `aria-current`
+  navigation, WCAG-conscious contrast
 
-- **About Me:** Background, educational credentials, and professional experience.
-- **Research Focus:** Detailed insights into my research domains.
-- **Experience & Initiatives:** Interactive presentation of impactful projects and work history.
-- **Publications:** A grid view of my scholarly work.
-- **Professional Journey:** An interactive timeline illustrating career milestones.
-- **Achievements:** Highlighting recognitions and awards.
-- **Contact:** A form for visitors to connect with me directly.
+## Structure
 
-## Features
+```
+index.html                  Home — hero, affiliations, stats, research, projects, testimonials
+research.html               Research agenda + publications
+projects.html               Project portfolio
+experience.html             Timeline, education, awards & media
+work-with-me.html           Collaboration pillars, engagement options, FAQ
+projects/                   Project case studies
+assets/css/style.css        Entire design system (tokens → components → animation)
+assets/js/main.js           All interactions (vanilla JS, dependency-free)
+```
 
-- **Responsive Design:** Optimized for desktop, tablets, and smartphones.
-- **Interactive Visuals:** Smooth animations, particle background effects, and dynamic timelines enhance user engagement.
-- **Dynamic Content:** Skill cards, project showcases, and publication grids provide a rich browsing experience.
-- **Preloader & Cursor Effects:** Engaging animations for a memorable first impression.
-- **Smooth Scrolling:** Seamless navigation across sections.
+## Local preview
 
-## Technologies Used
+Any static server works:
 
-- **HTML5** – Structure and content markup
-- **CSS3** – Styling, layout, and animations
-- **JavaScript** – Interactivity and dynamic functionalities
-- **AOS (Animate on Scroll)** – Scroll-triggered animations
-- **Font Awesome** – Iconography
-- **Google Fonts (Poppins)** – Typography
-
-## Installation
-
-To set up this project locally:
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   ```
-
-2. **Navigate into the project directory:**
-
-   ```bash
-   cd your-repo-name
-   ```
-
-3. **Open `index.html` in your preferred browser** to view the portfolio.
-
-## Usage
-
-- Use the navigation menu to explore different sections such as About, Research, Experience, Publications, and Contact.
-- Interact with experience cards, publication grids, and timeline elements for a richer experience.
-- Fill and submit the contact form to send messages directly.
-
-## Contributing
-
-Contributions are warmly welcomed! If you have suggestions, improvements, or find any issues, please submit an issue or create a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify it as needed.
+```bash
+npx serve .
+```
 
 ## Contact
+
 - **LinkedIn:** [linkedin.com/in/maliyuam](https://www.linkedin.com/in/maliyuam)
-- **GitHub:** [github.com/maliyuam](https://github.com/maliyuam)
+- **Email:** muhammad.aliyu@kuleuven.be

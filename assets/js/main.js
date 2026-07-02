@@ -1,263 +1,377 @@
-// main.js - Refactored for YC Redesign
+/* ============================================================
+   MUHAMMAD ALIYU — SITE INTERACTIONS
+   Vanilla JS, no dependencies, no build step.
+   ============================================================ */
+(() => {
+    "use strict";
 
-document.addEventListener('DOMContentLoaded', () => {
-    initNavigation();
-    initScrollAnimations();
-    initCounters();
-    initTestimonials();
-});
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ========================================
-   NAVIGATION
-   ======================================== */
-function initNavigation() {
-    const header = document.querySelector('.header');
-    const toggle = document.getElementById('nav-toggle');
-    const menu = document.getElementById('nav-menu');
-    const overlay = document.getElementById('nav-overlay');
-    const links = document.querySelectorAll('.header__link, .header__cta');
-
-    // Scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    /* Remove any stale service worker + caches from the previous site version */
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations().then((regs) => {
+            regs.forEach((r) => r.unregister());
+        });
+        if (window.caches) {
+            caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
         }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initHeader();
+        initReveals();
+        initCounters();
+        initMarquees();
+        initCardSpotlight();
+        initCopyButtons();
+        initHeroNetwork();
+        stampYear();
     });
 
-    // Mobile menu toggle
-    if (toggle && menu) {
-        toggle.addEventListener('click', () => {
-            const isOpen = menu.classList.contains('is-open');
-            toggle.classList.toggle('is-active', !isOpen);
-            menu.classList.toggle('is-open', !isOpen);
+    /* ------------------------------------------------------
+       HEADER — scrolled state + mobile menu
+       ------------------------------------------------------ */
+    function initHeader() {
+        const header = document.querySelector(".header");
+        if (!header) return;
 
-            if (overlay) {
-                overlay.classList.toggle('is-visible', !isOpen);
-            }
+        const onScroll = () => {
+            header.classList.toggle("is-scrolled", window.scrollY > 12);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
 
-            document.body.style.overflow = isOpen ? '' : 'hidden'; // Prevent scrolling when menu is open
+        const toggle = document.querySelector(".header__toggle");
+        const nav = document.querySelector(".header__nav");
+        if (!toggle || !nav) return;
+
+        const setOpen = (open) => {
+            toggle.setAttribute("aria-expanded", String(open));
+            nav.classList.toggle("is-open", open);
+            document.body.style.overflow = open ? "hidden" : "";
+        };
+
+        toggle.addEventListener("click", () => {
+            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+        });
+        nav.querySelectorAll("a").forEach((a) =>
+            a.addEventListener("click", () => setOpen(false))
+        );
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") setOpen(false);
         });
     }
 
-    // Close menu on link click
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            if (menu.classList.contains('is-open')) {
-                toggle.classList.remove('is-active');
-                menu.classList.remove('is-open');
-                if (overlay) overlay.classList.remove('is-visible');
-                document.body.style.overflow = '';
-            }
+    /* ------------------------------------------------------
+       SCROLL REVEALS — IntersectionObserver + stagger
+       ------------------------------------------------------ */
+    function initReveals() {
+        const els = document.querySelectorAll("[data-reveal]");
+        if (!els.length) return;
+
+        if (reduceMotion || !("IntersectionObserver" in window)) {
+            els.forEach((el) => el.classList.add("is-in"));
+            return;
+        }
+
+        // stagger siblings inside a [data-reveal-group]
+        document.querySelectorAll("[data-reveal-group]").forEach((group) => {
+            group.querySelectorAll(":scope [data-reveal]").forEach((el, i) => {
+                el.style.setProperty("--rd", `${Math.min(i * 90, 540)}ms`);
+            });
         });
-    });
 
-    // Close on overlay click
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            toggle.classList.remove('is-active');
-            menu.classList.remove('is-open');
-            overlay.classList.remove('is-visible');
-            document.body.style.overflow = '';
-        });
-    }
-}
-
-/* ========================================
-   SCROLL ANIMATIONS
-   ======================================== */
-function initScrollAnimations() {
-    const options = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, options);
-
-    // Elements to animate
-    const revealElements = document.querySelectorAll('.reveal-on-scroll, .stagger-children, .hero__photo');
-    revealElements.forEach(el => observer.observe(el));
-}
-
-/* ========================================
-   NUMBER COUNTERS
-   ======================================== */
-function initCounters() {
-    const counters = document.querySelectorAll('.counter');
-
-    if (counters.length === 0) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.dataset.target);
-                if (isNaN(target)) return;
-
-                // Animate
-                const duration = 2000;
-                const start = 0;
-                const stepTime = Math.abs(Math.floor(duration / target));
-
-                let current = start;
-                const timer = setInterval(() => {
-                    current += 1;
-                    entry.target.textContent = current + (target > 10 ? '+' : '');
-                    if (current >= target) {
-                        clearInterval(timer);
-                        entry.target.textContent = target + (target > 10 ? '+' : '');
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        io.unobserve(entry.target);
                     }
-                }, Math.max(stepTime, 20)); // Min 20ms step
+                });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+        els.forEach((el) => io.observe(el));
+    }
 
-                observer.unobserve(entry.target);
+    /* ------------------------------------------------------
+       COUNT-UP STATS — [data-count] with optional prefix/suffix
+       ------------------------------------------------------ */
+    function initCounters() {
+        const nums = document.querySelectorAll("[data-count]");
+        if (!nums.length) return;
+
+        const run = (el) => {
+            const target = parseFloat(el.dataset.count);
+            const prefix = el.dataset.prefix || "";
+            const suffix = el.dataset.suffix || "";
+            if (reduceMotion || isNaN(target)) {
+                el.textContent = prefix + el.dataset.count + suffix;
+                return;
             }
-        });
-    }, { threshold: 0.5 });
+            const dur = 1600;
+            const t0 = performance.now();
+            const tick = (t) => {
+                const p = Math.min((t - t0) / dur, 1);
+                const eased = 1 - Math.pow(1 - p, 4);
+                el.textContent = prefix + Math.round(target * eased) + suffix;
+                if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+        };
 
-    counters.forEach(counter => observer.observe(counter));
-}
+        if (!("IntersectionObserver" in window)) {
+            nums.forEach(run);
+            return;
+        }
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        run(entry.target);
+                        io.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+        nums.forEach((el) => io.observe(el));
+    }
 
-/* ========================================
-   TESTIMONIALS CAROUSEL
-   ======================================== */
-/* ========================================
-   TESTIMONIALS CAROUSEL
-   ======================================== */
-function initTestimonials() {
-    const track = document.getElementById('testimonials-track');
-    const prevBtn = document.getElementById('testimonials-prev');
-    const nextBtn = document.getElementById('testimonials-next');
-    const dotsContainer = document.getElementById('testimonials-dots');
-
-    if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
-
-    const testimonials = track.querySelectorAll('.testimonial');
-    const totalItems = testimonials.length;
-
-    // Config
-    let itemsPerView = window.innerWidth <= 768 ? 1 : 2;
-    let totalSlides = Math.ceil(totalItems / itemsPerView);
-    let currentSlide = 0;
-    let autoPlayInterval;
-
-    // Initialize Layout
-    function setupLayout() {
-        // Track width: e.g. 3 pages = 300%
-        track.style.display = 'flex';
-        track.style.width = `${totalSlides * 100}%`;
-        track.style.transition = 'transform 0.5s cubic-bezier(0.2, 0, 0.2, 1)';
-
-        // Item width: e.g. 6 items in 300% track => 1/6 of track = 16.66%
-        // 16.66% of 300% = 50% of viewport. Correct.
-        const itemWidth = 100 / totalItems;
-
-        testimonials.forEach(t => {
-            t.style.width = `${itemWidth}%`;
-            t.style.flex = `0 0 ${itemWidth}%`;
-            t.style.boxSizing = 'border-box';
-            // Add padding to separate cards (simulating gap)
-            t.style.paddingRight = '24px';
+    /* ------------------------------------------------------
+       MARQUEES — duplicate track content for a seamless loop
+       ------------------------------------------------------ */
+    function initMarquees() {
+        if (reduceMotion) return;
+        document.querySelectorAll(".marquee__track, .t-track").forEach((track) => {
+            track.innerHTML += track.innerHTML;
+            track.querySelectorAll("[data-dup]").forEach((el) => el.setAttribute("aria-hidden", "true"));
+            // mark the clones so screen readers skip them
+            const kids = Array.from(track.children);
+            kids.slice(kids.length / 2).forEach((el) => el.setAttribute("aria-hidden", "true"));
         });
     }
 
-    // Create dots
-    function createDots() {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.className = 'testimonials-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-    }
-
-    // Update UI
-    function updateSlide() {
-        const dots = dotsContainer.querySelectorAll('.testimonials-dot');
-
-        // Translate percentage: page 1 = 1/totalSlides * 100
-        const translatePct = (currentSlide * 100) / totalSlides;
-        track.style.transform = `translateX(-${translatePct}%)`;
-
-        // Update dots
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentSlide);
+    /* ------------------------------------------------------
+       CARD SPOTLIGHT — pointer-tracked radial highlight
+       ------------------------------------------------------ */
+    function initCardSpotlight() {
+        if (window.matchMedia("(hover: none)").matches) return;
+        document.addEventListener("pointermove", (e) => {
+            const card = e.target.closest(".card");
+            if (!card) return;
+            const r = card.getBoundingClientRect();
+            card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+            card.style.setProperty("--my", `${e.clientY - r.top}px`);
         });
-
-        // Update button states
-        prevBtn.disabled = currentSlide === 0;
-        nextBtn.disabled = currentSlide >= totalSlides - 1;
-        prevBtn.style.opacity = currentSlide === 0 ? '0.5' : '1';
-        nextBtn.style.opacity = currentSlide >= totalSlides - 1 ? '0.5' : '1';
     }
 
-    function goToSlide(index) {
-        currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-        updateSlide();
-        resetAutoPlay();
-    }
+    /* ------------------------------------------------------
+       COPY EMAIL — [data-copy] → clipboard + toast
+       ------------------------------------------------------ */
+    function initCopyButtons() {
+        const buttons = document.querySelectorAll("[data-copy]");
+        if (!buttons.length) return;
 
-    function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-        } else {
-            currentSlide = 0;
+        let toast = document.querySelector(".toast");
+        if (!toast) {
+            toast = document.createElement("div");
+            toast.className = "toast";
+            toast.setAttribute("role", "status");
+            toast.setAttribute("aria-live", "polite");
+            document.body.appendChild(toast);
         }
-        updateSlide();
+        let timer;
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                navigator.clipboard
+                    .writeText(btn.dataset.copy)
+                    .then(() => {
+                        toast.textContent = "Email copied to clipboard";
+                        toast.classList.add("is-visible");
+                        clearTimeout(timer);
+                        timer = setTimeout(() => toast.classList.remove("is-visible"), 2200);
+                    })
+                    .catch(() => {
+                        window.location.href = "mailto:" + btn.dataset.copy;
+                    });
+            });
+        });
     }
 
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-        } else {
-            currentSlide = totalSlides - 1; // Loop back
+    /* ------------------------------------------------------
+       HERO NETWORK CANVAS
+       Drifting nodes + proximity edges + pulses travelling
+       along links — a living map of ecosystem connectivity.
+       ------------------------------------------------------ */
+    function initHeroNetwork() {
+        const canvas = document.getElementById("net-canvas");
+        if (!canvas) return;
+
+        const ctx = canvas.getContext("2d");
+        const hero = canvas.parentElement;
+        let W, H, dpr, nodes, pulses, rafId;
+        let running = true;
+
+        const CFG = {
+            linkDist: 150,
+            speed: 0.22,
+            pulseChance: 0.012,
+            node: "rgba(158, 172, 255, 0.75)",
+            nodeBig: "rgba(94, 234, 212, 0.8)",
+        };
+
+        function density() {
+            const area = W * H;
+            return Math.min(Math.floor(area / 16000), 110);
         }
-        updateSlide();
-    }
 
-    function startAutoPlay() {
-        clearInterval(autoPlayInterval);
-        autoPlayInterval = setInterval(nextSlide, 6000);
-    }
+        function resize() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            W = hero.clientWidth;
+            H = hero.clientHeight;
+            canvas.width = W * dpr;
+            canvas.height = H * dpr;
+            canvas.style.width = W + "px";
+            canvas.style.height = H + "px";
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            seed();
+        }
 
-    function resetAutoPlay() {
-        clearInterval(autoPlayInterval);
-        startAutoPlay();
-    }
+        function seed() {
+            const n = density();
+            nodes = Array.from({ length: n }, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * CFG.speed,
+                vy: (Math.random() - 0.5) * CFG.speed,
+                r: Math.random() < 0.12 ? 2.4 : 1.2 + Math.random() * 0.8,
+                big: Math.random() < 0.12,
+            }));
+            pulses = [];
+        }
 
-    // Event listeners
-    prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
-    nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+        function step() {
+            ctx.clearRect(0, 0, W, H);
 
-    // Handle resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            itemsPerView = window.innerWidth <= 768 ? 1 : 2;
-            const newTotalSlides = Math.ceil(totalItems / itemsPerView);
-
-            if (newTotalSlides !== totalSlides) {
-                totalSlides = newTotalSlides;
-                currentSlide = 0; // Reset to start to avoid index issues
-                setupLayout();
-                createDots();
-                updateSlide();
+            // move
+            for (const p of nodes) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < -20) p.x = W + 20;
+                if (p.x > W + 20) p.x = -20;
+                if (p.y < -20) p.y = H + 20;
+                if (p.y > H + 20) p.y = -20;
             }
-        }, 200);
-    });
 
-    // Initialize
-    setupLayout();
-    createDots();
-    updateSlide();
-    startAutoPlay();
-}
+            // edges
+            for (let i = 0; i < nodes.length; i++) {
+                const a = nodes[i];
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const b = nodes[j];
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < CFG.linkDist * CFG.linkDist) {
+                        const d = Math.sqrt(d2);
+                        const alpha = (1 - d / CFG.linkDist) * 0.16;
+                        ctx.strokeStyle = `rgba(143, 160, 255, ${alpha})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+
+                        // occasionally launch a pulse along this edge
+                        if (pulses.length < 14 && Math.random() < CFG.pulseChance * (1 - d / CFG.linkDist)) {
+                            pulses.push({ a, b, t: 0, v: 0.008 + Math.random() * 0.012 });
+                        }
+                    }
+                }
+            }
+
+            // pulses
+            for (let i = pulses.length - 1; i >= 0; i--) {
+                const p = pulses[i];
+                p.t += p.v;
+                if (p.t >= 1) {
+                    pulses.splice(i, 1);
+                    continue;
+                }
+                const x = p.a.x + (p.b.x - p.a.x) * p.t;
+                const y = p.a.y + (p.b.y - p.a.y) * p.t;
+                const fade = Math.sin(p.t * Math.PI);
+                ctx.fillStyle = `rgba(94, 234, 212, ${0.85 * fade})`;
+                ctx.beginPath();
+                ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = `rgba(94, 234, 212, ${0.14 * fade})`;
+                ctx.beginPath();
+                ctx.arc(x, y, 5.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // nodes
+            for (const p of nodes) {
+                ctx.fillStyle = p.big ? CFG.nodeBig : CFG.node;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function loop() {
+            if (!running) return;
+            step();
+            rafId = requestAnimationFrame(loop);
+        }
+
+        resize();
+
+        if (reduceMotion) {
+            step(); // render a single static frame
+            window.addEventListener("resize", () => {
+                resize();
+                step();
+            });
+            return;
+        }
+
+        loop();
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resize, 150);
+        });
+
+        // pause when tab hidden or hero off-screen
+        document.addEventListener("visibilitychange", () => {
+            running = !document.hidden;
+            if (running) loop();
+            else cancelAnimationFrame(rafId);
+        });
+        if ("IntersectionObserver" in window) {
+            new IntersectionObserver(
+                ([entry]) => {
+                    const visible = entry.isIntersecting;
+                    if (visible && !running) {
+                        running = true;
+                        loop();
+                    } else if (!visible && running && !document.hidden) {
+                        running = false;
+                        cancelAnimationFrame(rafId);
+                    }
+                },
+                { threshold: 0 }
+            ).observe(hero);
+        }
+    }
+
+    /* ------------------------------------------------------ */
+    function stampYear() {
+        document.querySelectorAll("[data-year]").forEach((el) => {
+            el.textContent = new Date().getFullYear();
+        });
+    }
+})();
