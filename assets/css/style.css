@@ -835,60 +835,7 @@ em.fx {
 }
 
 /* ----------------------------------------------------------
-   8. STATS STRIP
-   ---------------------------------------------------------- */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    background: var(--surface);
-    overflow: hidden;
-}
-.stat {
-    padding: clamp(1.5rem, 1rem + 2vw, 2.5rem) var(--s-4);
-    text-align: center;
-    position: relative;
-}
-.stat + .stat::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 20%;
-    bottom: 20%;
-    width: 1px;
-    background: var(--line);
-}
-.stat__num {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: clamp(1.9rem, 1.4rem + 2vw, 2.9rem);
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    color: var(--txt-1);
-    line-height: 1.1;
-    margin-bottom: 0.35em;
-    font-variant-numeric: tabular-nums;
-}
-.stat__label {
-    font-size: var(--text-xs);
-    color: var(--txt-3);
-    letter-spacing: 0.02em;
-}
-@media (max-width: 720px) {
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .stat:nth-child(3)::before {
-        display: none;
-    }
-    .stat:nth-child(n + 3) {
-        border-top: 1px solid var(--line);
-    }
-}
-
-/* ----------------------------------------------------------
-   8b. ABOUT
+   8. ABOUT
    ---------------------------------------------------------- */
 .about {
     display: grid;
