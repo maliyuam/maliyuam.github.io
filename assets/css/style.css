@@ -321,6 +321,32 @@ em.fx {
     justify-content: center;
 }
 
+/* Utilities */
+.section--flush-top {
+    padding-top: 0;
+}
+.page-hero--fill {
+    min-height: 72svh;
+    display: flex;
+    align-items: center;
+}
+.mt-6 {
+    margin-top: var(--s-6);
+}
+.hi {
+    color: var(--txt-1);
+}
+.dot--err {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f87171;
+    display: inline-block;
+}
+.option__label--acc {
+    color: var(--acc);
+}
+
 /* ----------------------------------------------------------
    4. BUTTONS + LINKS
    ---------------------------------------------------------- */
