@@ -19,6 +19,7 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         initHeader();
+        initThemeToggle();
         initReveals();
         initCounters();
         initMarquees();
@@ -27,6 +28,35 @@
         initHeroNetwork();
         stampYear();
     });
+
+    /* ------------------------------------------------------
+       THEME TOGGLE — light/dark, persisted, system default
+       (an inline <head> script applies the theme pre-paint)
+       ------------------------------------------------------ */
+    function initThemeToggle() {
+        const buttons = document.querySelectorAll(".theme-toggle");
+        if (!buttons.length) return;
+
+        const apply = (theme) => {
+            document.documentElement.setAttribute("data-theme", theme);
+            try {
+                localStorage.setItem("theme", theme);
+            } catch (e) { /* storage unavailable */ }
+            const meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.content = theme === "light" ? "#fbfbfd" : "#07080b";
+            buttons.forEach((b) =>
+                b.setAttribute("aria-label", theme === "light" ? "Switch to dark theme" : "Switch to light theme")
+            );
+            window.dispatchEvent(new CustomEvent("themechange", { detail: theme }));
+        };
+
+        apply(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
+        buttons.forEach((btn) =>
+            btn.addEventListener("click", () => {
+                apply(document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light");
+            })
+        );
+    }
 
     /* ------------------------------------------------------
        HEADER — scrolled state + mobile menu
@@ -218,9 +248,31 @@
             linkDist: 150,
             speed: 0.22,
             pulseChance: 0.012,
-            node: "rgba(158, 172, 255, 0.75)",
-            nodeBig: "rgba(94, 234, 212, 0.8)",
         };
+
+        const PAL = {
+            dark: {
+                node: "rgba(158, 172, 255, 0.75)",
+                nodeBig: "rgba(94, 234, 212, 0.8)",
+                edge: "143, 160, 255",
+                pulse: "94, 234, 212",
+                cursorEdge: "165, 180, 252",
+                cursorDot: "rgba(199, 210, 254, 0.9)",
+            },
+            light: {
+                node: "rgba(79, 70, 229, 0.5)",
+                nodeBig: "rgba(13, 148, 136, 0.65)",
+                edge: "79, 70, 229",
+                pulse: "13, 148, 136",
+                cursorEdge: "79, 70, 229",
+                cursorDot: "rgba(79, 70, 229, 0.85)",
+            },
+        };
+        let pal = PAL[document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark"];
+        window.addEventListener("themechange", (e) => {
+            pal = PAL[e.detail === "light" ? "light" : "dark"];
+            if (reduceMotion) step();
+        });
 
         function density() {
             const area = W * H;
@@ -276,7 +328,7 @@
                     if (d2 < CFG.linkDist * CFG.linkDist) {
                         const d = Math.sqrt(d2);
                         const alpha = (1 - d / CFG.linkDist) * 0.16;
-                        ctx.strokeStyle = `rgba(143, 160, 255, ${alpha})`;
+                        ctx.strokeStyle = `rgba(${pal.edge}, ${alpha})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(a.x, a.y);
@@ -301,7 +353,7 @@
                     if (d2 < reach * reach) {
                         const d = Math.sqrt(d2) || 1;
                         const t = 1 - d / reach;
-                        ctx.strokeStyle = `rgba(165, 180, 252, ${t * 0.35})`;
+                        ctx.strokeStyle = `rgba(${pal.cursorEdge}, ${t * 0.35})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(cursor.x, cursor.y);
@@ -312,7 +364,7 @@
                         p.y -= (dy / d) * t * 0.35;
                     }
                 }
-                ctx.fillStyle = "rgba(199, 210, 254, 0.9)";
+                ctx.fillStyle = pal.cursorDot;
                 ctx.beginPath();
                 ctx.arc(cursor.x, cursor.y, 2.2, 0, Math.PI * 2);
                 ctx.fill();
@@ -329,11 +381,11 @@
                 const x = p.a.x + (p.b.x - p.a.x) * p.t;
                 const y = p.a.y + (p.b.y - p.a.y) * p.t;
                 const fade = Math.sin(p.t * Math.PI);
-                ctx.fillStyle = `rgba(94, 234, 212, ${0.85 * fade})`;
+                ctx.fillStyle = `rgba(${pal.pulse}, ${0.85 * fade})`;
                 ctx.beginPath();
                 ctx.arc(x, y, 1.8, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.fillStyle = `rgba(94, 234, 212, ${0.14 * fade})`;
+                ctx.fillStyle = `rgba(${pal.pulse}, ${0.14 * fade})`;
                 ctx.beginPath();
                 ctx.arc(x, y, 5.5, 0, Math.PI * 2);
                 ctx.fill();
@@ -341,7 +393,7 @@
 
             // nodes
             for (const p of nodes) {
-                ctx.fillStyle = p.big ? CFG.nodeBig : CFG.node;
+                ctx.fillStyle = p.big ? pal.nodeBig : pal.node;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fill();

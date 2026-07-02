@@ -80,6 +80,24 @@
     --header-h: 68px;
 }
 
+/* Light theme — token swap; components inherit automatically */
+:root[data-theme="light"] {
+    --bg-0: #fbfbfd;
+    --bg-1: #f3f4f9;
+    --bg-2: #ffffff;
+    --surface: rgba(16, 19, 33, 0.025);
+    --surface-2: rgba(16, 19, 33, 0.05);
+    --line: rgba(16, 19, 33, 0.09);
+    --line-2: rgba(16, 19, 33, 0.18);
+    --txt-1: #14161d;
+    --txt-2: #4a5062;
+    --txt-3: #7d8496;
+    --acc: #4f46e5;
+    --acc-2: #0d9488;
+    --acc-dim: rgba(79, 70, 229, 0.09);
+    --gradient: linear-gradient(115deg, #4338ca 0%, #4f46e5 45%, #0d9488 100%);
+}
+
 /* ----------------------------------------------------------
    2. RESET + BASE
    ---------------------------------------------------------- */
@@ -1972,6 +1990,108 @@ em.fx {
     color: var(--txt-3);
     max-width: 30ch;
     margin-inline: auto;
+}
+
+/* ----------------------------------------------------------
+   21b. LIGHT THEME EXCEPTIONS
+   (rules that hardcode dark-specific colors)
+   ---------------------------------------------------------- */
+:root[data-theme="light"] {
+    color-scheme: light;
+}
+:root[data-theme="light"] .grain {
+    filter: invert(1);
+    opacity: 0.3;
+}
+:root[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: #c4c9d6;
+    border-color: var(--bg-0);
+}
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: #aab0c0;
+}
+:root[data-theme="light"] ::selection {
+    background: rgba(79, 70, 229, 0.22);
+    color: #14161d;
+}
+:root[data-theme="light"] .header.is-scrolled {
+    background: rgba(251, 251, 253, 0.75);
+}
+:root[data-theme="light"] .header__mark {
+    background: linear-gradient(135deg, #e7e9fb, #ffffff);
+    color: #4f46e5;
+}
+:root[data-theme="light"] .btn--primary {
+    background: #14161d;
+    color: #ffffff;
+}
+:root[data-theme="light"] .btn--primary:hover {
+    box-shadow:
+        0 8px 30px -8px rgba(79, 70, 229, 0.45),
+        0 0 0 1px rgba(0, 0, 0, 0.2) inset;
+}
+:root[data-theme="light"] .hero__badge {
+    background: rgba(255, 255, 255, 0.65);
+}
+:root[data-theme="light"] .marquee__item {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 3px rgba(16, 19, 33, 0.07);
+}
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .t-card,
+:root[data-theme="light"] .faq details {
+    background: var(--bg-2);
+    box-shadow: 0 1px 3px rgba(16, 19, 33, 0.05);
+}
+:root[data-theme="light"] .card:hover,
+:root[data-theme="light"] .t-card:hover {
+    background: var(--bg-2);
+    box-shadow: 0 12px 32px -12px rgba(16, 19, 33, 0.16);
+}
+:root[data-theme="light"] .card::before {
+    background: radial-gradient(
+        420px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(79, 70, 229, 0.06),
+        transparent 65%
+    );
+}
+:root[data-theme="light"] .toast {
+    box-shadow: 0 16px 50px -12px rgba(16, 19, 33, 0.28);
+}
+@media (max-width: 760px) {
+    :root[data-theme="light"] .header__nav {
+        background: rgba(251, 251, 253, 0.94);
+    }
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--txt-2);
+    transition: color var(--dur-1), background var(--dur-1), transform var(--dur-2) var(--ease-spring);
+}
+.theme-toggle:hover {
+    color: var(--txt-1);
+    background: var(--surface-2);
+    transform: rotate(15deg);
+}
+.theme-toggle svg {
+    width: 17px;
+    height: 17px;
+}
+.theme-toggle .icon-moon {
+    display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-sun {
+    display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-moon {
+    display: block;
 }
 
 /* ----------------------------------------------------------
