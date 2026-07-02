@@ -22,7 +22,7 @@
     /* Color — text */
     --txt-1: #f2f3f7;
     --txt-2: #a6adbb;
-    --txt-3: #6b7280;
+    --txt-3: #8a91a3;
 
     /* Color — accent */
     --acc: #8fa0ff;
@@ -91,7 +91,7 @@
     --line-2: rgba(16, 19, 33, 0.18);
     --txt-1: #14161d;
     --txt-2: #4a5062;
-    --txt-3: #7d8496;
+    --txt-3: #6a7183;
     --acc: #4f46e5;
     --acc-2: #0d9488;
     --acc-dim: rgba(79, 70, 229, 0.09);
@@ -1719,7 +1719,7 @@ em.fx {
     font-style: italic;
     font-size: 1.05rem;
 }
-.footer__col h4 {
+.footer__col h2 {
     font-family: var(--font-mono);
     font-size: var(--text-2xs);
     font-weight: 500;
