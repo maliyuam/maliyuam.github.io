@@ -212,19 +212,39 @@
             document.body.appendChild(toast);
         }
         let timer;
+        const showToast = () => {
+            toast.textContent = "Email copied to clipboard";
+            toast.classList.add("is-visible");
+            clearTimeout(timer);
+            timer = setTimeout(() => toast.classList.remove("is-visible"), 2200);
+        };
+        const fallbackCopy = (text) => {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            let ok = false;
+            try {
+                ok = document.execCommand("copy");
+            } catch (e) { /* unsupported */ }
+            ta.remove();
+            return ok;
+        };
         buttons.forEach((btn) => {
             btn.addEventListener("click", () => {
-                navigator.clipboard
-                    .writeText(btn.dataset.copy)
-                    .then(() => {
-                        toast.textContent = "Email copied to clipboard";
-                        toast.classList.add("is-visible");
-                        clearTimeout(timer);
-                        timer = setTimeout(() => toast.classList.remove("is-visible"), 2200);
-                    })
-                    .catch(() => {
-                        window.location.href = "mailto:" + btn.dataset.copy;
-                    });
+                const text = btn.dataset.copy;
+                const onFail = () => {
+                    if (fallbackCopy(text)) showToast();
+                    else window.location.href = "mailto:" + text;
+                };
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(text).then(showToast).catch(onFail);
+                } else {
+                    onFail();
+                }
             });
         });
     }
