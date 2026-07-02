@@ -7,7 +7,9 @@ Live at [maliyuam.github.io](https://maliyuam.github.io).
 
 ## Design
 
-Dark editorial design system — no frameworks, no build step, deploys straight to GitHub Pages.
+Editorial design system with dark and light themes — no frameworks, no build step,
+deploys straight to GitHub Pages. Theme follows system preference by default; the
+header toggle persists the visitor's choice.
 
 - **Typography:** Inter (UI), Instrument Serif italic (display accents), JetBrains Mono (labels & data)
 - **Signature visual:** a live network-constellation canvas in the hero — nodes, proximity edges,
