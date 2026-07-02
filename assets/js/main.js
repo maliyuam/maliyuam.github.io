@@ -146,7 +146,6 @@
         if (reduceMotion) return;
         document.querySelectorAll(".marquee__track, .t-track").forEach((track) => {
             track.innerHTML += track.innerHTML;
-            track.querySelectorAll("[data-dup]").forEach((el) => el.setAttribute("aria-hidden", "true"));
             // mark the clones so screen readers skip them
             const kids = Array.from(track.children);
             kids.slice(kids.length / 2).forEach((el) => el.setAttribute("aria-hidden", "true"));
@@ -213,6 +212,7 @@
         const hero = canvas.parentElement;
         let W, H, dpr, nodes, pulses, rafId;
         let running = true;
+        const cursor = { x: -9999, y: -9999, active: false };
 
         const CFG = {
             linkDist: 150,
@@ -291,6 +291,33 @@
                 }
             }
 
+            // cursor acts as a live node — links reach out to nearby nodes
+            if (cursor.active) {
+                const reach = CFG.linkDist * 1.25;
+                for (const p of nodes) {
+                    const dx = p.x - cursor.x;
+                    const dy = p.y - cursor.y;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < reach * reach) {
+                        const d = Math.sqrt(d2) || 1;
+                        const t = 1 - d / reach;
+                        ctx.strokeStyle = `rgba(165, 180, 252, ${t * 0.35})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(cursor.x, cursor.y);
+                        ctx.lineTo(p.x, p.y);
+                        ctx.stroke();
+                        // gentle attraction toward the cursor
+                        p.x -= (dx / d) * t * 0.35;
+                        p.y -= (dy / d) * t * 0.35;
+                    }
+                }
+                ctx.fillStyle = "rgba(199, 210, 254, 0.9)";
+                ctx.beginPath();
+                ctx.arc(cursor.x, cursor.y, 2.2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
             // pulses
             for (let i = pulses.length - 1; i >= 0; i--) {
                 const p = pulses[i];
@@ -344,6 +371,18 @@
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(resize, 150);
         });
+
+        if (!window.matchMedia("(hover: none)").matches) {
+            hero.addEventListener("pointermove", (e) => {
+                const r = hero.getBoundingClientRect();
+                cursor.x = e.clientX - r.left;
+                cursor.y = e.clientY - r.top;
+                cursor.active = true;
+            });
+            hero.addEventListener("pointerleave", () => {
+                cursor.active = false;
+            });
+        }
 
         // pause when tab hidden or hero off-screen
         document.addEventListener("visibilitychange", () => {
