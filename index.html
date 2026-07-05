@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#07080b">
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
     <script>(function(){var t="dark";try{t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}document.documentElement.setAttribute("data-theme",t)})()</script>
+    <script>(function(){try{if(!sessionStorage.getItem("introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){var d=document.documentElement;d.classList.add("is-loading");setTimeout(function(){d.classList.remove("is-loading")},3000)}}catch(e){}})()</script>
     <meta name="description"
         content="Muhammad Aliyu — PhD Researcher at KU Leuven studying entrepreneurial ecosystems, innovation networks, and founder mobility across European regions.">
     <meta name="keywords" content="Muhammad Aliyu, PhD, KU Leuven, entrepreneurial ecosystems, innovation, research">
@@ -111,6 +112,16 @@
     <a href="#main" class="skip-link">Skip to main content</a>
     <div class="grain" aria-hidden="true"></div>
     <div class="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Intro loader (first visit per session; motion-safe) -->
+    <div class="loader" aria-hidden="true">
+        <canvas class="loader__canvas"></canvas>
+        <div class="loader__center">
+            <div class="loader__mark">MA</div>
+            <div class="loader__label">Mapping connections</div>
+            <div class="loader__bar"><span></span></div>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="header">

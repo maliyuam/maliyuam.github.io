@@ -18,6 +18,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        initLoader();
         initHeader();
         initThemeToggle();
         initReveals();
@@ -28,6 +29,176 @@
         initHeroNetwork();
         stampYear();
     });
+
+    /* ------------------------------------------------------
+       INTRO LOADER — "network ignition"
+       Runs only when the pre-paint gate added html.is-loading
+       (first visit per session, motion allowed). Scattered
+       nodes converge, proximity links form, signal pulses fire,
+       then the overlay fades into the live hero canvas.
+       ------------------------------------------------------ */
+    function initLoader() {
+        const root = document.documentElement;
+        if (!root.classList.contains("is-loading")) return;
+
+        const loader = document.querySelector(".loader");
+        const canvas = loader && loader.querySelector(".loader__canvas");
+        const bar = loader && loader.querySelector(".loader__bar span");
+
+        const teardown = () => {
+            try { sessionStorage.setItem("introSeen", "1"); } catch (e) { /* ignore */ }
+            root.classList.add("is-done");
+            const done = () => {
+                root.classList.remove("is-loading", "is-done");
+                if (loader) loader.remove();
+            };
+            if (loader) {
+                loader.addEventListener("transitionend", done, { once: true });
+                setTimeout(done, 700); // failsafe if transitionend never fires
+            } else {
+                done();
+            }
+        };
+
+        // If motion is off or the canvas is missing, skip straight to reveal.
+        if (reduceMotion || !loader || !canvas) {
+            teardown();
+            return;
+        }
+
+        const ctx = canvas.getContext("2d");
+        const pal = document.documentElement.getAttribute("data-theme") === "light"
+            ? { node: "79, 70, 229", edge: "79, 70, 229", pulse: "13, 148, 136" }
+            : { node: "158, 172, 255", edge: "143, 160, 255", pulse: "94, 234, 212" };
+
+        const DUR = 1250; // convergence
+        const TAIL = 260; // settle-and-pulse hold before fade
+        let W, H, dpr, nodes, pulses, LINK, startTs = null, rafId = 0, finished = false;
+
+        const size = () => {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            W = loader.clientWidth;
+            H = loader.clientHeight;
+            canvas.width = W * dpr;
+            canvas.height = H * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            LINK = Math.min(W, H) * 0.24;
+        };
+
+        const seed = () => {
+            const N = Math.min(Math.max(Math.floor((W * H) / 26000), 22), 42);
+            const cx = W / 2, cy = H / 2, spread = Math.min(W, H) * 0.36;
+            nodes = Array.from({ length: N }, () => {
+                const ang = Math.random() * Math.PI * 2;
+                const rad = Math.sqrt(Math.random()) * spread;
+                return {
+                    sx: Math.random() * W,
+                    sy: Math.random() * H,
+                    tx: cx + Math.cos(ang) * rad,
+                    ty: cy + Math.sin(ang) * rad * 0.72,
+                    x: 0, y: 0,
+                    r: 1.1 + Math.random() * 1.7,
+                    big: Math.random() < 0.16,
+                };
+            });
+            pulses = [];
+        };
+
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+        const drawPulses = () => {
+            for (let i = pulses.length - 1; i >= 0; i--) {
+                const p = pulses[i];
+                p.t += p.v;
+                if (p.t >= 1) { pulses.splice(i, 1); continue; }
+                const x = p.a.x + (p.b.x - p.a.x) * p.t;
+                const y = p.a.y + (p.b.y - p.a.y) * p.t;
+                const f = Math.sin(p.t * Math.PI);
+                ctx.fillStyle = `rgba(${pal.pulse}, ${0.9 * f})`;
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        };
+
+        const draw = (g) => {
+            const e = easeOut(g);
+            ctx.clearRect(0, 0, W, H);
+            for (const p of nodes) {
+                p.x = p.sx + (p.tx - p.sx) * e;
+                p.y = p.sy + (p.ty - p.sy) * e;
+            }
+            const edgeAmt = Math.pow(g, 1.6);
+            for (let i = 0; i < nodes.length; i++) {
+                const a = nodes[i];
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const b = nodes[j];
+                    const dx = a.x - b.x, dy = a.y - b.y;
+                    const d2 = dx * dx + dy * dy;
+                    if (d2 < LINK * LINK) {
+                        const d = Math.sqrt(d2);
+                        ctx.strokeStyle = `rgba(${pal.edge}, ${(1 - d / LINK) * 0.5 * edgeAmt})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                        if (g > 0.5 && pulses.length < 20 && Math.random() < 0.03 * (1 - d / LINK)) {
+                            pulses.push({ a, b, t: 0, v: 0.018 + Math.random() * 0.022 });
+                        }
+                    }
+                }
+            }
+            drawPulses();
+            const nodeAlpha = Math.min(g / 0.25, 1);
+            for (const p of nodes) {
+                ctx.fillStyle = `rgba(${pal.node}, ${(p.big ? 0.95 : 0.72) * nodeAlpha})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r * (0.6 + 0.4 * e), 0, Math.PI * 2);
+                ctx.fill();
+            }
+            if (bar) bar.style.transform = `scaleX(${g})`;
+        };
+
+        const frame = (ts) => {
+            if (startTs === null) startTs = ts;
+            const g = Math.min((ts - startTs) / DUR, 1);
+            draw(g);
+            if (g < 1) {
+                rafId = requestAnimationFrame(frame);
+            } else {
+                // brief settle so the last pulses land, then hand off
+                let t0 = null;
+                const tail = (ts2) => {
+                    if (t0 === null) t0 = ts2;
+                    draw(1);
+                    if (ts2 - t0 < TAIL) rafId = requestAnimationFrame(tail);
+                    else finish();
+                };
+                rafId = requestAnimationFrame(tail);
+            }
+        };
+
+        const finish = () => {
+            if (finished) return;
+            finished = true;
+            cancelAnimationFrame(rafId);
+            teardown();
+        };
+
+        const skip = () => {
+            if (finished) return;
+            if (bar) bar.style.transform = "scaleX(1)";
+            finish();
+        };
+        ["pointerdown", "keydown", "wheel", "touchstart"].forEach((ev) =>
+            window.addEventListener(ev, skip, { once: true, passive: true })
+        );
+
+        size();
+        seed();
+        rafId = requestAnimationFrame(frame);
+    }
 
     /* ------------------------------------------------------
        THEME TOGGLE — light/dark, persisted, system default

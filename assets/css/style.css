@@ -2267,3 +2267,102 @@ em.fx,
 @keyframes sp-grow {
     to { transform: scaleX(1); }
 }
+
+/* ----------------------------------------------------------
+   25. INTRO LOADER — "network ignition"
+   First visit per session only; the <html> gets .is-loading
+   pre-paint from an inline gate script (never under reduced
+   motion). Nodes fly in, links form, signals fire, then it
+   hands off to the live hero canvas.
+   ---------------------------------------------------------- */
+.loader {
+    display: none;
+}
+html.is-loading {
+    /* keep the scrollbar gutter stable so reveal doesn't shift */
+    scrollbar-gutter: stable;
+}
+html.is-loading body {
+    overflow: hidden;
+}
+html.is-loading .loader {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: var(--bg-0);
+    opacity: 1;
+    transition: opacity 480ms var(--ease), visibility 480ms;
+}
+html.is-loading.is-done .loader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.loader__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.loader__center {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-4);
+    padding: var(--s-4);
+}
+.loader__mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #1b2140, #10131b);
+    border: 1px solid var(--line-2);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    color: var(--acc);
+    opacity: 0;
+    transform: scale(0.9);
+    animation: loader-mark-in 640ms var(--ease-spring) 120ms forwards;
+}
+:root[data-theme="light"] .loader__mark {
+    background: linear-gradient(135deg, #e7e9fb, #ffffff);
+    color: #4f46e5;
+}
+.loader__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--txt-3);
+    opacity: 0;
+    animation: loader-label-in 700ms var(--ease) 320ms forwards;
+}
+.loader__bar {
+    width: 132px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--line);
+    overflow: hidden;
+}
+.loader__bar span {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+}
+@keyframes loader-mark-in {
+    to { opacity: 1; transform: none; }
+}
+@keyframes loader-label-in {
+    to { opacity: 0.85; }
+}
