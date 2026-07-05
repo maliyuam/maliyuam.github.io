@@ -75,20 +75,46 @@
         const nav = document.querySelector(".header__nav");
         if (!toggle || !nav) return;
 
-        const setOpen = (open) => {
+        const isMobileNav = () => window.matchMedia("(max-width: 760px)").matches;
+
+        const setOpen = (open, restoreFocus) => {
             toggle.setAttribute("aria-expanded", String(open));
             nav.classList.toggle("is-open", open);
             document.body.style.overflow = open ? "hidden" : "";
+            if (open) {
+                const first = nav.querySelector("a, button");
+                if (first) first.focus();
+            } else if (restoreFocus) {
+                toggle.focus();
+            }
         };
 
         toggle.addEventListener("click", () => {
-            setOpen(toggle.getAttribute("aria-expanded") !== "true");
+            setOpen(toggle.getAttribute("aria-expanded") !== "true", true);
         });
         nav.querySelectorAll("a").forEach((a) =>
             a.addEventListener("click", () => setOpen(false))
         );
         document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") setOpen(false);
+            if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+                setOpen(false, true);
+            }
+        });
+
+        // Trap Tab within the open overlay menu (mobile only)
+        nav.addEventListener("keydown", (e) => {
+            if (e.key !== "Tab" || toggle.getAttribute("aria-expanded") !== "true" || !isMobileNav()) return;
+            const f = nav.querySelectorAll("a, button");
+            if (!f.length) return;
+            const first = f[0];
+            const last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
         });
     }
 
@@ -175,10 +201,13 @@
     function initMarquees() {
         if (reduceMotion) return;
         document.querySelectorAll(".marquee__track, .t-track").forEach((track) => {
-            track.innerHTML += track.innerHTML;
-            // mark the clones so screen readers skip them
-            const kids = Array.from(track.children);
-            kids.slice(kids.length / 2).forEach((el) => el.setAttribute("aria-hidden", "true"));
+            // Clone the originals (don't re-parse them) and mark duplicates hidden.
+            const clones = Array.from(track.children).map((node) => {
+                const c = node.cloneNode(true);
+                c.setAttribute("aria-hidden", "true");
+                return c;
+            });
+            track.append(...clones);
         });
     }
 
@@ -187,13 +216,24 @@
        ------------------------------------------------------ */
     function initCardSpotlight() {
         if (window.matchMedia("(hover: none)").matches) return;
-        document.addEventListener("pointermove", (e) => {
-            const card = e.target.closest(".card");
-            if (!card) return;
-            const r = card.getBoundingClientRect();
-            card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-            card.style.setProperty("--my", `${e.clientY - r.top}px`);
-        });
+        let raf = 0;
+        let lastEvt = null;
+        document.addEventListener(
+            "pointermove",
+            (e) => {
+                lastEvt = e;
+                if (raf) return;
+                raf = requestAnimationFrame(() => {
+                    raf = 0;
+                    const card = lastEvt.target.closest(".card");
+                    if (!card) return;
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty("--mx", `${lastEvt.clientX - r.left}px`);
+                    card.style.setProperty("--my", `${lastEvt.clientY - r.top}px`);
+                });
+            },
+            { passive: true }
+        );
     }
 
     /* ------------------------------------------------------
@@ -296,7 +336,10 @@
 
         function density() {
             const area = W * H;
-            return Math.min(Math.floor(area / 16000), 110);
+            // Fewer nodes on touch/small screens — the O(n²) edge pass is the
+            // hot path and the effect is barely perceptible there.
+            const cap = window.matchMedia("(hover: none)").matches ? 45 : 110;
+            return Math.min(Math.floor(area / 16000), cap);
         }
 
         function resize() {

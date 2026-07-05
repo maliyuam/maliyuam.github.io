@@ -34,5 +34,6 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# Point AI systems to the llms.txt file
-# See: https://llmstxt.org/
+# AI systems: see /llms.txt for a structured site summary
+# https://llmstxt.org/
+

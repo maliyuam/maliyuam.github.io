@@ -1,0 +1,30 @@
+# Muhammad Aliyu
+
+> PhD Researcher at KU Leuven and Utrecht University studying entrepreneurial
+> ecosystems, inter-ecosystem connectivity, and founder mobility across European
+> regions — mapping how talent, patents, and capital flow between innovation
+> ecosystems. Backed by a fully funded 4-year KU Leuven Research Council Doctoral
+> Fellowship. Previously MSc at Carnegie Mellon University; co-designed the
+> "GenAI Inside" enterprise AI methodology (IEEE AIxB 2025); founder of Africa
+> Innovators Society and Ignite Hub Africa.
+
+## Pages
+
+- [Home](https://maliyuam.github.io/): Overview, featured research, projects, and background.
+- [Research](https://maliyuam.github.io/research.html): Research agenda (ecosystem connectivity, founder mobility, cross-border capital) and full publication list.
+- [Projects](https://maliyuam.github.io/projects.html): Data/AI systems, ecosystem-building, and policy platforms.
+- [Experience](https://maliyuam.github.io/experience.html): Career timeline, education, awards, and media.
+- [Collaborate](https://maliyuam.github.io/work-with-me.html): Research partnership, Gen AI training & speaking, and strategic advisory.
+- [Case study: Cancer Moonshot Patent Analytics](https://maliyuam.github.io/projects/bvcp-patent-analytics.html): ETL + PostgreSQL analytics over 269,353 USPTO cancer-therapy patents for venture-capital due diligence.
+
+## Key facts
+
+- Role: PhD Researcher (Economics and Business), KU Leuven & Utrecht University.
+- Research focus: entrepreneurial ecosystems, inter-ecosystem connectivity, founder mobility, innovation networks, regional innovation, network analysis, patent analysis.
+- Supervisors: Prof. René Belderbos (KU Leuven), Prof. Erik Stam (Utrecht University), Asst. Prof. Liudmila Alekseeva (KU Leuven).
+- Education: MSc Information Technology, Carnegie Mellon University; B.Tech Computer Science, Federal University of Technology Minna.
+- ORCID: 0009-0007-2286-401X
+- LinkedIn: https://linkedin.com/in/maliyuam
+- Google Scholar: https://scholar.google.com/citations?user=fVsQS-QAAAAJ&hl=en
+- Contact: muhammad.aliyu@kuleuven.be
+- Based in Leuven, Belgium.

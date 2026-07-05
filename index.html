@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#07080b">
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-    <script>(function () { var t = "dark"; try { t = localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark") } catch (e) { } document.documentElement.setAttribute("data-theme", t) })()</script>
+    <script>(function(){var t="dark";try{t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}document.documentElement.setAttribute("data-theme",t)})()</script>
     <meta name="description"
         content="Muhammad Aliyu — PhD Researcher at KU Leuven studying entrepreneurial ecosystems, innovation networks, and founder mobility across European regions.">
     <meta name="keywords" content="Muhammad Aliyu, PhD, KU Leuven, entrepreneurial ecosystems, innovation, research">
@@ -15,16 +15,22 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://maliyuam.github.io/">
-    <meta property="og:title" content="Muhammad Aliyu — PhD Researcher">
+    <meta property="og:title" content="Muhammad Aliyu — PhD Researcher in Innovation Ecosystems &amp; AI">
     <meta property="og:description" content="Studying entrepreneurial ecosystems and innovation networks at KU Leuven.">
     <meta property="og:image" content="https://maliyuam.github.io/assets/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Muhammad Aliyu — PhD Researcher in Innovation Ecosystems">
+    <meta property="og:site_name" content="Muhammad Aliyu">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Muhammad Aliyu — PhD Researcher">
+    <meta name="twitter:title" content="Muhammad Aliyu — PhD Researcher in Innovation Ecosystems &amp; AI">
     <meta name="twitter:description"
         content="Studying entrepreneurial ecosystems and innovation networks at KU Leuven.">
     <meta name="twitter:image" content="https://maliyuam.github.io/assets/images/og-card.png">
+    <meta name="twitter:image:alt" content="Muhammad Aliyu — PhD Researcher in Innovation Ecosystems">
 
     <link rel="canonical" href="https://maliyuam.github.io/">
     <link rel="icon"
@@ -41,6 +47,8 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "mainEntity": {
         "@type": "Person",
         "name": "Muhammad Aliyu",
         "givenName": "Muhammad",
@@ -85,6 +93,16 @@
                 "educationalLevel": "Master's Degree"
             }
         ]
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://maliyuam.github.io/",
+        "name": "Muhammad Aliyu",
+        "author": { "@type": "Person", "name": "Muhammad Aliyu" }
     }
     </script>
 </head>
@@ -92,6 +110,7 @@
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>
     <div class="grain" aria-hidden="true"></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <!-- Header -->
     <header class="header">
@@ -136,7 +155,7 @@
                     PhD Researcher — KU Leuven &amp; Utrecht University
                 </span>
                 <h1 class="hero__title">
-                    Mapping how innovation<br>
+                    Mapping how innovation<br class="br-hero">
                     <em class="fx">moves</em> across borders
                 </h1>
                 <p class="hero__sub">
@@ -341,7 +360,7 @@
 
                 <div class="timeline" data-reveal-group>
                     <article class="tl-item" data-reveal>
-                        <span class="tl-item__date">2026 — Present</span>
+                        <span class="tl-item__date">Jan 2026 — Present</span>
                         <h3 class="tl-item__role">PhD Researcher</h3>
                         <p class="tl-item__org">KU Leuven &amp; Utrecht University</p>
                         <p class="tl-item__desc">Investigating inter-ecosystem connectivity and
@@ -368,7 +387,7 @@
                     </article>
 
                     <article class="tl-item" data-reveal>
-                        <span class="tl-item__date">Aug — Oct 2025</span>
+                        <span class="tl-item__date">Apr — Oct 2025</span>
                         <h3 class="tl-item__role">AI Governance Facilitator</h3>
                         <p class="tl-item__org">European Network for AI Safety (ENAIS)</p>
                         <p class="tl-item__desc">Facilitated a 12-week intensive AI Governance program

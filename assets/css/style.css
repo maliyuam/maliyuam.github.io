@@ -112,6 +112,7 @@
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
     color-scheme: dark;
 }
 
@@ -125,6 +126,7 @@ body {
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     min-height: 100vh;
+    min-height: 100svh;
 }
 
 img,
@@ -168,7 +170,8 @@ h1, h2, h3, h4 {
 
 :focus-visible {
     outline: 2px solid var(--acc);
-    outline-offset: 3px;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--acc-dim);
     border-radius: 4px;
 }
 
@@ -367,7 +370,6 @@ em.fx {
         border-color var(--dur-1) ease,
         box-shadow var(--dur-2) ease,
         color var(--dur-1) ease;
-    will-change: transform;
 }
 .btn:active {
     transform: scale(0.97);
@@ -468,7 +470,9 @@ em.fx {
     width: 100%;
     max-width: var(--w-max);
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+    padding-inline:
+        max(clamp(1.25rem, 4vw, 2.5rem), env(safe-area-inset-left))
+        max(clamp(1.25rem, 4vw, 2.5rem), env(safe-area-inset-right));
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -574,6 +578,13 @@ em.fx {
         flex-direction: column;
         justify-content: center;
         gap: var(--s-4);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding:
+            max(var(--header-h), env(safe-area-inset-top))
+            env(safe-area-inset-right)
+            max(var(--s-6), env(safe-area-inset-bottom))
+            env(safe-area-inset-left);
         background: rgba(7, 8, 11, 0.92);
         -webkit-backdrop-filter: blur(20px);
         backdrop-filter: blur(20px);
@@ -916,12 +927,13 @@ em.fx {
     padding: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
     overflow: hidden;
     transition: transform var(--dur-2) var(--ease), border-color var(--dur-2) ease,
-        background var(--dur-2) ease;
+        background var(--dur-2) ease, box-shadow var(--dur-2) ease;
 }
 .card:hover {
     transform: translateY(-4px);
     border-color: var(--line-2);
     background: var(--surface-2);
+    box-shadow: 0 14px 32px -16px rgba(0, 0, 0, 0.6);
 }
 /* pointer-tracked spotlight */
 .card::before {
@@ -949,7 +961,7 @@ em.fx {
     padding: 0.3em 0.75em;
     border-radius: var(--r-pill);
     border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--surface);
     font-family: var(--font-mono);
     font-size: 0.66rem;
     letter-spacing: 0.05em;
@@ -1242,7 +1254,8 @@ em.fx {
 }
 .project-card__stats {
     display: flex;
-    gap: var(--s-6);
+    flex-wrap: wrap;
+    gap: var(--s-4) var(--s-6);
     padding-block: var(--s-4);
     border-block: 1px solid var(--line);
     margin-bottom: var(--s-4);
@@ -2088,11 +2101,15 @@ em.fx {
         opacity var(--dur-3) var(--ease),
         transform var(--dur-3) var(--ease);
     transition-delay: var(--rd, 0ms);
+}
+/* Promote to a layer only while waiting/animating; released on reveal */
+[data-reveal]:not(.is-in) {
     will-change: opacity, transform;
 }
 [data-reveal].is-in {
     opacity: 1;
     transform: none;
+    will-change: auto;
 }
 
 /* hero intro (page load, not scroll) */
@@ -2163,4 +2180,90 @@ em.fx {
     ::view-transition-new(*) {
         animation: none !important;
     }
+    .scroll-progress {
+        display: none;
+    }
+}
+
+/* ----------------------------------------------------------
+   24. AUDIT REFINEMENTS
+   ---------------------------------------------------------- */
+
+/* LCP: never fade the page heading from opacity:0 — slide only.
+   Keeps the intro motion while letting the H1 paint immediately. */
+@keyframes intro-up-noopacity {
+    from { transform: translateY(22px); }
+    to { transform: none; }
+}
+.intro > h1 {
+    opacity: 1;
+    animation-name: intro-up-noopacity;
+}
+
+/* Gradient-clipped display text: solid fallback + forced-colors safety
+   so accent words never vanish in High Contrast / paint failure. */
+em.fx,
+.finding-stat__num {
+    color: var(--acc);
+}
+@media (forced-colors: active) {
+    em.fx,
+    .finding-stat__num {
+        -webkit-text-fill-color: currentColor;
+        color: CanvasText;
+        background: none;
+    }
+}
+
+/* Ghost button hover: theme-aware border (white edge vanished on light). */
+:root[data-theme="light"] .btn--ghost:hover {
+    border-color: rgba(16, 19, 33, 0.3);
+}
+
+/* FAQ header hover feedback (whole clickable row, not just the marker). */
+.faq summary:hover {
+    background: var(--surface);
+}
+
+/* Optional large-screen line break in the hero title — off below 900px
+   so text-wrap:balance can choose break points and avoid a lopsided wrap. */
+@media (max-width: 900px) {
+    .br-hero {
+        display: none;
+    }
+}
+
+/* Findings stat grid: stack to one column on small phones. */
+@media (max-width: 480px) {
+    .grid-4 {
+        grid-template-columns: 1fr;
+        gap: var(--s-5);
+    }
+    .project-card__stat {
+        flex: 1 0 40%;
+    }
+}
+
+/* Reading-progress bar (long editorial pages). CSS scroll-driven,
+   degrades to nothing where unsupported; hidden under reduced motion. */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    background: var(--gradient);
+    z-index: 88;
+    pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+    .scroll-progress {
+        animation: sp-grow linear both;
+        animation-timeline: scroll(root);
+    }
+}
+@keyframes sp-grow {
+    to { transform: scaleX(1); }
 }
