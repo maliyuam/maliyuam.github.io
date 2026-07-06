@@ -1156,69 +1156,8 @@ em.fx {
 }
 
 /* ----------------------------------------------------------
-   13. TIMELINE
+   13. EXPERIENCE — see section 26 (expandable "changelog" list)
    ---------------------------------------------------------- */
-.timeline {
-    position: relative;
-    max-width: 860px;
-}
-.timeline::before {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 8px;
-    bottom: 8px;
-    width: 1px;
-    background: linear-gradient(var(--line-2), var(--line) 80%, transparent);
-}
-.tl-item {
-    position: relative;
-    padding-left: clamp(2rem, 1.5rem + 2vw, 3rem);
-    padding-bottom: clamp(2.25rem, 2rem + 1.5vw, 3.25rem);
-}
-.tl-item:last-child {
-    padding-bottom: 0;
-}
-.tl-item::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 7px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--bg-0);
-    border: 2px solid var(--acc);
-    box-shadow: 0 0 0 4px rgba(143, 160, 255, 0.12);
-}
-.tl-item__date {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: var(--text-2xs);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--acc);
-    margin-bottom: var(--s-2);
-}
-.tl-item__role {
-    font-size: 1.18rem;
-    margin-bottom: 2px;
-}
-.tl-item__org {
-    font-size: var(--text-sm);
-    color: var(--txt-2);
-    font-weight: 500;
-    margin-bottom: var(--s-3);
-}
-.tl-item__desc {
-    font-size: var(--text-sm);
-    max-width: 64ch;
-    margin-bottom: var(--s-3);
-}
-.tl-item__desc strong {
-    color: var(--txt-1);
-    font-weight: 600;
-}
 
 /* ----------------------------------------------------------
    14. PROJECTS
@@ -2365,4 +2304,118 @@ html.is-loading.is-done .loader {
 }
 @keyframes loader-label-in {
     to { opacity: 0.85; }
+}
+
+/* ----------------------------------------------------------
+   26. EXPERIENCE — expandable "changelog" list
+   Native <details>; one row per role, click to expand.
+   ---------------------------------------------------------- */
+.xp {
+    border-top: 1px solid var(--line);
+    max-width: 900px;
+}
+.xp__item {
+    border-bottom: 1px solid var(--line);
+}
+.xp__item > summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 172px 1fr 1.1rem;
+    align-items: baseline;
+    gap: var(--s-4);
+    padding: var(--s-5) var(--s-2);
+    border-radius: var(--r-sm);
+    transition: background var(--dur-2) ease;
+}
+.xp__item > summary::-webkit-details-marker {
+    display: none;
+}
+.xp__item > summary:hover {
+    background: var(--surface);
+}
+.xp__date {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--acc);
+    white-space: nowrap;
+    padding-top: 0.25em;
+}
+.xp__head {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    color: var(--txt-1);
+    letter-spacing: -0.01em;
+}
+.xp__role {
+    font-weight: 600;
+}
+.xp__org {
+    color: var(--txt-2);
+    font-weight: 400;
+}
+.xp__chev {
+    justify-self: end;
+    width: 8px;
+    height: 8px;
+    border-right: 1.6px solid var(--txt-3);
+    border-bottom: 1.6px solid var(--txt-3);
+    transform: translateY(0.28em) rotate(-45deg);
+    transition: transform var(--dur-2) var(--ease), border-color var(--dur-1) ease;
+}
+.xp__item > summary:hover .xp__chev,
+.xp__item[open] > summary .xp__chev {
+    border-color: var(--acc);
+}
+.xp__item[open] > summary .xp__chev {
+    transform: translateY(0.1em) rotate(45deg);
+}
+.xp__body {
+    padding: 0 var(--s-2) var(--s-6) calc(172px + var(--s-4));
+}
+.xp__item[open] > .xp__body {
+    animation: xp-in var(--dur-2) var(--ease);
+}
+@keyframes xp-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: none; }
+}
+.xp__desc {
+    font-size: var(--text-sm);
+    max-width: 66ch;
+    margin-bottom: var(--s-4);
+}
+.xp__desc strong {
+    color: var(--txt-1);
+    font-weight: 600;
+}
+@media (max-width: 640px) {
+    .xp__item > summary {
+        grid-template-columns: 1fr auto;
+        gap: var(--s-2) var(--s-3);
+        padding-block: var(--s-4);
+    }
+    .xp__date {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        padding-top: 0;
+    }
+    .xp__head {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .xp__chev {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: start;
+        transform: translateY(0.4em) rotate(-45deg);
+    }
+    .xp__item[open] > summary .xp__chev {
+        transform: translateY(0.5em) rotate(45deg);
+    }
+    .xp__body {
+        padding-left: var(--s-2);
+    }
 }
