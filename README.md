@@ -3,7 +3,7 @@
 Personal website of **Muhammad Aliyu**, PhD Researcher at KU Leuven
 studying entrepreneurial ecosystems, innovation networks, and founder mobility.
 
-Live at [maliyuam.github.io](https://maliyuam.github.io).
+Live at [maliyuam.com](https://maliyuam.com).
 
 ## Design
 

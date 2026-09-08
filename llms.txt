@@ -10,12 +10,12 @@
 
 ## Pages
 
-- [Home](https://maliyuam.github.io/): Overview, featured research, projects, and background.
-- [Research](https://maliyuam.github.io/research.html): Research agenda (ecosystem connectivity, founder mobility, cross-border capital) and full publication list.
-- [Projects](https://maliyuam.github.io/projects.html): Data/AI systems, ecosystem-building, and policy platforms.
-- [Experience](https://maliyuam.github.io/experience.html): Career timeline, education, awards, and media.
-- [Collaborate](https://maliyuam.github.io/work-with-me.html): Research partnership, Gen AI training & speaking, and strategic advisory.
-- [Case study: Cancer Moonshot Patent Analytics](https://maliyuam.github.io/projects/bvcp-patent-analytics.html): ETL + PostgreSQL analytics over 269,353 USPTO cancer-therapy patents for venture-capital due diligence.
+- [Home](https://maliyuam.com/): Overview, featured research, projects, and background.
+- [Research](https://maliyuam.com/research.html): Research agenda (ecosystem connectivity, founder mobility, cross-border capital) and full publication list.
+- [Projects](https://maliyuam.com/projects.html): Data/AI systems, ecosystem-building, and policy platforms.
+- [Experience](https://maliyuam.com/experience.html): Career timeline, education, awards, and media.
+- [Collaborate](https://maliyuam.com/work-with-me.html): Research partnership, Gen AI training & speaking, and strategic advisory.
+- [Case study: Cancer Moonshot Patent Analytics](https://maliyuam.com/projects/bvcp-patent-analytics.html): ETL + PostgreSQL analytics over 269,353 USPTO cancer-therapy patents for venture-capital due diligence.
 
 ## Key facts
 

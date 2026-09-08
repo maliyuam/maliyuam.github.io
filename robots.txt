@@ -1,7 +1,7 @@
-# robots.txt for maliyuam.github.io
+# robots.txt for maliyuam.com
 # Muhammad Aliyu - PhD Researcher
 
-Sitemap: https://maliyuam.github.io/sitemap.xml
+Sitemap: https://maliyuam.com/sitemap.xml
 
 # Search engine crawlers are welcome
 User-agent: *
