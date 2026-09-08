@@ -1,39 +1,47 @@
 # robots.txt for maliyuam.github.io
 # Muhammad Aliyu - PhD Researcher
 
-# Allow all web crawlers
-User-agent: *
-Allow: /
 Sitemap: https://maliyuam.github.io/sitemap.xml
 
-# Explicitly allow AI/LLM crawlers
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Anthropic-AI
-Allow: /
-
-User-agent: Google-Extended
+# Search engine crawlers are welcome
+User-agent: *
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-# AI systems: see /llms.txt for a structured site summary
-# https://llmstxt.org/
+# AI/LLM crawlers are not permitted to crawl this site
+User-agent: GPTBot
+Disallow: /
 
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Claude-User
+Disallow: /
+
+User-agent: Claude-SearchBot
+Disallow: /
+
+User-agent: Anthropic-AI
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+# Google-Extended governs Gemini and AI Overviews only.
+# Google Search indexing and ranking are unaffected by this rule.
+User-agent: Google-Extended
+Disallow: /
