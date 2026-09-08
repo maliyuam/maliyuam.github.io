@@ -7,7 +7,7 @@ I'm excited to launch this blog as a space to share insights from my PhD researc
 
 ## What I'll Write About
 
-My research at KU Leuven and Utrecht University focuses on understanding how ecosystems connect and compete. Here, I'll share:
+My research at KU Leuven focuses on understanding how ecosystems connect and compete. Here, I'll share:
 
 - **Research insights** — Key findings from my work on founder mobility and inter-ecosystem connectivity
 - **Methodology notes** — How I approach network analysis, patent data, and geocoding
@@ -25,4 +25,4 @@ If you're interested in entrepreneurial ecosystems, innovation networks, or regi
 ---
 
 *Muhammad Aliyu*  
-*PhD Researcher, KU Leuven & Utrecht University*
+*PhD Researcher, KU Leuven*

@@ -1,6 +1,6 @@
 # Muhammad Aliyu
 
-> PhD Researcher at KU Leuven and Utrecht University studying entrepreneurial
+> PhD Researcher at KU Leuven studying entrepreneurial
 > ecosystems, inter-ecosystem connectivity, and founder mobility across European
 > regions — mapping how talent, patents, and capital flow between innovation
 > ecosystems. Backed by a fully funded 4-year KU Leuven Research Council Doctoral
@@ -19,7 +19,7 @@
 
 ## Key facts
 
-- Role: PhD Researcher (Economics and Business), KU Leuven & Utrecht University.
+- Role: PhD Researcher (Economics and Business), KU Leuven.
 - Research focus: entrepreneurial ecosystems, inter-ecosystem connectivity, founder mobility, innovation networks, regional innovation, network analysis, patent analysis.
 - Supervisors: Prof. René Belderbos (KU Leuven), Prof. Erik Stam (Utrecht University), Asst. Prof. Liudmila Alekseeva (KU Leuven).
 - Education: MSc Information Technology, Carnegie Mellon University; B.Tech Computer Science, Federal University of Technology Minna.

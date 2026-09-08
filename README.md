@@ -1,6 +1,6 @@
 # Muhammad Aliyu — Personal Site
 
-Personal website of **Muhammad Aliyu**, PhD Researcher at KU Leuven & Utrecht University
+Personal website of **Muhammad Aliyu**, PhD Researcher at KU Leuven
 studying entrepreneurial ecosystems, innovation networks, and founder mobility.
 
 Live at [maliyuam.github.io](https://maliyuam.github.io).
