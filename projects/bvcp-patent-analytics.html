@@ -8,29 +8,29 @@
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
     <script>(function(){var t="dark";try{t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}catch(e){}document.documentElement.setAttribute("data-theme",t)})()</script>
     <meta name="description"
-        content="Cancer Moonshot Patent Analytics — ETL pipeline and PostgreSQL analytics on 269,353 USPTO cancer therapy patents for venture capital investment decisions.">
+        content="Cancer Moonshot Patent Analytics: ETL pipeline and PostgreSQL analytics on 269,353 USPTO cancer therapy patents for venture capital investment decisions.">
     <meta name="author" content="Muhammad Aliyu">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://maliyuam.com/projects/bvcp-patent-analytics.html">
-    <meta property="og:title" content="Cancer Moonshot Patent Analytics — Muhammad Aliyu">
+    <meta property="og:title" content="Cancer Moonshot Patent Analytics | Muhammad Aliyu">
     <meta property="og:description"
         content="ETL pipeline and SQL analytics on 269K USPTO cancer patents for venture capital due diligence.">
     <meta property="og:image" content="https://maliyuam.com/assets/images/og-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Cancer Moonshot Patent Analytics — case study by Muhammad Aliyu">
+    <meta property="og:image:alt" content="Cancer Moonshot Patent Analytics, a case study by Muhammad Aliyu">
     <meta property="og:site_name" content="Muhammad Aliyu">
     <meta property="og:locale" content="en_US">
     <meta property="article:author" content="Muhammad Aliyu">
     <meta property="article:section" content="Projects">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cancer Moonshot Patent Analytics — Muhammad Aliyu">
+    <meta name="twitter:title" content="Cancer Moonshot Patent Analytics | Muhammad Aliyu">
     <meta name="twitter:description"
         content="ETL pipeline and SQL analytics on 269K USPTO cancer patents for venture capital due diligence.">
     <meta name="twitter:image" content="https://maliyuam.com/assets/images/og-card.png">
-    <meta name="twitter:image:alt" content="Cancer Moonshot Patent Analytics — case study by Muhammad Aliyu">
+    <meta name="twitter:image:alt" content="Cancer Moonshot Patent Analytics, a case study by Muhammad Aliyu">
 
     <link rel="canonical" href="https://maliyuam.com/projects/bvcp-patent-analytics.html">
     <link rel="icon"
@@ -42,6 +42,15 @@
     <link rel="preload" href="../assets/fonts/InstrumentSerif-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="../assets/css/fonts.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <noscript>
+        <style>
+            [data-reveal],
+            .intro > * {
+                opacity: 1;
+                transform: none;
+            }
+        </style>
+    </noscript>
 
     <script type="application/ld+json">
     {
@@ -143,13 +152,13 @@
                         across four decades of USPTO patent filings. Their investment committee faced three
                         core challenges:</p>
                     <ol>
-                        <li><strong>Volume Overload</strong> — The Cancer Moonshot dataset contains 269,353
+                        <li><strong>Volume Overload:</strong> The Cancer Moonshot dataset contains 269,353
                             patent records spanning 1976 to 2016, with 29 columns of unstructured data
                             unsuitable for analytical querying.</li>
-                        <li><strong>Signal Extraction</strong> — Identifying which therapeutic domains are
+                        <li><strong>Signal Extraction:</strong> Identifying which therapeutic domains are
                             accelerating, which have strong NIH-to-FDA translation pipelines, and where
                             cross-domain innovation is emerging.</li>
-                        <li><strong>Due Diligence Efficiency</strong> — BVCP needed repeatable,
+                        <li><strong>Due Diligence Efficiency:</strong> BVCP needed repeatable,
                             query-driven analytics rather than one-off manual reviews to support quarterly
                             investment decisions.</li>
                     </ol>
@@ -313,7 +322,7 @@
                     <article class="card" data-reveal>
                         <span class="num-card__num">02</span>
                         <h3 class="num-card__title">Domain Acceleration</h3>
-                        <p class="num-card__q">Which domains are accelerating — growth speeding up, not
+                        <p class="num-card__q">Which domains are accelerating, with growth speeding up, not
                             just growing?</p>
                         <p class="num-card__finding"><strong>Finding:</strong> Domains that were niche
                             pre-2008 showed exponential acceleration post-2012, while traditional Drugs
@@ -325,7 +334,7 @@
                         <p class="num-card__q">Which patents carry both NIH grant funding AND FDA drug
                             approval?</p>
                         <p class="num-card__finding"><strong>Finding:</strong> Only a small subset of
-                            patents carry both markers — these represent the highest-confidence commercial
+                            patents carry both markers; these represent the highest-confidence commercial
                             translation opportunities for VC investment.</p>
                     </article>
                     <article class="card" data-reveal>
@@ -343,7 +352,7 @@
                         <p class="num-card__q">Which organizations produce the most NIH-linked patents
                             across the broadest domain spread?</p>
                         <p class="num-card__finding"><strong>Finding:</strong> A handful of research
-                            universities and medical centers dominate NIH-linked output — potential
+                            universities and medical centers dominate NIH-linked output, a potential
                             partnership or licensing targets for BVCP.</p>
                     </article>
                     <article class="card" data-reveal>
@@ -352,7 +361,7 @@
                         <p class="num-card__q">Which post-2008 patents in top-momentum domains have the
                             largest patent families?</p>
                         <p class="num-card__finding"><strong>Finding:</strong> Large patent families signal
-                            commercially valuable IP protected across jurisdictions — these concentrate in
+                            commercially valuable IP protected across jurisdictions; these concentrate in
                             the accelerating domains.</p>
                     </article>
                     <article class="card" data-reveal>
@@ -362,7 +371,7 @@
                             cross-domain innovation?</p>
                         <p class="num-card__finding"><strong>Finding:</strong> 113,484 patents span 2+
                             domains. Multi-domain patents signal platform technologies with broader
-                            therapeutic applicability — high-value VC targets.</p>
+                            therapeutic applicability, making them high-value VC targets.</p>
                     </article>
                     <article class="card" data-reveal>
                         <span class="num-card__num">08</span>
@@ -388,7 +397,7 @@
                         <p class="num-card__q">Do high-filing domains also have high FDA approval
                             linkage?</p>
                         <p class="num-card__finding"><strong>Finding:</strong> Most high-volume domains
-                            have FDA linkage rates below 0.5%, revealing a massive translation gap — the
+                            have FDA linkage rates below 0.5%, revealing a massive translation gap: the
                             central insight for BVCP's investment thesis.</p>
                     </article>
                 </div>
@@ -416,7 +425,7 @@
                     </div>
                     <div class="finding-stat" data-reveal>
                         <span class="finding-stat__num">&lt;0.5%</span>
-                        <p class="finding-stat__text">FDA linkage rate for most high-volume domains — a
+                        <p class="finding-stat__text">FDA linkage rate for most high-volume domains, a
                             massive patent-to-approval translation gap</p>
                     </div>
                     <div class="finding-stat" data-reveal>
@@ -439,22 +448,22 @@
                     <p>The analysis delivers five strategic recommendations for BVCP's cancer therapy
                         investment strategy:</p>
                     <ol>
-                        <li><strong>Prioritize Accelerating Domains</strong> — Focus due diligence on
+                        <li><strong>Prioritize Accelerating Domains:</strong> Focus due diligence on
                             DNA/RNA/Protein Sequence and genomic-related domains showing the steepest
                             momentum curves post-2011. These represent the frontier of cancer therapy
                             innovation.</li>
-                        <li><strong>Target Dual-Linked Patents</strong> — The small cohort of patents with
+                        <li><strong>Target Dual-Linked Patents:</strong> The small cohort of patents with
                             both NIH funding and FDA approval represents validated, commercially viable IP.
                             Pursue licensing or partnership with the organizations holding these
                             patents.</li>
-                        <li><strong>Monitor the Translation Gap</strong> — The extreme disparity between
+                        <li><strong>Monitor the Translation Gap:</strong> The extreme disparity between
                             filing volume and FDA linkage rates means most patent-heavy domains have
                             unproven commercial pathways. Use FDA linkage rate as a risk filter in
                             portfolio screening.</li>
-                        <li><strong>Exploit Cross-Domain Convergence</strong> — Multi-domain patents and
+                        <li><strong>Exploit Cross-Domain Convergence:</strong> Multi-domain patents and
                             high-frequency domain pair co-occurrences identify platform technologies with
                             diversified therapeutic applicability and lower concentration risk.</li>
-                        <li><strong>Build Ongoing Intelligence</strong> — The 6-table schema and 10
+                        <li><strong>Build Ongoing Intelligence:</strong> The 6-table schema and 10
                             reusable SQL procedures provide a repeatable analytics framework. BVCP can
                             refresh the analysis annually as new USPTO data becomes available.</li>
                     </ol>
@@ -487,7 +496,7 @@
                     </article>
                     <article class="card" data-reveal>
                         <h3 class="schema-table__name">USPTO Dataset</h3>
-                        <p class="num-card__q">Cancer Moonshot Patent Dataset — 269,353 records spanning
+                        <p class="num-card__q">Cancer Moonshot Patent Dataset: 269,353 records spanning
                             1976 to 2016</p>
                     </article>
                 </div>

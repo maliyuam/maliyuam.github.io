@@ -1,4 +1,4 @@
-# Muhammad Aliyu — Personal Site
+# Muhammad Aliyu's Personal Site
 
 Personal website of **Muhammad Aliyu**, PhD Researcher at KU Leuven
 studying entrepreneurial ecosystems, innovation networks, and founder mobility.
@@ -7,22 +7,22 @@ Live at [maliyuam.com](https://maliyuam.com).
 
 ## Design
 
-Editorial design system with dark and light themes — no frameworks, no build step,
+Editorial design system with dark and light themes, no frameworks, no build step,
 deploys straight to GitHub Pages. Theme follows system preference by default; the
 header toggle persists the visitor's choice.
 
 - **Typography:** Inter (UI), Instrument Serif italic (display accents), JetBrains Mono (labels & data)
-- **Signature visual:** a live network-constellation canvas in the hero — nodes, proximity edges,
+- **Signature visual:** a live network-constellation canvas in the hero: nodes, proximity edges,
   and pulses travelling along links, echoing the research theme of ecosystem connectivity
 - **Motion:** scroll-triggered reveals (IntersectionObserver), count-up stats, logo & testimonial
-  marquees, pointer-tracked card spotlights — all respecting `prefers-reduced-motion`
+  marquees, pointer-tracked card spotlights, all respecting `prefers-reduced-motion`
 - **Accessibility:** semantic landmarks, skip link, keyboard-visible focus rings, `aria-current`
   navigation, WCAG-conscious contrast
 
 ## Structure
 
 ```
-index.html                  Home — hero, affiliations, stats, research, projects, testimonials
+index.html                  Home: hero, affiliations, stats, research, projects, testimonials
 research.html               Research agenda + publications
 projects.html               Project portfolio
 experience.html             Timeline, education, awards & media

@@ -9,10 +9,10 @@ I'm excited to launch this blog as a space to share insights from my PhD researc
 
 My research at KU Leuven focuses on understanding how ecosystems connect and compete. Here, I'll share:
 
-- **Research insights** — Key findings from my work on founder mobility and inter-ecosystem connectivity
-- **Methodology notes** — How I approach network analysis, patent data, and geocoding
-- **Field observations** — What I'm learning about innovation policy across regions
-- **PhD journey** — Reflections on the research process itself
+- **Research insights:** Key findings from my work on founder mobility and inter-ecosystem connectivity
+- **Methodology notes:** How I approach network analysis, patent data, and geocoding
+- **Field observations:** What I'm learning about innovation policy across regions
+- **PhD journey:** Reflections on the research process itself
 
 ## Why a Blog?
 

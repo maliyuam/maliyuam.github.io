@@ -17,4 +17,4 @@ def is_weak_tie(inventor, cluster_a, cluster_b):
 ```
 
 ## Preliminary Results
-Our initial maps reveal "invisible bridges"—towns that act as critical connectors between major hubs, despite having low startup density themselves. These "connector regions" are undervalued key players in the national innovation system.
+Our initial maps reveal "invisible bridges": towns that act as critical connectors between major hubs, despite having low startup density themselves. These "connector regions" are undervalued key players in the national innovation system.
