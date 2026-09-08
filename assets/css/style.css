@@ -1219,6 +1219,15 @@ em.fx {
 .project-card .link-arrow {
     margin-top: var(--s-4);
 }
+.project-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    margin-top: var(--s-4);
+}
+.project-card__links .link-arrow {
+    margin-top: 0;
+}
 
 /* ----------------------------------------------------------
    15. TESTIMONIALS MARQUEE
